@@ -2,79 +2,146 @@ package Logica;
 import java.util.Scanner;
 
 public class Program {
-    
-    public static void main(String[] args) {
-
-        Scanner teclado = new Scanner(System.in);
-
+    static Scanner teclado = new Scanner(System.in);
+    public static void main(String[] args) {    
+        
         Tigre tigrePalermo = new Tigre("delicado", "fatal", "infinita", "sanguinario", "hermoso");
-        String autor = "Jorge Luis Borges";
-        //!cargarTigrePalermo(tigrePalermo);
-        imprimirTexto(tigrePalermo, autor);
+        Tigre tigrePersonalizado; // es lo mismo que tigrePersonalizado = null
+        //no apuntan ni contienen ningun tigre
+        String atributos[];
+        String autor;
+        int opcionMenu;
+
+        mostrarMenu();
+        opcionMenu = teclado.nextInt();
+        teclado.nextLine();
         
-        Tigre tigre = new Tigre();
-        System.out.println("Creando un nuevo tigre..");
-        System.out.print("Ingrese el autor: ");
-        autor = teclado.nextLine();
-        cargarNuevoTigre(tigre);
-        imprimirTexto(tigre, autor);
+        switch (opcionMenu) {
+            case 1:
+                imprimirTexto(tigrePalermo, "Jorge Luis Borges");
+                break;
+
+            case 2:
+                autor = cargarAutor();
+                atributos = cargarAtributosTigre(); 
+                tigrePersonalizado = crearTigre(atributos);
+                imprimirTexto(tigrePersonalizado, autor);
+                break;
+
+            case 3:
+                System.out.println(" Finalizando programa...");
+                break;
+
+            default:
+                System.out.println(" ¡Opción no válida!");
+                break;
+            }
+        }
         
-        teclado.close();
-        //menu con opciones por favor seleccione el tigre que desee conocer
-        // 1 tigre de palermo, 2 tigre personalizado, 3 abandonar el programa
+    static void mostrarMenu(){
+
+        System.out.println("---------------------------------------------------------");
+        System.out.println(" BIENVENIDO AL PROGRAMA \n");
+        System.out.println(" Por favor seleccione el tigre que desea conocer: \n");
+        System.out.println(" 1 - Tigre de Palermo.");
+        System.out.println(" 2 - Tigre Personalizado.");
+        System.out.println(" 3 - Finalizar programa.\n");
+        System.out.print(" Elija una opción: ");
+    }
+
+    static String cargarAutor(){
+
+        String autor;
+        boolean bandera = true;
+
+        do{
+
+            System.out.println("\n Ingrese el autor: ");
+            autor = teclado.nextLine();
+            bandera = confirmar("autor");
+
+        } while (bandera);
+
+        return autor;
+    }
+
+    static boolean confirmar(String valor){
+
+            String opcion;
+            boolean bandera = true;
+
+            System.out.println("\nDesea confirmar " + valor + " [S/N]");
+            opcion = teclado.nextLine();
+
+            if (opcion.equalsIgnoreCase("s")){
+                bandera = false;
+            }
+
+        return bandera;
+    }
+
+    static String[] cargarAtributosTigre(){
+      
+        String valorAtributos[] = new String[5];
+        String atributos[] = new String[5];
+
+        boolean bandera = true;
+
+        atributos[0] = "Comportamiento";
+        atributos[1] = "Peligrosidad";
+        atributos[2] = "Vitalidad";
+        atributos[3] = "Instinto";
+        atributos[4] = "Apariencia";
+
+        do {
+            System.out.println("----------------------------------------------------------------------------------\n");
+            System.out.println("-- CREANDO UN NUEVO TIGRE --");
+            System.out.println("Ingrese comportamiento: ");
+            System.out.println("{bruto, fino, sutil} ");
+            valorAtributos[0] = teclado.nextLine();
+
+            System.out.println("\nIngrese peligrosidad: ");
+            System.out.println("{manso, inofensivo, cariñoso}");
+            valorAtributos[1] = teclado.nextLine();
+
+            System.out.println("\nIngrese vitalidad: ");
+            System.out.println("{nula, inestable, escasa}");
+            valorAtributos[2] = teclado.nextLine();
+
+            System.out.println("\nIngrese instinto: ");
+            System.out.println("{sagaz, cruel, compasivo}");
+            valorAtributos[3] = teclado.nextLine();
+
+            System.out.println("\nIngrese apariencia: ");
+            System.out.println("{feo, viejo, pulgoso}");
+            valorAtributos[4] = teclado.nextLine();
+            
+            System.out.println("----------------------------------------------------------------------------------\n");
+            System.out.println("Los atributos elegidos son: \n");
+            for(int i = 0; i<5 ; i++){
+                System.out.println("- " + atributos[i] +": "+ valorAtributos[i]);
+            }
+            bandera = confirmar("atributos");
+
+        } while (bandera);
+
+        return valorAtributos;
     }
     
-    
-    
-    /* static void cargarTigrePalermo(Tigre tigreBorges){
-        
-        tigreBorges.setComportamiento("delicado");
-        tigreBorges.setPeligrosidad("fatal");
-        tigreBorges.setVitalidad("infinita");
-        tigreBorges.setInstinto("sanguinario");
-        tigreBorges.setApariencia("hermoso");
-        } */
-        //Tigre t = tigreN()
-        //pub sta tigreN(){
-        //instancia
-        //return tig
-    /* static void mostrarMenu{
+    static Tigre crearTigre(String atributos[]){
 
-    } */
+        Tigre tigrePersonalizado = new Tigre();
+        tigrePersonalizado.setComportamiento(atributos[0]);
+        tigrePersonalizado.setPeligrosidad(atributos[1]);
+        tigrePersonalizado.setVitalidad(atributos[2]);
+        tigrePersonalizado.setInstinto(atributos[3]);
+        tigrePersonalizado.setApariencia(atributos[4]);
 
-    static void cargarNuevoTigre(Tigre tigreNuevo){
-        
-        Scanner teclado = new Scanner(System.in);
-        String comportamiento;
-        
-
-        System.out.println("Creando un nuevo tigre..");
-
-        System.out.println("Ingrese comportamiento: ");
-        System.out.println("{bruto, fino, sutil} ");
-        comportamiento = teclado.nextLine();
-        tigreNuevo.setComportamiento(comportamiento);
-
-        System.out.println("Ingrese instinto: ");
-        System.out.println("{sagaz, cruel, compasivo}");
-        tigreNuevo.setInstinto(teclado.nextLine());
-        
-        System.out.println("Ingrese peligrosidad: ");
-        System.out.println("{manso, inofensivo, cariñoso}");
-        tigreNuevo.setPeligrosidad(teclado.nextLine());
-
-        System.out.println("Ingrese vitalidad: ");
-        System.out.println("{nula, inestable, escasa}");
-        tigreNuevo.setVitalidad(teclado.nextLine());
-
-        System.out.println("Ingrese apariencia: ");
-        System.out.println("{feo, viejo, pulgoso}");
-        tigreNuevo.setApariencia(teclado.nextLine());
-        
-        teclado.close();
+        return tigrePersonalizado;
     }
 
     static void imprimirTexto(Tigre tigre, String autor){
+
         String negrita = "\033[0;1m";
         String finNegrita = "\u001B[0m";
         
