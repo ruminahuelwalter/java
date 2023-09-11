@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class Program {
     static Scanner teclado = new Scanner(System.in);
-    public static void main(String[] args) {    
-        
+    public static void main(String[] args) {
+    
         Tigre tigrePalermo = new Tigre("delicado", "fatal", "infinita", "sanguinario", "hermoso");
         Tigre tigrePersonalizado; // es lo mismo que tigrePersonalizado = null
         //no apuntan ni contienen ningun tigre
@@ -35,8 +35,8 @@ public class Program {
             default:
                 System.out.println(" ¡Opción no válida!");
                 break;
-            }
         }
+    }
         
     static void mostrarMenu(){
 
@@ -67,15 +67,15 @@ public class Program {
 
     static boolean confirmar(String valor){
 
-            String opcion;
-            boolean bandera = true;
+        String opcion;
+        boolean bandera = true;
 
-            System.out.println("\nDesea confirmar " + valor + " [S/N]");
-            opcion = teclado.nextLine();
+        System.out.println("\nDesea confirmar " + valor + " [S/N]");
+        opcion = teclado.nextLine();
 
-            if (opcion.equalsIgnoreCase("s")){
-                bandera = false;
-            }
+        if (opcion.equalsIgnoreCase("s")){
+            bandera = false;
+        }
 
         return bandera;
     }
@@ -119,7 +119,9 @@ public class Program {
             System.out.println("----------------------------------------------------------------------------------\n");
             System.out.println("Los atributos elegidos son: \n");
             for(int i = 0; i<5 ; i++){
-                System.out.println("- " + atributos[i] +": "+ valorAtributos[i]);
+                System.out.println("- " + atributos[i] +": "+ valorAtributos[i]+
+                "\n");
+                
             }
             bandera = confirmar("atributos");
 
