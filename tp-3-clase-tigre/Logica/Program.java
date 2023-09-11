@@ -5,10 +5,10 @@ public class Program {
     static Scanner teclado = new Scanner(System.in);
     public static void main(String[] args) {
     
-        Tigre tigrePalermo = new Tigre("delicado", "fatal", "infinita", "sanguinario", "hermoso");
-        Tigre tigrePersonalizado; // es lo mismo que tigrePersonalizado = null
+        
+        //Tigre tigrePersonalizado; // es lo mismo que tigrePersonalizado = null
         //no apuntan ni contienen ningun tigre
-        String atributos[];
+        //String atributos[];
         String autor;
         int opcionMenu;
 
@@ -18,13 +18,13 @@ public class Program {
         
         switch (opcionMenu) {
             case 1:
+                Tigre tigrePalermo = new Tigre("delicado", "fatal", "infinita", "sanguinario", "hermoso");
                 imprimirTexto(tigrePalermo, "Jorge Luis Borges");
                 break;
 
             case 2:
                 autor = cargarAutor();
-                atributos = cargarAtributosTigre(); 
-                tigrePersonalizado = crearTigre(atributos);
+                Tigre tigrePersonalizado = crearTigre(cargarAtributosTigre());
                 imprimirTexto(tigrePersonalizado, autor);
                 break;
 
@@ -70,7 +70,7 @@ public class Program {
         String opcion;
         boolean bandera = true;
 
-        System.out.println("\nDesea confirmar " + valor + " [S/N]");
+        System.out.println("\n¿Desea confirmar " + valor + "? [S/N]");
         opcion = teclado.nextLine();
 
         if (opcion.equalsIgnoreCase("s")){
@@ -82,40 +82,38 @@ public class Program {
 
     static String[] cargarAtributosTigre(){
       
-        String valorAtributos[] = new String[5];
-        String atributos[] = new String[5];
+        String[] valorAtributos = new String[5];
+
+        String[] atributos = {
+            "Comportamiento",
+            "Peligrosidad",
+            "Vitalidad",
+            "Instinto",
+            "Apariencia",
+        };
+
+        String[] ejemplos = {
+            "bruto, fino, sutil",
+            "manso, inofensivo, cariñoso",
+            "nula, inestable, escasa",
+            "sagaz, cruel, compasivo",
+            "feo, viejo, pulgoso",
+        };
 
         boolean bandera = true;
 
-        atributos[0] = "Comportamiento";
-        atributos[1] = "Peligrosidad";
-        atributos[2] = "Vitalidad";
-        atributos[3] = "Instinto";
-        atributos[4] = "Apariencia";
 
         do {
             System.out.println("----------------------------------------------------------------------------------\n");
             System.out.println("-- CREANDO UN NUEVO TIGRE --");
-            System.out.println("Ingrese comportamiento: ");
-            System.out.println("{bruto, fino, sutil} ");
-            valorAtributos[0] = teclado.nextLine();
-
-            System.out.println("\nIngrese peligrosidad: ");
-            System.out.println("{manso, inofensivo, cariñoso}");
-            valorAtributos[1] = teclado.nextLine();
-
-            System.out.println("\nIngrese vitalidad: ");
-            System.out.println("{nula, inestable, escasa}");
-            valorAtributos[2] = teclado.nextLine();
-
-            System.out.println("\nIngrese instinto: ");
-            System.out.println("{sagaz, cruel, compasivo}");
-            valorAtributos[3] = teclado.nextLine();
-
-            System.out.println("\nIngrese apariencia: ");
-            System.out.println("{feo, viejo, pulgoso}");
-            valorAtributos[4] = teclado.nextLine();
             
+            for (int i = 0; i < atributos.length ; i++){
+                System.out.println("\nIngrese " + atributos[i].toLowerCase());
+                System.out.println("Ejemplos: " + ejemplos[i]);
+                valorAtributos[i] = teclado.nextLine();
+            }
+               
+
             System.out.println("----------------------------------------------------------------------------------\n");
             System.out.println("Los atributos elegidos son: \n");
             for(int i = 0; i<5 ; i++){
