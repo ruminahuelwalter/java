@@ -5,10 +5,6 @@ public class Program {
     static Scanner teclado = new Scanner(System.in);
     public static void main(String[] args) {
     
-        
-        //Tigre tigrePersonalizado; // es lo mismo que tigrePersonalizado = null
-        //no apuntan ni contienen ningun tigre
-        //String atributos[];
         String autor;
         int opcionMenu;
 
@@ -82,6 +78,7 @@ public class Program {
 
     static String[] cargarAtributosTigre(){
       
+        boolean bandera = true;
         String[] valorAtributos = new String[5];
 
         String[] atributos = {
@@ -100,9 +97,6 @@ public class Program {
             "feo, viejo, pulgoso",
         };
 
-        boolean bandera = true;
-
-
         do {
             System.out.println("----------------------------------------------------------------------------------\n");
             System.out.println("-- CREANDO UN NUEVO TIGRE --");
@@ -112,11 +106,10 @@ public class Program {
                 System.out.println("Ejemplos: " + ejemplos[i]);
                 valorAtributos[i] = teclado.nextLine();
             }
-               
 
             System.out.println("----------------------------------------------------------------------------------\n");
             System.out.println("Los atributos elegidos son: \n");
-            for(int i = 0; i<5 ; i++){
+            for(int i = 0; i<atributos.length ; i++){
                 System.out.println("- " + atributos[i] +": "+ valorAtributos[i]+
                 "\n");
                 
@@ -128,7 +121,7 @@ public class Program {
         return valorAtributos;
     }
     
-    static Tigre crearTigre(String atributos[]){
+    static Tigre crearTigre(String[] atributos){
 
         Tigre tigrePersonalizado = new Tigre();
         tigrePersonalizado.setComportamiento(atributos[0]);
