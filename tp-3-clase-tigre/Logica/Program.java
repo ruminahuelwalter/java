@@ -52,7 +52,7 @@ public class Program {
 
         do{
 
-            System.out.println("\n Ingrese el autor: ");
+            System.out.print("\n Ingrese el autor: ");
             autor = teclado.nextLine();
             bandera = confirmar("autor");
 
@@ -66,7 +66,7 @@ public class Program {
         String opcion;
         boolean bandera = true;
 
-        System.out.println("\n¿Desea confirmar " + valor + "? [S/N]");
+        System.out.print("\n¿Desea confirmar " + valor + "? [S/N]: ");
         opcion = teclado.nextLine();
 
         if (opcion.equalsIgnoreCase("s")){
@@ -103,15 +103,14 @@ public class Program {
             
             for (int i = 0; i < atributos.length ; i++){
                 System.out.println("\nIngrese " + atributos[i].toLowerCase());
-                System.out.println("Ejemplos: " + ejemplos[i]);
+                System.out.print("Ejemplos: " + ejemplos[i] + ": ");
                 valorAtributos[i] = teclado.nextLine();
             }
 
             System.out.println("----------------------------------------------------------------------------------\n");
             System.out.println("Los atributos elegidos son: \n");
             for(int i = 0; i<atributos.length ; i++){
-                System.out.println("- " + atributos[i] +": "+ valorAtributos[i]+
-                "\n");
+                System.out.println("- " + atributos[i] +": "+ valorAtributos[i]);
                 
             }
             bandera = confirmar("atributos");
