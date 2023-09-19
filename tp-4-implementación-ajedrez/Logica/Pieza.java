@@ -7,12 +7,8 @@ public abstract class Pieza {
     private String movimiento;
     private String color;
     private String comportamiento;
-    private int posicion;
-    //private int fila;
-    //private int columna;
-    //private int[] posicion; //un vector con fila y posicion
-    //private int posicion [] = {fila, columna};
-   
+    //private Casillero posicion;
+
 
     public Pieza(){
     }
@@ -21,6 +17,7 @@ public abstract class Pieza {
         this.movimiento = movimiento;
         this.color = color;
         this.comportamiento = comportamiento;
+        //this.posicion = posicion;
     }
 
     public String getMovimiento() {
@@ -47,60 +44,18 @@ public abstract class Pieza {
         this.comportamiento = comportamiento;
     }
     
-    public int getPosicion() {
+   /*  public Casillero getPosicion() {
         return posicion;
     }
 
-    public void setPosicion(int posicion) {
+    public void setPosicion(Casillero posicion) {
         this.posicion = posicion;
-    }
+    } */
     
     public abstract void mover();
 
-   /*  public posicionesPieza(){
-        //String[] nombresCasillas = {"a8","b8"};
-        List<String> nombresCasillas;
-        String valor;
-        int ascii = 96;
-        int k = 8;
-        for(int i = 0; i<64; i++){
-            String convertedChar = Character.toString(ascii + 1);
-                nombresCasillas.add(convertedChar+k);
-                k++;
-                if (i%8 == 0){ 
-                    k = 0;
-                    ascii=96;
-                } 
-        }
-        nombresCasillas.
-            
-    } */
-
-    
     
 }
-
-/*     public int getFila() {
-        return fila;
-    }
-
-    public void setFila(int fila) {
-        this.fila = fila;
-    }
-
-    public int getColumna() {
-        return columna;
-    }
-
-    public void setColumna(int columna) {
-        this.columna = columna;
-    } */
-
-    /* public posicion(){
-        
-    } */
-
-
 
 
 
