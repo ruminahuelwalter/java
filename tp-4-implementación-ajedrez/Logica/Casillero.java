@@ -1,8 +1,7 @@
 package Logica;
 public class Casillero {
+    
     private String color;
-    //private String posicion;
-    //private boolean estado;
     private int fila;
     private int columna;
     private String nombrePosicion;
@@ -17,6 +16,7 @@ public class Casillero {
     }
 
     public Casillero() {
+        
     }
 
     public String getColor() {
@@ -60,40 +60,5 @@ public class Casillero {
         return pieza;
     }
 
-
-    /* public Casillero(String color, String posicion, boolean estado) {
-        this.color = color;
-        this.posicion = posicion;
-        this.estado = estado;
-    }
-
-    public Casillero(){
-
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getPosicion() {
-        return posicion;
-    }
-
-    public void setPosicion(String posicion) {
-        this.posicion = posicion;
-    }
-
-    public boolean isEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
-    */
 
 } 

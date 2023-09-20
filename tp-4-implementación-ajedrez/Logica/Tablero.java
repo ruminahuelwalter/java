@@ -1,67 +1,98 @@
 package Logica;
 
-//import java.util.ArrayList;
-//import java.util.List;
+class Tablero{
 
-public class Tablero{
-    //private List<Casillero>  casilleros; //lista de Casilleros
-    //private List<Casillero> casilleros = new ArrayList<>();
     private Casillero casilleros[][];
 
     public Tablero(Casillero casilleros[][]) {
         this.casilleros = casilleros;
     }
 
-
     public Tablero(){
-       
-        this.casilleros = new Casillero[8][8];
-        String[] colores = {"blanco", "negro"};
-        String color;
-    
-        int ascii = 97; //a = 97
-        String conversion;
-        String nombrePosicion;
-       
-        int num = 8;
-         for(int fila = 0; fila<8; fila++){
-            for(int columna = 0; columna<8; columna++){
-                color = colores[(fila+columna) % 2]; //*color es 0 o 1,asigna la posicion de blanco o negro
-                conversion = Character.toString((ascii + columna));
-                nombrePosicion = conversion+num;
-                
-                casilleros[fila][columna] = new Casillero(color,nombrePosicion, null, fila, columna);
-            }
-            num--;
-        } 
-    }
 
+    }
+    
     public Casillero[][] getCasilleros() {
-        
         return casilleros;
     }
-
 
     public void setCasilleros(Casillero casilleros[][]) {
         this.casilleros = casilleros;
     }
 
+    public void generarTablero(int row, int column){
+        casilleros = new Casillero[row][column];
+        //*String[] colores = {"blanco", "negro"};
+        //*String color;
+    
+        //*int ascii = 97; //a = 97
+        //*String conversion;
+        //*String nombrePosicion;
+       
+        //*int num = 8;
+        for(int fila = 0; fila < row; fila++){
+            for(int columna = 0; columna < column; columna++){
+                //*color = colores[(fila+columna) % 2]; //*color es 0 o 1,asigna la posicion de blanco o negro
+                //*conversion = Character.toString((ascii + columna));
+                //*nombrePosicion = conversion+num;
+                
+                //casilleros[fila][columna] = new Casillero(color,nombrePosicion, null, fila, columna);
+                casilleros[fila][columna] = new Casillero();
+            }
+           //* num--;
+        } 
+    }
 
-    public void mostrarPosicionesTablero(){
+    public void asignarColor(){
+
+        String[] colores = {"blanco", "negro"};
+        String color;
+        
         for(int fila = 0; fila<8; fila++){
             for(int columna = 0; columna<8; columna++){
-                System.out.print(" " + this.casilleros[fila][columna].getNombrePosicion() + " ");
+                color = colores[(fila+columna) % 2]; //*color es 0 o 1,asigna la posicion de blanco o negro
+                //*this.casilleros[fila][columna].setColor(color); ;
+                casilleros[fila][columna].setColor(color); ;
+            }
+        }
+    }
+
+    public void asignarNombrePosicion(){
+     
+        int ascii = 97; //a = 97
+        String conversion;
+        String nombrePosicion;
+        int num = 8;
+
+        for(int fila = 0; fila<8; fila++){
+            for(int columna = 0; columna<8; columna++){
+                conversion = Character.toString((ascii + columna));
+                nombrePosicion = conversion+num;
+                //this.casilleros[fila][columna].setNombrePosicion(nombrePosicion); ;
+                casilleros[fila][columna].setNombrePosicion(nombrePosicion); ;
+            }
+            num--;
+        }
+    }
+
+    public void mostrarPosiciones(){
+        
+        for(int fila = 0; fila<8; fila++){
+            for(int columna = 0; columna<8; columna++){
+                //Casillero casillero = casilleros[fila][columna]
+                //*System.out.print(" " + this.casilleros[fila][columna].getNombrePosicion() + " ");
+                System.out.print(" " + casilleros[fila][columna].getNombrePosicion() + " ");
             
             }
             System.out.println();        
         }
+    }
 
-    } 
-
-     public void mostrarColoresTablero(){
+     public void mostrarColores(){
         for(int fila = 0; fila<8; fila++){
             for(int columna = 0; columna<8; columna++){
-                System.out.print(" " + this.casilleros[fila][columna].getColor() + " ");
+                //*System.out.print(" " + this.casilleros[fila][columna].getColor() + " ");
+                System.out.print(" " + casilleros[fila][columna].getColor() + " ");
             
             }
             System.out.println();        
@@ -69,66 +100,40 @@ public class Tablero{
     }
 
 
-    public void moverPieza2(Casillero casilleroOrigen, Casillero casilleroDestino) {
-        // Verificar si hay una pieza en el casillero de origen
-        Pieza piezaAMover = casilleroOrigen.getPieza();
+    public void moverPieza(String origen, String destino){
+        // Posición de casillero en formato 'a8' se transforma a posición en indice numerico. Según letra y número.
+        int filaOrigen = obtenerFilaPosicion(origen);
+        int columnaOrigen = obtenerColumnaPosicion(origen);
+        System.out.println("Fila y columna de origen: " + filaOrigen + " " + columnaOrigen);
+        int filaDestino = obtenerFilaPosicion(destino);
+        int columnaDestino = obtenerColumnaPosicion(destino);
+        System.out.println("Fila y columna de destino: " + filaDestino + " " + columnaDestino);
+    
+        Casillero casilleroOrigen = casilleros[filaOrigen][columnaOrigen]; // Casillero de origen.
+        Casillero casilleroDestino = casilleros[filaDestino][columnaDestino]; // Casillero de destino.
+
+        Pieza piezaAMover = casilleroOrigen.getPieza(); // Del casillero de origen se obtiene la pieza a mover.
         if (piezaAMover == null) {
             System.out.println("No hay una pieza en el casillero de origen.");
-            return; // No hay pieza para mover.
+            return; // No hay pieza para mover. 
         }
-
-        // Verificar si el casillero de destino está vacío
         if (casilleroDestino.getPieza() != null) {
             System.out.println("El casillero de destino ya está ocupado.");
-            return; // No se puede mover a un casillero ocupado.
+            return; // No se puede mover a un casillero ocupado. Falta lógica de juego.
         }
-
-        // Mover la pieza al casillero de destino
-        casilleroOrigen.setPieza(null); // Quitar la pieza del casillero de origen
-        casilleroDestino.setPieza(piezaAMover); // Colocar la pieza en el casillero de destino
-
-        // Actualizar la posición de la pieza
-        //*piezaAMover.setCasillero(casilleroDestino);
+        casilleroDestino.setPieza(piezaAMover);
+        System.out.println("La pieza " + piezaAMover.getClass().getSimpleName() + " se movió correctamente.");
     }
-
-
-
-
-   /*  public void mostrarPiezasTablero(){
-        int contador = 0;
-        for(int fila = 0; fila < casilleros.length; fila++){
-            for(int columna = 0; columna< casilleros.length ; columna++){
-                if (this.casilleros[fila][columna].getPieza() != null){
-                    contador++;
-
-                }
-                
-            }
-        }
-        contador = contador/8;
-        System.out.println("contador: " + contador);
-
-        for(int fila = 0; fila < contador; fila++){
-            for(int columna = 0; columna< 8 ; columna++){
-                System.out.print(this.casilleros[fila][columna].getPieza().getClass().getSimpleName()+ " ");
-                
-                System.out.print("color:"+this.casilleros[fila][columna].getColor()+ " ");
-            }
-               
-            System.out.println("");
-        }
-    } */
 
 
     public void colocarPieza(Pieza pieza, int fila, int columna){
-        /*
-         * Colocar la pieza dentro del casillero
-         */
-        //int ascii = 97;
+        // Colocar la pieza dentro del tablero en su posición inicial.
+        
         if (fila>= 0 && fila < casilleros.length && columna>=0 && columna < casilleros.length){ // casilleros[0].length
             
             Casillero casillero = casilleros[fila][columna];
             casillero.setPieza(pieza);
+
             //*this.casilleros[fila][columna].setPieza(pieza);
             //pieza.setPosicion(casilleros);
             /* String letra = Character.toString((ascii + columna));
@@ -138,62 +143,46 @@ public class Tablero{
         }
     }
 
-    public void moverPieza(Pieza pieza, String nombrePosicion){
-
-        //convierto un string del nombre de la posicion en una letra y un numero que van a ser
-        // la nueva fila y la columna de la pieza
-
-      /*   Casillero casilleroOrigen = casilleros;
-        System.out.println("Casillero origen:" + casilleroOrigen;
- */
-        char letra = nombrePosicion.charAt(0);
-        System.out.println("letra: " + letra);
-        int columna = letra;
-        System.out.println("le deberia ser numero" + columna);
-
-        char numero = nombrePosicion.charAt(1);
-        System.out.println("letra: " + numero);
-        int fila =  Character.getNumericValue(numero);
-        System.out.println("le deberia ser numero" + fila );
-
-        //this.casilleros[][]
-        
-    }
-
+    
     public int obtenerFilaPosicion(String nombrePosicion){
+
         char numero = nombrePosicion.charAt(1);
-        System.out.println("letra: " + numero);
+        //!System.out.println("letra: " + numero);
         int fila =  Character.getNumericValue(numero);
-        System.out.println("le deberia ser numero" + fila );
+        fila = 8 - fila; // Restar fila a 8 dado que indice va de 0 a 7. 8-8= 0.
+        System.out.println("Fila obtenida: " + fila );
 
         return fila;
     }
     
     
     public int obtenerColumnaPosicion(String nombrePosicion){
+
         char letra = nombrePosicion.charAt(0);
-        System.out.println("letra: " + letra);
+        //!System.out.println("letra: " + letra);
         int columna = letra;
-        System.out.println("le deberia ser numero" + columna);
+        columna = columna - 97; // Restar 97, posicion de 'a' en ascii. a es indice 0.
+        System.out.println("Columna obtenida: " + columna);
 
         return columna;
     }
 
 
     public void mostrarTablero() {
+
         for (int fila = 0; fila < casilleros.length; fila++) {
             for (int columna = 0; columna < casilleros[fila].length; columna++) {
                 Casillero casillero = casilleros[fila][columna];
-                Pieza pieza = casillero.getPieza(); // método getPieza en la clase Casillero para obtener la pieza en ese casillero
+                Pieza pieza = casillero.getPieza(); // Método getPieza en la clase Casillero para obtener la pieza en ese casillero.
                 if (pieza != null) {
                     System.out.println("En la fila " + fila + ", columna " + columna + " hay una pieza: " + pieza.getClass().getSimpleName());
-                    System.out.println(pieza.getComportamiento());
+                    System.out.println("De comportamiento: " + pieza.getComportamiento() + " y con movimiento " + pieza.getMovimiento());
                 }
             }
         }
     }
 
-//*fin Tablero*/
+//* Fin Tablero.
 }
 
    

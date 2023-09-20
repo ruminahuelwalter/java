@@ -1,14 +1,11 @@
 package Logica;
 
-//import java.util.List;
-
 public abstract class Pieza {
 
     private String movimiento;
     private String color;
     private String comportamiento;
-    //private Casillero posicion;
-
+    
 
     public Pieza(){
     }
@@ -17,7 +14,7 @@ public abstract class Pieza {
         this.movimiento = movimiento;
         this.color = color;
         this.comportamiento = comportamiento;
-        //this.posicion = posicion;
+    
     }
 
     public String getMovimiento() {
@@ -43,14 +40,6 @@ public abstract class Pieza {
     public void setComportamiento(String comportamiento) {
         this.comportamiento = comportamiento;
     }
-    
-   /*  public Casillero getPosicion() {
-        return posicion;
-    }
-
-    public void setPosicion(Casillero posicion) {
-        this.posicion = posicion;
-    } */
     
     public abstract void mover();
 
