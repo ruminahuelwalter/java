@@ -1,12 +1,14 @@
 package Logica;
 
+//import java.lang.reflect.Array;
 import java.util.ArrayList;
+//import java.util.Arrays;
 import java.util.List;
 
 
 public class Program {
     public static void main(String[] args) {
- 
+
 
         //startJuego()
         //finJuego()
@@ -27,28 +29,38 @@ public class Program {
         tablero.generarTablero(8,8);
         tablero.asignarColor();
         tablero.asignarNombrePosicion();
-        tablero.mostrarColores();
+        tablero.mostrarColor();
         
         colocarPiezaTablero(piezasNegras, tablero);
 
         // Validar el ingreso de posiciones correctas, "w1" por ejemplo, no deberia aceptar.
-        tablero.moverPieza("a8", "h1");
+        String posicionOrigen = "a8";
+        String posicionDestino = "i1";
 
-        tablero.mostrarPosiciones();
+        if (validarPosicion(posicionOrigen) && validarPosicion(posicionDestino)){
+            tablero.moverPieza(posicionOrigen, posicionDestino);
+        }
+        else System.out.println("Ingresó una posición no válida.");
+        //tablero.moverPieza("a8", "h1");
+
+        // Diccionario, map o lista de posiciones 
+
+
+        tablero.mostrarNombrePosicion();
 
         //*tablero.mostrarTablero();
 
-    }//*fin main
+    } // Fin main
 
-
+    // Falta optimizar este método 
     public static void colocarPiezaTablero(List<Pieza> piezasAjedrez, Tablero tablero){
         //* SOLO ESTA FUNCIONANDO PARA LAS PIEZAS NEGRAS */
         int fila = 0;
         int columna = 0;
-      
+
         for (int i= 0; i <16; i++){
             tablero.colocarPieza(piezasAjedrez.get(i), fila, columna);
-            System.out.println("soy: " + piezasAjedrez.get(i).getClass().getSimpleName());
+            //System.out.println("soy: " + piezasAjedrez.get(i).getClass().getSimpleName());
             
             if ((columna+1)%8 == 0){
                 columna= -1;
@@ -84,6 +96,8 @@ public class Program {
         for (int i = 0; i < 8; i++) {
             piezas.add(new Peon());
         }
+
+
     }
 
 
@@ -120,6 +134,34 @@ public class Program {
         return;
     }
 
+    public static boolean validarPosicion(String posicion){
+        // Validar si la posicion ingresada es válida dentro del tablero
+        List<String> posicionesValidas = posiciones();
+        if(posicionesValidas.contains(posicion)){ // True or False
+            return true;
+        }
+        else 
+            return false;
+    }
+
+    public static List <String> posiciones(){
+
+        List<String> posiciones = new ArrayList<>();
+        int ascii = 97;
+        String letra;
+        String nombrePosicion;
+        int numero = 8;
+
+        for(int fila = 0; fila<8; fila++){
+            for(int columna = 0; columna<8; columna++){
+                letra = Character.toString((ascii + columna)); 
+                nombrePosicion = letra+numero;
+                posiciones.add(nombrePosicion);
+            }
+            numero--;
+        }
+        return posiciones;
+    }
 
 }
 
