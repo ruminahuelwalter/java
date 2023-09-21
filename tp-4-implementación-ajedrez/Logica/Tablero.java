@@ -89,15 +89,35 @@ class Tablero{
     }
 
        public void mostrarPieza(){
-   
+        
+        String negrita = "\033[0;1m";
+        String blanco = "\u001B[37m";
+        String negro = "\033[30m";
+        String finAscii = "\u001B[0m";
+
+        
+        String piezasNegras;
+        String piezasBlancas;
+
         System.out.println();
+        System.out.printf(" %10s %10s %10s %10s %10s %10s %10s %10s%n",  "a", "b", "c", "d","e", "f", "g", "h");
+        System.out.println();
+
         for(int fila = 0; fila<8; fila++){
+            System.out.print((8-fila) + " ");
             for(int columna = 0; columna<8; columna++){
                 if (casilleros[fila][columna].getPieza() != null){
-                    
-                    System.out.printf("%10s", " "+ casilleros[fila][columna].getPieza().getClass().getSimpleName() );
+                    Pieza pieza = casilleros[fila][columna].getPieza();
+                    if (pieza.getColor().equals("blanco")){
+                        piezasBlancas =  blanco+ negrita + pieza.getClass().getSimpleName()+ finAscii;
+                        System.out.printf("%26s", " "+ piezasBlancas);
+                    }
+                    else{
+                        piezasNegras = negrita + negro + pieza.getClass().getSimpleName()+ finAscii;
+                        System.out.printf("%26s", " "+ piezasNegras);
+                    }
                 }
-                else System.out.printf("%10s", " "); // Si es null se imprime un espacio para que no se desplacen las demás piezas
+                else System.out.printf("%11s", " "); // Si es null se imprime un espacio para que no se desplacen las demás piezas
             }
             System.out.println("\n");
             System.out.println(" ");
@@ -105,7 +125,6 @@ class Tablero{
     
         System.out.println(" ");
     }
-
 
     public void moverPieza(String origen, String destino){
         // Posición de casillero en formato 'a8' se transforma a posición en indice numerico. Según letra y número.

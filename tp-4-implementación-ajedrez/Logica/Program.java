@@ -2,9 +2,12 @@ package Logica;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class Program {
+    static Scanner teclado = new Scanner(System.in);
+    static Scanner tecladoNumerico = new Scanner(System.in);
     public static void main(String[] args) {
 
 
@@ -23,21 +26,22 @@ public class Program {
         cargarComportamientoMovimiento(piezasNegras);
         cargarComportamientoMovimiento(piezasBlancas);
 
+
         Tablero tablero = new Tablero();
 
         tablero.generarTablero();
         tablero.asignarColor();
         tablero.asignarNombrePosicion();
 
+        colocarPiezaTablero(piezasNegras, tablero);
+        colocarPiezaTablero(piezasBlancas, tablero);
+
         System.out.println();
         System.out.printf("%15s %s%n", " ", "Tablero de ajedrez con el color de sus casilleros");
         barra();
         tablero.mostrarColor();
         barra();
-        colocarPiezaTablero(piezasNegras, tablero);
-        colocarPiezaTablero(piezasBlancas, tablero);
 
-        
 
         System.out.println();
         System.out.printf("%15s %s%n", " ", "Tablero de ajedrez con el nombre de sus casilleros");
@@ -53,48 +57,48 @@ public class Program {
         tablero.mostrarPieza();
         barra();
 
+        System.out.println("Presentación de piezas blancas y negras.");
 
-       // Pruebas moviendo distintas piezas.
-        String posicionOrigen = "a8";
-        String posicionDestino = "d5";
+        tablero.mostrarTablero();
 
-        if (validarPosicion(posicionOrigen) && validarPosicion(posicionDestino)){
-            tablero.moverPieza(posicionOrigen, posicionDestino);
-        }
-        else System.out.println("Ingresó una posición no válida.");
-
-        barra();
-        tablero.mostrarPieza();
-        barra();
+        // Inicio de movimiento de piezas.
+        String posicionOrigen;
+        String posicionDestino;
+        int opcion;
 
         
-        String posicionOrigen2 = "e7";
-        String posicionDestino2 = "h4";
+        System.out.print("Ingrese 1 si desea mover una pieza, 0 para salir: ");
+        opcion = tecladoNumerico.nextInt();
+        
+   
+        while (opcion == 1) {
+            
+            System.out.println("Indique el casillero de origen y destino de la pieza a mover.");
+            System.out.println("Ejemplo: a7, c5  ");
+            
+            System.out.println("Indique el nombre del casillero posicion de origen");
+            posicionOrigen = teclado.nextLine();
 
-        if (validarPosicion(posicionOrigen2) && validarPosicion(posicionDestino2)){
-            tablero.moverPieza(posicionOrigen2, posicionDestino2);
+            System.out.println("Indique el nombre del casillero posicion de destino");
+            posicionDestino = teclado.nextLine();
+
+            barra();
+
+            if (validarPosicion(posicionOrigen) && validarPosicion(posicionDestino)){
+                tablero.moverPieza(posicionOrigen, posicionDestino);
+            }
+            else System.out.println("Ingresó una posición no válida.");
+
+            barra();
+            tablero.mostrarPieza();
+            barra();
+
+            System.out.print("Ingrese 1 si desea mover una pieza, 0 para salir: ");
+            opcion = tecladoNumerico.nextInt();
         }
-        else System.out.println("Ingresó una posición no válida.");
-
-        barra();
-        tablero.mostrarPieza();
-        barra();
-
-       
-        String posicionOrigen3 = "e1";
-        String posicionDestino3 = "d3";
-
-        if (validarPosicion(posicionOrigen3) && validarPosicion(posicionDestino3)){
-            tablero.moverPieza(posicionOrigen3, posicionDestino3);
-        }
-        else System.out.println("Ingresó una posición no válida.");
-
-        barra();
-        tablero.mostrarPieza();
-        barra();
 
 
-    } // Fin main
+    }
 
    
     public static void colocarPiezaTablero(List<Pieza> piezasAjedrez, Tablero tablero){
@@ -145,7 +149,7 @@ public class Program {
 
 
     public static void crearPiezasAjedrez(List<Pieza> piezas) {
-        // Piezas creadas y agregadas en un orden determinado.
+        // Piezas creadas y agregadas a la lista en un orden determinado para facilitar la carga en el tablero.
         piezas.add(new Torre());
         piezas.add(new Caballo());
         piezas.add(new Alfil());
@@ -226,7 +230,7 @@ public class Program {
     }
     
     public static void  barra(){
-        String barra = "__________________________________________________________________________________\n";
+        String barra = "_____________________________________________________________________________________________\n";
         System.out.println(barra);
     }
 }
