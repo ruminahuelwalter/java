@@ -163,7 +163,7 @@ class Tablero{
         }
     }
     
-    public int obtenerFilaPosicion(String nombrePosicion){
+    private int obtenerFilaPosicion(String nombrePosicion){
 
         char numero = nombrePosicion.charAt(1); // 'a8' Obtiene el número 8, para luego retornar su indice correspondiente.
         int fila =  Character.getNumericValue(numero);
@@ -172,7 +172,7 @@ class Tablero{
         return fila;
     }
     
-    public int obtenerColumnaPosicion(String nombrePosicion){
+    private int obtenerColumnaPosicion(String nombrePosicion){
 
         char letra = nombrePosicion.charAt(0); // 'a8' Obtiene la letra a, para luego retornar su indice correspondiente.
         int columna = letra;

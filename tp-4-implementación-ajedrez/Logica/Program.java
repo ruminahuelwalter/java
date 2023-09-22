@@ -10,10 +10,6 @@ public class Program {
     static Scanner tecladoNumerico = new Scanner(System.in);
     public static void main(String[] args) {
 
-
-        //startJuego()
-        //finJuego()
-     
         List<Pieza> piezasBlancas = new ArrayList<>();
         List<Pieza> piezasNegras = new ArrayList<>();
         
@@ -26,83 +22,22 @@ public class Program {
         cargarComportamientoMovimiento(piezasNegras);
         cargarComportamientoMovimiento(piezasBlancas);
 
-
         Tablero tablero = new Tablero();
-
         tablero.generarTablero();
         tablero.asignarColor();
         tablero.asignarNombrePosicion();
 
         colocarPiezaTablero(piezasNegras, tablero);
         colocarPiezaTablero(piezasBlancas, tablero);
-
-        System.out.println();
-        System.out.printf("%15s %s%n", " ", "Tablero de ajedrez con el color de sus casilleros");
-        barra();
-        tablero.mostrarColor();
-        barra();
-
-
-        System.out.println();
-        System.out.printf("%15s %s%n", " ", "Tablero de ajedrez con el nombre de sus casilleros");
-        barra();
-        tablero.mostrarNombrePosicion();
-        barra();
-
-        //tablero.mostrarTablero();
-
-        System.out.println();
-        System.out.printf("%25s %s%n", " ", "Tablero de ajedrez sus piezas");
-        barra();
-        tablero.mostrarPieza();
-        barra();
-
-        System.out.println("Presentación de piezas blancas y negras.");
-
-        tablero.mostrarTablero();
-
-        // Inicio de movimiento de piezas.
-        String posicionOrigen;
-        String posicionDestino;
-        int opcion;
-
-        
-        System.out.print("Ingrese 1 si desea mover una pieza, 0 para salir: ");
-        opcion = tecladoNumerico.nextInt();
-        
-   
-        while (opcion == 1) {
-            
-            System.out.println("Indique el casillero de origen y destino de la pieza a mover.");
-            System.out.println("Ejemplo: a7, c5  ");
-            
-            System.out.println("Indique el nombre del casillero posicion de origen");
-            posicionOrigen = teclado.nextLine();
-
-            System.out.println("Indique el nombre del casillero posicion de destino");
-            posicionDestino = teclado.nextLine();
-
-            barra();
-
-            if (validarPosicion(posicionOrigen) && validarPosicion(posicionDestino)){
-                tablero.moverPieza(posicionOrigen, posicionDestino);
-            }
-            else System.out.println("Ingresó una posición no válida.");
-
-            barra();
-            tablero.mostrarPieza();
-            barra();
-
-            System.out.print("Ingrese 1 si desea mover una pieza, 0 para salir: ");
-            opcion = tecladoNumerico.nextInt();
-        }
-
+    
+        menu(tablero, piezasNegras, piezasBlancas);
+    
 
     }
 
    
     public static void colocarPiezaTablero(List<Pieza> piezasAjedrez, Tablero tablero){
-
+       
         int fila = 0;
         int columna = 0;
 
@@ -120,7 +55,7 @@ public class Program {
                 columna++;
             }
         }
-
+        // Si las piezas son blancas se cargan aquí.
         else{
             fila = 7;
             columna = 7;
@@ -163,7 +98,6 @@ public class Program {
             piezas.add(new Peon());
         }
 
-
     }
 
 
@@ -171,12 +105,12 @@ public class Program {
         
         for (Pieza pieza : piezasAjedrez) {
             if (pieza instanceof Alfil) {
-                // Alfil alfil = (Alfil) pieza;
+                
                 pieza.setComportamiento("sesgo");
                 pieza.setMovimiento("oblicuo");
             }
             if (pieza instanceof Caballo){
-                pieza.setComportamiento("nulo"); // Falta comportamiento de caballo.
+                pieza.setComportamiento("nulo");
                 pieza.setMovimiento("ligero");
             }
             if (pieza instanceof Peon) {
@@ -228,7 +162,157 @@ public class Program {
         }
         return posiciones;
     }
-    
+
+    public static void menu(Tablero tablero, List<Pieza> piezasNegras, List<Pieza> piezasBlancas){
+        System.out.println("BIENVENIDO AL PROGRAMA ESTIMADO");
+        int opcion;
+        int subOpcion;
+        boolean volverSubMenu;
+        boolean salir = true;
+        
+        while (salir) {
+            
+            System.out.println( " MENU PRINCIPAL ");
+            System.out.println("Ingrese: ");
+            System.out.println(" 1 - Si desea conocer el tablero");
+            System.out.println(" 2 - Si desea conocer las piezas");
+            System.out.println(" 3 - Si desea conocer el tablero con las piezas");
+            System.out.println(" 4 - Si desea jugar");
+
+            opcion = tecladoNumerico.nextInt();
+
+            switch (opcion) {
+
+                case 1:
+                volverSubMenu = true;
+                    while (volverSubMenu) {
+                        
+                        System.out.println("SUBMENU TABLERO");
+                        System.out.println("Ingrese: ");
+                        System.out.println(" 1 - Si desea conocer el color de los casilleros");
+                        System.out.println(" 2 - Si desea conocer la posición de los casilleros");
+                        System.out.println(" 3 - Si desea volver al menu principal");
+                        subOpcion = tecladoNumerico.nextInt();
+
+                        switch (subOpcion) {
+                            case 1:
+                                System.out.println();
+                                System.out.printf("%15s %s%n", " ", "Tablero de ajedrez con el color de sus casilleros");
+                                barra();
+                                tablero.mostrarColor();
+                                barra();
+                                break;
+                            case 2:
+                                System.out.println();
+                                System.out.printf("%15s %s%n", " ", "Tablero de ajedrez con el nombre de sus casilleros");
+                                barra();
+                                tablero.mostrarNombrePosicion();
+                                barra();
+                                break;
+                            case 3:
+                                volverSubMenu = false;    
+                                break;
+                            default:
+                                System.out.println("¡Opción no válida!");
+                                break;
+                        }
+                    }
+                break;
+
+                case 2:
+                    volverSubMenu = true;
+
+                    while (volverSubMenu) {
+                        System.out.println("SUBMENU PIEZAS ");
+                        System.out.println(" 1 - Si desea conocer las piezas negras");
+                        System.out.println(" 2 - Si desea conocer las piezas blancas");
+                        System.out.println(" 3 - Si desea volver al menu principal");
+                        subOpcion = tecladoNumerico.nextInt();
+
+                        switch (subOpcion) {
+                            case 1:
+                            barra();
+                                for(Pieza pieza: piezasNegras){
+                                    pieza.mover();
+                                    System.out.println("Mi comportamiento es " + pieza.getComportamiento() + " y mi color es " + pieza.getColor());
+                                    System.out.println();
+                                }
+                            barra();
+                            
+                                break;
+
+                            case 2:
+                                barra();
+                                for(Pieza pieza: piezasBlancas){
+                                    pieza.mover();
+                                    System.out.println("Mi comportamiento es " + pieza.getComportamiento() + " y mi color es " + pieza.getColor());
+                                    System.out.println();
+                                }
+                                barra();
+                            
+                                break;
+                            case 3:
+                                volverSubMenu = false;
+                                break;
+                            default:
+                                System.out.println("¡Opción no válida!");
+                                break;
+                        }
+                    }
+                break;
+
+                case 3:
+                    System.out.println();
+                    System.out.printf("%25s %s%n", " ", "Tablero de ajedrez con sus piezas");
+                    barra();
+                    tablero.mostrarPieza();
+                    barra();
+                    break;
+
+                case 4:
+
+                    String posicionOrigen;
+                    String posicionDestino;
+                    System.out.println("¡Que comience el juego!");
+                    System.out.print("Ingrese 1 si desea mover una pieza, 0 para salir: ");
+                    opcion = tecladoNumerico.nextInt();
+        
+                    while (opcion == 1) {
+
+                        System.out.println("Indique el casillero de origen y destino de la pieza a mover.");
+                        System.out.println("Ejemplo: a7, c5  ");
+
+                        System.out.println("Indique el nombre del casillero posicion de origen");
+                        posicionOrigen = teclado.nextLine();
+
+                        System.out.println("Indique el nombre del casillero posicion de destino");
+                        posicionDestino = teclado.nextLine();
+
+                        barra();
+
+                        if (validarPosicion(posicionOrigen) && validarPosicion(posicionDestino)){
+                            tablero.moverPieza(posicionOrigen, posicionDestino);
+                        }
+                        else System.out.println("Ingresó una posición no válida.");
+
+                        barra();
+                        tablero.mostrarPieza();
+                        barra();
+
+                        System.out.print("Ingrese 1 si desea mover una pieza, 0 para salir: ");
+                        opcion = tecladoNumerico.nextInt();
+                    }
+                    break;
+
+                default:
+                    System.out.println("¡Opción no válida!");
+                    break;
+            }
+        }
+
+
+    }
+
     public static void  barra(){
         String barra = "_____________________________________________________________________________________________\n";
         System.out.println(barra);

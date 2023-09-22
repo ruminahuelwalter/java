@@ -1,4 +1,5 @@
 package Logica;
+
 public class Rey extends Pieza{
 
     @Override
