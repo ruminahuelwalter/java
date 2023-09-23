@@ -70,8 +70,6 @@ class Tablero{
             }
             System.out.println(" \n");
         }
-    
-        //System.out.println("");
     }
 
      public void mostrarColor(){
@@ -84,8 +82,6 @@ class Tablero{
             System.out.println("\n");
             System.out.println(" ");
         }
- 
-        //System.out.println(" ");
     }
 
        public void mostrarPieza(){
@@ -122,37 +118,52 @@ class Tablero{
             System.out.println("\n");
             System.out.println(" ");
         }
-    
-        //System.out.println(" ");
     }
 
     public void moverPieza(String origen, String destino){
         // Posición de casillero en formato 'a8' se transforma a posición en indice numerico. Según letra y número.
         int filaOrigen = obtenerFilaPosicion(origen);
         int columnaOrigen = obtenerColumnaPosicion(origen);
-        //! Check
-        System.out.println("Origen:  Fila: " + filaOrigen + " Columna: " + columnaOrigen);
-
+       
         int filaDestino = obtenerFilaPosicion(destino);
         int columnaDestino = obtenerColumnaPosicion(destino);
-        //! Check
-        System.out.println("Destino:  Fila: " + filaDestino + " Columna: " + columnaDestino);
     
-        Casillero casilleroOrigen = casilleros[filaOrigen][columnaOrigen]; // Casillero de origen.
-        Casillero casilleroDestino = casilleros[filaDestino][columnaDestino]; // Casillero de destino.
+        Casillero casilleroOrigen = casilleros[filaOrigen][columnaOrigen]; 
+        Casillero casilleroDestino = casilleros[filaDestino][columnaDestino]; 
 
         Pieza piezaAMover = casilleroOrigen.getPieza(); // Del casillero de origen se obtiene la pieza a mover.
         if (piezaAMover == null) {
             System.out.println("No hay una pieza en el casillero de origen.");
-            return; // No hay pieza para mover. 
+            return; 
         }
-        if (casilleroDestino.getPieza() != null) {
-            System.out.println("El casillero de destino ya está ocupado.");
-            return; // No se puede mover a un casillero ocupado. Falta incorporar lógica de juego.
+        // Si el casillero de destino esta vacio.
+        if (piezaAMover!=null && casilleroDestino.getPieza() == null){
+                casilleroDestino.setPieza(piezaAMover);
+                casilleroOrigen.setPieza(null); // Quitar pieza de casillero de origen.
+                System.out.println("La pieza " + piezaAMover.getClass().getSimpleName() + " se movió correctamente.");
+                return;
+            }
+        
+        // Si es != de null y mismo color
+        if (casilleroDestino.getPieza() != null){
+            
+            if (casilleroDestino.getPieza().getColor().equals(piezaAMover.getColor())) {
+                System.out.println("¡No puede realizar este movimiento!");
+                return; 
+            }
+            else { 
+                esComida(casilleroOrigen, casilleroDestino);
+            }
         }
-        casilleroDestino.setPieza(piezaAMover);
-        casilleroOrigen.setPieza(null); // Quitar pieza de casillero de origen.
-        System.out.println("La pieza " + piezaAMover.getClass().getSimpleName() + " se movió correctamente.");
+    
+    }
+
+    private void esComida(Casillero casilleroOrigen, Casillero casilleroDestino){
+        
+        Pieza piezaComida = casilleroDestino.getPieza();
+        casilleroDestino.setPieza(casilleroOrigen.getPieza());
+        casilleroOrigen.setPieza(null);
+        System.out.println("\n¡La pieza " + piezaComida.getClass().getSimpleName() + " ha sido comida!");
     }
 
     public void colocarPieza(Pieza pieza, int fila, int columna){
@@ -181,7 +192,6 @@ class Tablero{
         return columna;
     }
 
-
     public void mostrarTablero() {
 
         for (int fila = 0; fila < casilleros.length; fila++) {
@@ -195,9 +205,6 @@ class Tablero{
             }
         }
     }
-
-    
-
 
 }
 
