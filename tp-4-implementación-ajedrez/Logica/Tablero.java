@@ -22,18 +22,17 @@ class Tablero{
 
     public void generarTablero(){
         // Crear tablero vacio.
-        int row = 8 ;
-        int column = 8;
-        casilleros = new Casillero[row][column];
-        for(int fila = 0; fila < row; fila++){
-            for(int columna = 0; columna < column; columna++){
+        
+        casilleros = new Casillero[8][8];
+        for(int fila = 0; fila < 8; fila++){
+            for(int columna = 0; columna < 8; columna++){
                 casilleros[fila][columna] = new Casillero();
             }
         }
     }
-
+    
     public void asignarColor(){
-
+        
         String[] colores = {"blanco", "negro"};
         String color;
         
@@ -44,6 +43,18 @@ class Tablero{
             }
         }
     }
+    
+    public void mostrarColor(){
+       System.out.println(" ");
+       for(int fila = 0; fila<8; fila++){
+           for(int columna = 0; columna<8; columna++){
+               System.out.printf(" %9s", " " + casilleros[fila][columna].getColor() + " ");
+           
+           }
+           System.out.println("\n");
+           System.out.println(" ");
+       }
+   }
 
     public void asignarNombrePosicion(){
         
@@ -72,18 +83,6 @@ class Tablero{
         }
     }
 
-     public void mostrarColor(){
-        System.out.println(" ");
-        for(int fila = 0; fila<8; fila++){
-            for(int columna = 0; columna<8; columna++){
-                System.out.printf(" %9s", " " + casilleros[fila][columna].getColor() + " ");
-            
-            }
-            System.out.println("\n");
-            System.out.println(" ");
-        }
-    }
-
        public void mostrarPieza(){
         
         String negrita = "\033[0;1m";
@@ -91,7 +90,6 @@ class Tablero{
         String negro = "\033[30m";
         String finAscii = "\u001B[0m";
 
-        
         String piezasNegras;
         String piezasBlancas;
 
@@ -113,7 +111,7 @@ class Tablero{
                         System.out.printf("%26s", " "+ piezasNegras);
                     }
                 }
-                else System.out.printf("%11s", " "); // Si es null se imprime un espacio para que no se desplacen las demás piezas
+                else System.out.printf("%11s", " "); // Si es null se imprime un espacio para que no se desplacen las demás piezas.
             }
             System.out.println("\n");
             System.out.println(" ");
@@ -122,6 +120,8 @@ class Tablero{
 
     public void moverPieza(String origen, String destino){
         // Posición de casillero en formato 'a8' se transforma a posición en indice numerico. Según letra y número.
+        String negrita = "\033[0;1m";
+        String finAscii = "\u001B[0m";
         int filaOrigen = obtenerFilaPosicion(origen);
         int columnaOrigen = obtenerColumnaPosicion(origen);
        
@@ -133,22 +133,22 @@ class Tablero{
 
         Pieza piezaAMover = casilleroOrigen.getPieza(); // Del casillero de origen se obtiene la pieza a mover.
         if (piezaAMover == null) {
-            System.out.println("No hay una pieza en el casillero de origen.");
+            System.out.println("\n"+negrita+"No hay una pieza en el casillero de origen."+finAscii);
             return; 
         }
         // Si el casillero de destino esta vacio.
         if (piezaAMover!=null && casilleroDestino.getPieza() == null){
                 casilleroDestino.setPieza(piezaAMover);
                 casilleroOrigen.setPieza(null); // Quitar pieza de casillero de origen.
-                System.out.println("La pieza " + piezaAMover.getClass().getSimpleName() + " se movió correctamente.");
+                System.out.println("\n" +negrita + "La pieza " + piezaAMover.getClass().getSimpleName() + " se movió correctamente."+finAscii);
                 return;
             }
         
-        // Si es != de null y mismo color
+        // Si es != de null y mismo color.
         if (casilleroDestino.getPieza() != null){
             
             if (casilleroDestino.getPieza().getColor().equals(piezaAMover.getColor())) {
-                System.out.println("¡No puede realizar este movimiento!");
+                System.out.println("\n"+negrita+"¡No puede realizar este movimiento!"+finAscii);
                 return; 
             }
             else { 
@@ -159,18 +159,19 @@ class Tablero{
     }
 
     private void esComida(Casillero casilleroOrigen, Casillero casilleroDestino){
-        
+        String negrita = "\033[0;1m";
+        String finAscii = "\u001B[0m";
         Pieza piezaComida = casilleroDestino.getPieza();
+        Pieza piezaAsesina = casilleroOrigen.getPieza();
         casilleroDestino.setPieza(casilleroOrigen.getPieza());
         casilleroOrigen.setPieza(null);
-        System.out.println("\n¡La pieza " + piezaComida.getClass().getSimpleName() + " ha sido comida!");
+        System.out.println("\n"+negrita+"¡La pieza " + piezaComida.getClass().getSimpleName() + " de color "+  piezaComida.getColor() + " ha sido comida por la pieza " + casilleroDestino.getPieza().getClass().getSimpleName()+ " de color "+  piezaAsesina.getColor() +"!" + finAscii);
     }
 
     public void colocarPieza(Pieza pieza, int fila, int columna){
         // Colocar la pieza dentro del tablero en su posición inicial.
         if (fila>= 0 && fila < casilleros.length && columna>=0 && columna < casilleros.length){ // casilleros[0].length
-            Casillero casillero = casilleros[fila][columna];
-            casillero.setPieza(pieza);
+            casilleros[fila][columna].setPieza(pieza);
         }
     }
     
