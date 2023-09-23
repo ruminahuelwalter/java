@@ -63,7 +63,7 @@ class Tablero{
     }
 
     public void mostrarNombrePosicion(){
-      
+        System.out.println(" ");
         for(int fila = 0; fila<8; fila++){
             for(int columna = 0; columna<8; columna++){
                 System.out.printf("%8s"," " + casilleros[fila][columna].getNombrePosicion() + " ");
@@ -71,11 +71,11 @@ class Tablero{
             System.out.println(" \n");
         }
     
-        System.out.println("");
+        //System.out.println("");
     }
 
      public void mostrarColor(){
- 
+        System.out.println(" ");
         for(int fila = 0; fila<8; fila++){
             for(int columna = 0; columna<8; columna++){
                 System.out.printf(" %9s", " " + casilleros[fila][columna].getColor() + " ");
@@ -85,7 +85,7 @@ class Tablero{
             System.out.println(" ");
         }
  
-        System.out.println(" ");
+        //System.out.println(" ");
     }
 
        public void mostrarPieza(){
@@ -123,7 +123,7 @@ class Tablero{
             System.out.println(" ");
         }
     
-        System.out.println(" ");
+        //System.out.println(" ");
     }
 
     public void moverPieza(String origen, String destino){
