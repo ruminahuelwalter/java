@@ -1,6 +1,7 @@
 package Logica;
+
 public class Casillero {
-    
+
     private String color;
     private int fila;
     private int columna;
@@ -16,7 +17,7 @@ public class Casillero {
     }
 
     public Casillero() {
-        
+
     }
 
     public String getColor() {
@@ -51,14 +52,12 @@ public class Casillero {
         this.nombrePosicion = nombrePosicion;
     }
 
-    
     public void setPieza(Pieza pieza) {
         this.pieza = pieza;
     }
-    
+
     public Pieza getPieza() {
         return pieza;
     }
 
-
-} 
+}
