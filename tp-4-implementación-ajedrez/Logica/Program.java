@@ -1,9 +1,6 @@
 package Logica;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -162,7 +159,7 @@ public class Program {
     }
 
     public static void menu(Tablero tablero, List<Pieza> piezasNegras, List<Pieza> piezasBlancas) {
-        
+
         System.out.println();
         System.out.printf(" %80s", "- BIENVENIDO AL PROGRAMA AJEDREZ -\n");
         System.out.printf(" %96s", "- Basado en el texto literario: El Hacedor de Jorge Luis Borges -\n");
@@ -334,8 +331,6 @@ public class Program {
                                     System.out.print("Posicion de destino: ");
                                     posicionDestino = teclado.nextLine();
                                     posicionDestino = posicionDestino.toLowerCase();
-
-                                    // barra();
 
                                     if (validarPosicion(posicionOrigen) && validarPosicion(posicionDestino)) {
                                         tablero.moverPieza(posicionOrigen, posicionDestino);

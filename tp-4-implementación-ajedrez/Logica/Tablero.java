@@ -62,8 +62,7 @@ class Tablero {
         int ascii = 97; // a = 97
         String letra;
         String nombrePosicion;
-        int numero = 8; // El número en posición 'a8' esta invertido con respecto al indice de fila '0
-                        // 0'.
+        int numero = 8; // El número en posición 'a8' esta invertido con respecto al indice de fila '0'.
 
         for (int fila = 0; fila < 8; fila++) {
             for (int columna = 0; columna < 8; columna++) {
@@ -225,7 +224,7 @@ class Tablero {
                             + pieza.getClass().getSimpleName());
                     System.out.println("De comportamiento: " + pieza.getComportamiento() + " y con movimiento "
                             + pieza.getMovimiento());
-                } 
+                }
             }
         }
     }
