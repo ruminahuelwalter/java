@@ -95,22 +95,22 @@ public class Program {
             piezas.add(new Peon());
         }
 
+       
     }
 
     public static void cargarComportamientoMovimiento(List<Pieza> piezasAjedrez) {
 
         for (Pieza pieza : piezasAjedrez) {
             if (pieza instanceof Alfil) {
-
                 pieza.setComportamiento("sesgo");
                 pieza.setMovimiento("oblicuo");
             }
             if (pieza instanceof Caballo) {
-                pieza.setComportamiento("nulo");
+                //pieza.setComportamiento("nulo");
                 pieza.setMovimiento("ligero");
             }
             if (pieza instanceof Peon) {
-                pieza.setComportamiento("agresor");
+                pieza.setComportamiento("agresor"); 
                 pieza.setMovimiento("ladino");
             }
             if (pieza instanceof Reina) {

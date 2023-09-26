@@ -220,6 +220,8 @@ class Tablero {
                 Casillero casillero = casilleros[fila][columna];
                 Pieza pieza = casillero.getPieza();
                 if (pieza != null) {
+
+                    // Falta condición para los null
                     System.out.println("En la fila " + (fila + 1) + ", columna " + (columna + 1) + " hay una pieza: "
                             + pieza.getClass().getSimpleName());
                     System.out.println("De comportamiento: " + pieza.getComportamiento() + " y con movimiento "
