@@ -1,7 +1,9 @@
 package Logica;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Program {
@@ -30,53 +32,10 @@ public class Program {
         colocarPiezaTablero(piezasNegras, tablero);
         colocarPiezaTablero(piezasBlancas, tablero);
 
-        menu(tablero, piezasNegras, piezasBlancas);
+        List<Pieza> piezasAjedrez = listaPiezas(piezasNegras, piezasBlancas);
 
-    }
-
-    public static void colocarPiezaTablero(List<Pieza> piezasAjedrez, Tablero tablero) {
-
-        int fila = 0;
-        int columna = 0;
-
-        Pieza pieza = piezasAjedrez.get(0);
-
-        if (pieza.getColor().equals("negro")) {
-            // Si las piezas son negras se cargan aqui.
-            for (int i = 0; i < piezasAjedrez.size(); i++) {
-                tablero.colocarPieza(piezasAjedrez.get(i), fila, columna);
-
-                if ((columna + 1) % 8 == 0) {
-                    columna = -1; // Para que al sumar 1 en la linea 55 (columna++) sea 0 y no 1.
-                    fila++;
-                }
-                columna++;
-            }
-        }
-        // Si las piezas son blancas se cargan aquí.
-        else {
-            fila = 7;
-            columna = 7;
-            for (int i = 0; i < piezasAjedrez.size(); i++) {
-                tablero.colocarPieza(piezasAjedrez.get(i), fila, columna);
-
-                if (columna == 0) {
-                    columna = 8; // Al restar en columnna-- es 7 en el próximo ciclo.
-                    fila--;
-                }
-
-                columna--;
-            }
-        }
-
-    }
-
-    public static List<Pieza> pintarPiezas(List<Pieza> piezas, String color) {
-        // Asignar color a las piezas de ajedrez.
-        for (Pieza piezaAjedrez : piezas) {
-            piezaAjedrez.setColor(color);
-        }
-        return piezas;
+        menu(tablero, piezasAjedrez, piezasNegras, piezasBlancas);
+      
     }
 
     public static void crearPiezasAjedrez(List<Pieza> piezas) {
@@ -94,8 +53,14 @@ public class Program {
         for (int i = 0; i < 8; i++) {
             piezas.add(new Peon());
         }
+    }
 
-       
+    public static List<Pieza> pintarPiezas(List<Pieza> piezas, String color) {
+        // Asignar color a las piezas de ajedrez.
+        for (Pieza piezaAjedrez : piezas) {
+            piezaAjedrez.setColor(color);
+        }
+        return piezas;
     }
 
     public static void cargarComportamientoMovimiento(List<Pieza> piezasAjedrez) {
@@ -106,11 +71,11 @@ public class Program {
                 pieza.setMovimiento("oblicuo");
             }
             if (pieza instanceof Caballo) {
-                //pieza.setComportamiento("nulo");
+                pieza.setComportamiento("nulo");
                 pieza.setMovimiento("ligero");
             }
             if (pieza instanceof Peon) {
-                pieza.setComportamiento("agresor"); 
+                pieza.setComportamiento("agresor");
                 pieza.setMovimiento("ladino");
             }
             if (pieza instanceof Reina) {
@@ -133,7 +98,7 @@ public class Program {
     public static boolean validarPosicion(String posicion) {
         // Verificar si la posicion ingresada es válida dentro del tablero.
         List<String> posicionesValidas = posiciones();
-        if (posicionesValidas.contains(posicion)) { // True or False.
+        if (posicionesValidas.contains(posicion)) { // Devuelve True or False.
             return true;
         } else
             return false;
@@ -158,7 +123,221 @@ public class Program {
         return posiciones;
     }
 
-    public static void menu(Tablero tablero, List<Pieza> piezasNegras, List<Pieza> piezasBlancas) {
+    public static void colocarPiezaTablero(List<Pieza> piezasAjedrez, Tablero tablero) {
+
+        int fila = 0;
+        int columna = 0;
+
+        Pieza pieza = piezasAjedrez.get(0);
+
+        if (pieza.getColor().equals("negro")) {
+            // Si las piezas son negras se cargan aqui.
+            for (int i = 0; i < piezasAjedrez.size(); i++) {
+                colocarPieza(tablero, piezasAjedrez.get(i), fila, columna);
+
+                if ((columna + 1) % 8 == 0) {
+                    columna = -1; // Para que al sumar 1 en la linea 55 (columna++) sea 0 y no 1.
+                    fila++;
+                }
+                columna++;
+            }
+        }
+
+        // Si las piezas son blancas se cargan aquí.
+        else if (pieza.getColor().equals("blanco")) {
+            fila = 7;
+            columna = 7;
+            for (int i = 0; i < piezasAjedrez.size(); i++) {
+                colocarPieza(tablero, piezasAjedrez.get(i), fila, columna);
+                if (columna == 0) {
+                    columna = 8; // Al restar en columnna-- es 7 en el próximo ciclo.
+                    fila--;
+                }
+                columna--;
+            }
+        }
+    }
+
+    public static void colocarPieza(Tablero tablero, Pieza pieza, int fila, int columna) {
+        // Colocar la pieza dentro del tablero en su posición inicial.
+        Casillero casilleros[][] = tablero.getCasilleros();
+
+        if (fila >= 0 && fila < casilleros.length && columna >= 0 && columna < casilleros.length) {
+            pieza.setNombrePosicion(casilleros[fila][columna].getNombrePosicion());
+            casilleros[fila][columna].setOcupado(true); // Se asigna valor ocupado.
+        }
+    }
+
+    public static List<Pieza> listaPiezas(List<Pieza> piezasNegras, List<Pieza> piezasBlancas) {
+        List<Pieza> piezasAjedrez = new ArrayList<>();
+
+        for (Pieza pieza : piezasNegras) {
+            piezasAjedrez.add(pieza);
+        }
+
+        for (Pieza pieza : piezasBlancas) {
+            piezasAjedrez.add(pieza);
+        }
+
+        return piezasAjedrez;
+    }
+
+    public static void mostrarPieza(Tablero tablero, List<Pieza> piezasAjedrez) {
+
+        Casillero casilleros[][] = tablero.getCasilleros();
+
+        String negrita = "\033[0;1m";
+        String blanco = "\u001B[37m";
+        String negro = "\033[30m";
+        String finAscii = "\u001B[0m";
+
+        System.out.println();
+
+        String[] letras = { "a", "b", "c", "d", "e", "f", "g", "h" };
+
+        for (String letra : letras) {
+            System.out.printf("%11s", letra);
+        }
+        
+        // Se almacena el par pieza - posición para luego obtener
+        // la posición con la pieza.
+        Map<String, Pieza> posicionPiezas = new HashMap<>();
+
+        for (Pieza pieza : piezasAjedrez) {
+            String posicion = pieza.getNombrePosicion();
+            if (posicion != null) {
+                posicionPiezas.put(posicion, pieza);
+            }
+        }
+
+        System.out.println("");
+        System.out.println("\n");
+
+        for (int fila = 0; fila < 8; fila++) {
+            System.out.print((8 - fila) + " ");
+            for (int columna = 0; columna < 8; columna++) {
+
+                if (casilleros[fila][columna].isOcupado()) { // Si esta ocupado hay una pieza.
+                    // Se busca quien esta ocupando la posición.
+                    String posicion = casilleros[fila][columna].getNombrePosicion();
+                    Pieza pieza = posicionPiezas.get(posicion);
+                    if (pieza != null) {
+                    // Si coincide la posición de la pieza con la posición del casillero, se "imprime" la pieza en la posición del casillero.
+                        if (pieza.getNombrePosicion().equals(posicion) && pieza.getColor().equals("negro")) {
+                            String piezaNegra = negrita + negro + pieza.getClass().getSimpleName() + finAscii;
+                            System.out.printf("%26s", " " + piezaNegra);
+                        }
+                        if (pieza.getNombrePosicion().equals(posicion) && pieza.getColor().equals("blanco")) {
+                            String piezaBlanca = negrita + blanco + pieza.getClass().getSimpleName() + finAscii;
+                            System.out.printf("%26s", " " + piezaBlanca);
+                        }
+                    } else {
+           
+                        System.out.printf("%11s", " ");
+                    }
+                  
+                } else {
+                    System.out.printf("%11s", " ");
+                 }
+            }
+            System.out.println("\n");
+            System.out.println(" ");
+        }
+    }
+
+    public static void moverPieza(Tablero tablero, List<Pieza> piezasAjedrez, String origen, String destino) {
+
+        Casillero casilleros[][] = tablero.getCasilleros();
+        String negrita = "\033[0;1m";
+        String finAscii = "\u001B[0m";
+
+        int filaOrigen = obtenerFilaPosicion(origen);
+        int columnaOrigen = obtenerColumnaPosicion(origen);
+
+        int filaDestino = obtenerFilaPosicion(destino);
+        int columnaDestino = obtenerColumnaPosicion(destino);
+
+        // Se inicializan las variables que se van a usar en el forEach.
+        Pieza piezaEnOrigen = null;
+        Pieza piezaEnDestino = null;
+
+        // Cual es la pieza que esta en el casillero de origen.
+        for (Pieza pieza : piezasAjedrez) {
+            if (pieza.getNombrePosicion() != null && pieza.getNombrePosicion().equals(origen)) {
+                piezaEnOrigen = pieza;
+            }
+        }
+        // Cual es la pieza que esta en el casillero de destino.
+        for (Pieza pieza : piezasAjedrez) {
+            if (pieza.getNombrePosicion() != null && pieza.getNombrePosicion().equals(destino)) {
+                piezaEnDestino = pieza;
+            }
+        }
+
+        if(piezaEnOrigen != null){
+        
+            if (piezaEnOrigen.getNombrePosicion() != null) {
+                String nuevaPosicion;
+                if (casilleros[filaDestino][columnaDestino].isOcupado() == true) {
+                    // El casillero 'contiene una pieza'
+                    if (piezaEnOrigen.getColor().equals(piezaEnDestino.getColor())) {
+                        // ¿Son del mismo color? No se puede realizar el movimiento.
+                        System.out.println("No puede realizar este movimiento las piezas del mismo color");
+                    }
+
+                    else {
+
+                        System.out.println("\n" + negrita
+                                + "¡La pieza " + piezaEnDestino.getClass().getSimpleName() + " de color "
+                                + piezaEnDestino.getColor() + " ha sido comida por la pieza "
+                                + piezaEnOrigen.getClass().getSimpleName() + " de color "
+                                + piezaEnOrigen.getColor() + "!" + finAscii);
+                        casilleros[filaOrigen][columnaOrigen].setOcupado(false);
+                        casilleros[filaDestino][columnaDestino].setOcupado(true);
+
+                        nuevaPosicion = casilleros[filaDestino][columnaDestino].getNombrePosicion();
+
+                        piezaEnOrigen.setNombrePosicion(nuevaPosicion); // Pieza en nueva posicion.
+                        piezaEnDestino.setNombrePosicion(null); // Pieza eliminada.
+                    }
+
+                } else {
+                    
+                    // Casillero de destino sin piezas.
+                    // Se deja libre el casillero de origen.
+                    casilleros[filaOrigen][columnaOrigen].setOcupado(false);
+                    casilleros[filaDestino][columnaDestino].setOcupado(true);
+                    nuevaPosicion = casilleros[filaDestino][columnaDestino].getNombrePosicion();
+                    piezaEnOrigen.setNombrePosicion(nuevaPosicion);
+                    System.out.println("\n" + negrita + "La pieza " + piezaEnOrigen.getClass().getSimpleName() + " se movió correctamente." + finAscii);
+
+                }
+            }
+        }
+    }
+
+    public static int obtenerFilaPosicion(String nombrePosicion) {
+
+        // 'a8' Obtiene el número 8, para luego retornar su indicecorrespondiente.
+        char numero = nombrePosicion.charAt(1); 
+        int fila = Character.getNumericValue(numero);
+        fila = 8 - fila; // Restar fila a 8 dado que indice va de 0 a 7. 8-8= 0.
+
+        return fila;
+    }
+
+    public static int obtenerColumnaPosicion(String nombrePosicion) {
+
+        char letra = nombrePosicion.charAt(0); 
+        // 'a8' Obtiene la letra a, para luego retornar su indice correspondiente.
+        int columna = letra;
+        columna = columna - 97; // Restar 97, que es la posicion de 'a' en ascii. a es indice 0.
+
+        return columna;
+    }
+
+    public static void menu(Tablero tablero, List<Pieza> piezasAjedrez, List<Pieza> piezasNegras,
+            List<Pieza> piezasBlancas) {
 
         System.out.println();
         System.out.printf(" %80s", "- BIENVENIDO AL PROGRAMA AJEDREZ -\n");
@@ -299,7 +478,7 @@ public class Program {
                         barra();
                         System.out.printf("%25s %s%n", " ", "Tablero de ajedrez con las piezas");
                         barra();
-                        tablero.mostrarPieza();
+                        mostrarPieza(tablero, piezasAjedrez);
                         barra();
                         break;
 
@@ -314,16 +493,14 @@ public class Program {
                                 barra();
                                 System.out.printf("%25s %s%n", " ", "Tablero de ajedrez con las piezas");
                                 barra();
-                                tablero.mostrarPieza();
+                                mostrarPieza(tablero, piezasAjedrez);
                                 barra();
 
                                 System.out.print("Para mover una pieza ingrese '1' o para salir ingrese '0' : ");
                                 subOpcion = tecladoNumerico.nextInt();
 
                                 if (subOpcion == 1) {
-
-                                    System.out.println(
-                                            "\nIndique el movimiento de la pieza en formato 'a7' (por ejemplo, origen: 'a7' destino: 'c5').");
+                                    System.out.println("\nIndique el movimiento de la pieza en formato 'a7' (por ejemplo, origen: 'a7' destino: 'c5').");
                                     System.out.print("Posicion de origen: ");
                                     posicionOrigen = teclado.nextLine();
                                     posicionOrigen = posicionOrigen.toLowerCase();
@@ -333,10 +510,9 @@ public class Program {
                                     posicionDestino = posicionDestino.toLowerCase();
 
                                     if (validarPosicion(posicionOrigen) && validarPosicion(posicionDestino)) {
-                                        tablero.moverPieza(posicionOrigen, posicionDestino);
+                                        moverPieza(tablero, piezasAjedrez, posicionOrigen, posicionDestino);
                                     } else
                                         System.out.println("Ingresó una posición no válida.");
-
                                 } else if (subOpcion == 0) {
                                     SubMenu = false;
                                 } else {
@@ -358,8 +534,7 @@ public class Program {
                 }
 
             } catch (Exception e) {
-                System.out.println("\n¡Error! ¡Debe ingresar una opción válida!\\n" + //
-                        "");
+                System.out.println("\n¡Error! ¡Debe ingresar una opción válida!\n");
                 tecladoNumerico.nextLine(); // Limpia el bufer
             }
         }

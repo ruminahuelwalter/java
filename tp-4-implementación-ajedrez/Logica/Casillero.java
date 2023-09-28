@@ -4,12 +4,12 @@ public class Casillero {
 
     private String color;
     private String nombrePosicion;
-    private Pieza pieza;
+    private boolean ocupado;
 
-    public Casillero(String color, String nombrePosicion, Pieza pieza, int fila, int columna) {
+    public Casillero(String color, String nombrePosicion, boolean ocupado, int fila, int columna) {
         this.color = color;
         this.nombrePosicion = nombrePosicion;
-        this.pieza = pieza;
+        this.ocupado = ocupado;
     }
 
     public Casillero() {
@@ -32,12 +32,12 @@ public class Casillero {
         this.nombrePosicion = nombrePosicion;
     }
 
-    public void setPieza(Pieza pieza) {
-        this.pieza = pieza;
+    public void setOcupado(boolean ocupado) {
+        this.ocupado = ocupado;
     }
-
-    public Pieza getPieza() {
-        return pieza;
+    
+    public boolean isOcupado() {
+        return ocupado;
     }
 
 }
