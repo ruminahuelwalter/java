@@ -200,7 +200,7 @@ public class Program {
         }
         
         // Se almacena el par pieza - posición para luego obtener
-        // la posición con la pieza.
+        // la posición con la pieza, en linea 223.
         Map<String, Pieza> posicionPiezas = new HashMap<>();
 
         for (Pieza pieza : piezasAjedrez) {
@@ -233,11 +233,11 @@ public class Program {
                         }
                     } else {
            
-                        System.out.printf("%11s", " ");
+                        System.out.printf("%11s", " "); // Se agrega espacio donde no hay piezas.
                     }
                   
                 } else {
-                    System.out.printf("%11s", " ");
+                    System.out.printf("%11s", " "); // Se agrega espacio donde no hay piezas.
                  }
             }
             System.out.println("\n");
@@ -257,22 +257,21 @@ public class Program {
         int filaDestino = obtenerFilaPosicion(destino);
         int columnaDestino = obtenerColumnaPosicion(destino);
 
-        // Se inicializan las variables que se van a usar en el forEach.
-        Pieza piezaEnOrigen = null;
-        Pieza piezaEnDestino = null;
+        Map<String, Pieza> posicionPiezas = new HashMap<>();
 
+        for (Pieza pieza : piezasAjedrez) {
+            String posicion = pieza.getNombrePosicion();
+            if (posicion != null) {
+                posicionPiezas.put(posicion, pieza);
+            }
+        }
+
+        // Con clave origen se obtiene valor: pieza.
         // Cual es la pieza que esta en el casillero de origen.
-        for (Pieza pieza : piezasAjedrez) {
-            if (pieza.getNombrePosicion() != null && pieza.getNombrePosicion().equals(origen)) {
-                piezaEnOrigen = pieza;
-            }
-        }
+        Pieza piezaEnOrigen = posicionPiezas.get(origen);
+
         // Cual es la pieza que esta en el casillero de destino.
-        for (Pieza pieza : piezasAjedrez) {
-            if (pieza.getNombrePosicion() != null && pieza.getNombrePosicion().equals(destino)) {
-                piezaEnDestino = pieza;
-            }
-        }
+        Pieza piezaEnDestino = posicionPiezas.get(destino);
 
         if(piezaEnOrigen != null){
         
@@ -282,7 +281,7 @@ public class Program {
                     // El casillero 'contiene una pieza'
                     if (piezaEnOrigen.getColor().equals(piezaEnDestino.getColor())) {
                         // ¿Son del mismo color? No se puede realizar el movimiento.
-                        System.out.println("No puede realizar este movimiento las piezas del mismo color");
+                        System.out.println("No puede realizar este movimiento las piezas son del mismo color");
                     }
 
                     else {
