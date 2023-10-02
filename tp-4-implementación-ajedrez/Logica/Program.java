@@ -344,7 +344,7 @@ public class Program {
 
         int opcion;
         int subOpcion;
-        boolean SubMenu;
+        boolean subMenu;
         boolean ejecucion = true;
 
         while (ejecucion) {
@@ -367,8 +367,8 @@ public class Program {
                 switch (opcion) {
 
                     case 1:
-                        SubMenu = true;
-                        while (SubMenu) {
+                        subMenu = true;
+                        while (subMenu) {
                             try {
                                 System.out.println("");
                                 System.out.printf(" %30s", "SUBMENÚ TABLERO");
@@ -399,7 +399,7 @@ public class Program {
                                         barra();
                                         break;
                                     case 3:
-                                        SubMenu = false;
+                                        subMenu = false;
                                         break;
                                     default:
                                         System.out.println("¡Opción no válida!");
@@ -415,9 +415,9 @@ public class Program {
                         break;
 
                     case 2:
-                        SubMenu = true;
+                        subMenu = true;
 
-                        while (SubMenu) {
+                        while (subMenu) {
                             try {
 
                                 System.out.println("");
@@ -459,7 +459,7 @@ public class Program {
 
                                         break;
                                     case 3:
-                                        SubMenu = false;
+                                        subMenu = false;
                                         break;
                                     default:
                                         System.out.println("¡Opción no válida!");
@@ -482,9 +482,9 @@ public class Program {
                         break;
 
                     case 4:
-                        SubMenu = true;
+                        subMenu = true;
                         System.out.println("\n¡Que comience el juego!\n");
-                        while (SubMenu) {
+                        while (subMenu) {
 
                             try {
                                 String posicionOrigen;
@@ -513,7 +513,7 @@ public class Program {
                                     } else
                                         System.out.println("Ingresó una posición no válida.");
                                 } else if (subOpcion == 0) {
-                                    SubMenu = false;
+                                    subMenu = false;
                                 } else {
                                     System.out.println("¡Opción no válida!");
                                 }
