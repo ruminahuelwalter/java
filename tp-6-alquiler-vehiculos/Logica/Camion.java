@@ -1,11 +1,10 @@
 package Logica;
 
 public class Camion extends VehiculoCarga {
+    //pma 11.5
     
-
     @Override
     public double getPma() {
-    
         return super.getPma();
     }
 
@@ -26,8 +25,8 @@ public class Camion extends VehiculoCarga {
     }
 
     @Override
-    public double calculoAlquiler(int cantidadDias) {
-        return super.calculoAlquiler(cantidadDias) + 1600;
+    public double calcularAlquiler(int cantidadDias) {
+        return super.calcularAlquiler(cantidadDias) + 800*getPma() + 1600;
     }
 
 }

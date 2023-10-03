@@ -14,9 +14,9 @@ public class VehiculoPersona extends Vehiculo {
     }
 
     @Override
-    public double calculoAlquiler(int cantidadDias) {
+    public double calcularAlquiler(int cantidadDias) {
 
-        return super.calculoAlquiler(cantidadDias);
+        return super.calcularAlquiler(cantidadDias);
     }
 
 }

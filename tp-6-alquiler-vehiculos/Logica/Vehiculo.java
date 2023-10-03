@@ -2,27 +2,17 @@ package Logica;
 
 abstract class Vehiculo {
     private String patente;
-    private int precioBase;
-    private int cantidadDias;
+    private double precioBase;
     private int plaza;
 
     public Vehiculo(String patente, int precioBase, int cantidadDias, int plaza) {
         this.patente = patente;
         this.precioBase = precioBase;
-        this.cantidadDias = cantidadDias;
         this.plaza = plaza;
     }
 
      public Vehiculo() {
 
-    }
-
-    public int getCantidadDias() {
-        return cantidadDias;
-    }
-
-    public void setCantidadDias(int cantidadDias) {
-        this.cantidadDias = cantidadDias;
     }
 
     public int getPlaza() {
@@ -49,9 +39,9 @@ abstract class Vehiculo {
         this.precioBase = precioBase;
     }
 
-    public double calculoAlquiler(int cantidadDias) {
+    public double calcularAlquiler(int cantidadDias) {
         double resultado;
-        resultado = this.precioBase * this.cantidadDias;
+        resultado = this.precioBase * cantidadDias;
         return resultado;
     }
 

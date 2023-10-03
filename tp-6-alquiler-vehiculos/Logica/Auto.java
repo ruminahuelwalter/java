@@ -1,7 +1,7 @@
 package Logica;
 
 public class Auto extends VehiculoPersona {
-    
+    // private int plaza = 5;
     
     @Override
     public int getPlaza() {
@@ -14,9 +14,9 @@ public class Auto extends VehiculoPersona {
     }
 
     @Override
-    public double calculoAlquiler(int cantidadDias) {
+    public double calcularAlquiler(int cantidadDias) {
 
-        return super.calculoAlquiler(cantidadDias) + (100 * getPlaza() * cantidadDias);
+        return super.calcularAlquiler(cantidadDias) + (100 * (this.getPlaza() + cantidadDias));
     }
 
 }

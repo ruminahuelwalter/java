@@ -184,15 +184,15 @@ public class Program {
 
         // Pruebas. Deberia funcionar sin casteo.
         if (vehiculo instanceof Auto) {
-            //Auto auto = (Auto) vehiculo;
+            Auto auto = (Auto) vehiculo;
             barra();
             vehiculo.setPrecioBase(2000);
             vehiculo.setPlaza(5);
             System.out.printf(" %30s", "TICKET\n");
             System.out.printf(" %5s", "Cantidad de dias: " + cantidadDias + "\n");
-            System.out.printf(" %5s", "Plazas: " + vehiculo.getPlaza() + "\n");
+            System.out.printf(" %5s", "Plazas: " + auto.getPlaza() + "\n");
             System.out.printf(" %5s", "Precio base por dia: " + vehiculo.getPrecioBase() + "\n");
-            System.out.printf(" %5s", "TOTAL: " + vehiculo.calculoAlquiler(cantidadDias) + "\n");
+            System.out.printf(" %5s", "TOTAL: " + auto.calcularAlquiler(cantidadDias) + "\n");
             barra();
         }
 
@@ -203,7 +203,7 @@ public class Program {
             System.out.printf(" %5s", "Cantidad de dias: " + cantidadDias);
             System.out.printf(" %5s", "Plazas: " + minibus.getPlaza());
             System.out.printf(" %5s", "Precio base: " + minibus.getPrecioBase());
-            System.out.printf(" %5s", "TOTAL: " + minibus.calculoAlquiler(cantidadDias));
+            System.out.printf(" %5s", "TOTAL: " + minibus.calcularAlquiler(cantidadDias));
         }
 
         if (vehiculo instanceof Furgoneta) {
@@ -211,7 +211,7 @@ public class Program {
             System.out.printf(" %30s", "TICKET");
             System.out.printf(" %5s", "Cantidad de dias: " + cantidadDias);
             System.out.printf(" %5s", "Plazas: " + furgoneta.getPlaza()+ "\n");
-            System.out.printf(" %5s", "TOTAL: " + furgoneta.calculoAlquiler(cantidadDias)+ "\n");
+            System.out.printf(" %5s", "TOTAL: " + furgoneta.calcularAlquiler(cantidadDias)+ "\n");
         }
 
         if (vehiculo instanceof Camion) {
@@ -219,7 +219,7 @@ public class Program {
             System.out.printf(" %30s", "TICKET\n");
             System.out.printf(" %5s", "Cantidad de dias: " + cantidadDias + "\n");
             System.out.printf(" %5s", "Plazas: " + camion.getPlaza());
-            System.out.printf(" %5s", "TOTAL: " + camion.calculoAlquiler(cantidadDias));
+            System.out.printf(" %5s", "TOTAL: " + camion.calcularAlquiler(cantidadDias));
         }
 
     }

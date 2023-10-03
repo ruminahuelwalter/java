@@ -1,17 +1,13 @@
 package Logica;
 
 public class Furgoneta extends VehiculoCarga {
-   
-
-    @Override
+    private double pma = 3.5;
+    // pma 3.5
+    
     public double getPma() {
-        return super.getPma();
+        return getPma();
     }
-
-    @Override
-    public void setPma(double pma) {
-        super.setPma(pma);
-    }
+    
 
     @Override
     public int getPlaza() {
@@ -24,9 +20,9 @@ public class Furgoneta extends VehiculoCarga {
     }
 
     @Override
-    public double calculoAlquiler(int cantidadDias) {
+    public double calcularAlquiler(int cantidadDias) {
 
-        return super.calculoAlquiler(cantidadDias);
+        return super.calcularAlquiler(cantidadDias) + 800*this.getPma();
     }
 
 }
