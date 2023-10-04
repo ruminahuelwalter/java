@@ -264,11 +264,13 @@ public class Program {
 
     public static void clearConsole() {
         try {
-            ProcessBuilder builder = new ProcessBuilder("cmd", "/c", "cls");
-            builder.inheritIO().start().waitFor();
+            ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "cls");
+            Process start = pb.inheritIO().start();
+            start.waitFor();
 
         } 
         catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
