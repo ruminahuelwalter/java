@@ -1,17 +1,17 @@
 package Logica;
 
 public class Furgoneta extends VehiculoCarga {
+    private int plaza = 3;
     private double pma = 3.5;
-    // pma 3.5
+    
     
     public double getPma() {
-        return getPma();
+        return this.pma;
     }
     
-
     @Override
     public int getPlaza() {
-        return super.getPlaza();
+        return this.plaza;
     }
 
     @Override

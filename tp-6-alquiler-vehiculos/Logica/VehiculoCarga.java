@@ -14,7 +14,7 @@ public class VehiculoCarga extends Vehiculo {
     }
 
     public double getPma() {
-        return pma;
+        return this.pma;
     }
 
     public void setPma(double pma) {

@@ -1,11 +1,11 @@
 package Logica;
 
 public class Minibus extends VehiculoPersona {
-   
+    private int plaza = 18;
 
     @Override
     public int getPlaza() {
-        return super.getPlaza();
+        return this.plaza;
     }
 
     @Override
@@ -15,7 +15,7 @@ public class Minibus extends VehiculoPersona {
 
     @Override
     public double calcularAlquiler(int cantidadDias) {
-        
-        return super.calcularAlquiler(cantidadDias) + (100 * getPlaza() * cantidadDias) +  120*getPlaza();
+
+        return super.calcularAlquiler(cantidadDias) + (100 * (this.getPlaza() + cantidadDias)) + 120 * this.getPlaza();
     }
 }

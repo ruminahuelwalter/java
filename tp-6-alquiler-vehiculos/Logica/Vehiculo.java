@@ -2,7 +2,7 @@ package Logica;
 
 abstract class Vehiculo {
     private String patente;
-    private double precioBase;
+    private double precioBase = 2000;
     private int plaza;
 
     public Vehiculo(String patente, int precioBase, int cantidadDias, int plaza) {
@@ -31,7 +31,7 @@ abstract class Vehiculo {
         this.patente = patente;
     }
 
-    public int getPrecioBase() {
+    public double getPrecioBase() {
         return precioBase;
     }
 

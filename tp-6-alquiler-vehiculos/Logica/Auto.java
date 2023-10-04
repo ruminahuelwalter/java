@@ -1,11 +1,11 @@
 package Logica;
 
 public class Auto extends VehiculoPersona {
-    // private int plaza = 5;
+    private int plaza = 5;
     
     @Override
     public int getPlaza() {
-        return super.getPlaza();
+        return this.plaza;
     }
 
     @Override
