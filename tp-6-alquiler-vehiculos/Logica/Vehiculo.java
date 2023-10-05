@@ -1,13 +1,13 @@
 package Logica;
-
 abstract class Vehiculo {
+    private final double precioBase = 2000;
     private String patente;
-    private double precioBase = 2000;
+    //private double precioBase = 2000;
     private int plaza;
 
     public Vehiculo(String patente, int precioBase, int cantidadDias, int plaza) {
         this.patente = patente;
-        this.precioBase = precioBase;
+        //this.precioBase = precioBase;
         this.plaza = plaza;
     }
 
@@ -35,9 +35,9 @@ abstract class Vehiculo {
         return precioBase;
     }
 
-    public void setPrecioBase(int precioBase) {
+   /*  public void setPrecioBase(int precioBase) {
         this.precioBase = precioBase;
-    }
+    } */
 
     public double calcularAlquiler(int cantidadDias) {
         double resultado;

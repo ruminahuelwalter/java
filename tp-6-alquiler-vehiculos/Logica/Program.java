@@ -8,15 +8,17 @@ public class Program {
     static Scanner tecladoNumerico = new Scanner(System.in);
 
     public static void main(String[] args) {
+        clearConsole();
+        barra();
+        System.out.printf(" %60s", "- BIENVENIDO AL PROGRAMA COTIZADOR -\n");
         menu();
     }
 
     public static void menu() {
-        barra();
-        System.out.printf(" %60s", "- BIENVENIDO AL PROGRAMA COTIZADOR -\n");
       
         boolean subMenu = true;
         boolean ejecucion = true;
+        boolean mostrarCatch = true;
         int opcion;
         int subOpcion;
         int cantidadDias;
@@ -41,7 +43,9 @@ public class Program {
                         
                         while (subMenu) {
                             try {
-                                clearConsole();
+                                if (mostrarCatch){
+                                    clearConsole();
+                                }
                                 barra();
                                 System.out.printf(" %40s", "MENÚ VEHICULO PARA PERSONAS\n");
                                 barra();
@@ -103,6 +107,7 @@ public class Program {
                                 }
                             } catch (Exception e) {
                                 System.out.println("¡Error! ¡Debe ingresar una opción válida!");
+                                mostrarCatch = false;
                                 tecladoNumerico.nextLine(); // Limpia el bufer
                             }
 
@@ -110,7 +115,9 @@ public class Program {
                     case 2:
                         while (subMenu) {
                             try {
-                                clearConsole();
+                                if (mostrarCatch){
+                                    clearConsole();
+                                }
                                 barra();
                                 System.out.printf(" %20s", "MENÚ VEHICULO DE CARGA\n");
                                 barra();
@@ -178,6 +185,7 @@ public class Program {
                                 }
                             } catch (Exception e) {
                                 System.out.println("¡Error! ¡Debe ingresar una opción válida!");
+                                mostrarCatch = false;
                                 tecladoNumerico.nextLine(); // Limpia el bufer
                             }
 
@@ -194,6 +202,7 @@ public class Program {
                 }
             } catch (Exception e) {
                 System.out.println("¡Error! ¡Debe ingresar una opción válida!");
+                mostrarCatch = false;
                 tecladoNumerico.nextLine(); // Limpia el bufer
                 
             }
@@ -233,7 +242,6 @@ public class Program {
     public static void ticket(int cantidadDias, Vehiculo vehiculo) {
 
        
-        //vehiculo.setPrecioBase(2000);
         /* if (vehiculo instanceof Auto) {
             vehiculo.setPlaza(5);
         }
@@ -247,6 +255,7 @@ public class Program {
             vehiculo.setPlaza(3);
         } */
         
+  
         barra();
         System.out.printf(" %30s", "TICKET\n");
         System.out.println("\n");
