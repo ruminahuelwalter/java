@@ -4,7 +4,7 @@ abstract class Vehiculo {
     private String patente;
     private int plaza;
 
-    public Vehiculo(String patente, int precioBase, int cantidadDias, int plaza) {
+    public Vehiculo(String patente, int plaza) {
         this.patente = patente;
         this.plaza = plaza;
     }
@@ -21,10 +21,6 @@ abstract class Vehiculo {
         this.plaza = plaza;
     }
 
-    public Vehiculo(String patente, int plaza) {
-        this.patente = patente;
-        this.plaza = plaza;
-    }
 
     public String getPatente() {
         return patente;

@@ -28,7 +28,7 @@ public class Camion extends VehiculoCarga {
     @Override
     public double calcularAlquiler(int cantidadDias) {
         setPma(this.pma);
-        return super.calcularAlquiler(cantidadDias) + 1600;
+        return super.calcularAlquiler(cantidadDias)  + 800*this.getPma()+ 1600;
     }
 
 }

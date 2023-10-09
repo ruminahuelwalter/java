@@ -23,7 +23,7 @@ public class VehiculoCarga extends Vehiculo {
 
     @Override
     public double calcularAlquiler(int cantidadDias) {
-        return super.calcularAlquiler(cantidadDias) + 800*this.getPma();
+        return super.calcularAlquiler(cantidadDias);
     }
 
 }
