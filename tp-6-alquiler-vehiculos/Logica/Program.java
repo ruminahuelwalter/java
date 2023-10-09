@@ -60,22 +60,22 @@ public class Program {
                 case 1:
                     System.out.printf("\n Indique la cantidad de dias: ");
                     cantidadDias = tecladoNumerico.nextInt();
-                    clearConsole();
+                    //clearConsole();
                     ticket(cantidadDias, new Auto());
 
                     subMenu = cotizarOtroVehiculo();
                     menu = subMenu;
-                    clearConsole();
+                    //clearConsole();
                     break;
                 case 2:
                     System.out.printf("\n Indique la cantidad de dias: ");
                     cantidadDias = tecladoNumerico.nextInt();
-                    clearConsole();
+                    //clearConsole();
                     ticket(cantidadDias, new Minibus());
 
                     subMenu = cotizarOtroVehiculo();
                     menu = subMenu;
-                    clearConsole();
+                    //clearConsole();
                     break;
                 case 3:
                     subMenu = false;
@@ -105,25 +105,25 @@ public class Program {
                 case 1:
                     System.out.printf("\n Indique la cantidad de dias: ");
                     cantidadDias = tecladoNumerico.nextInt();
-                    clearConsole();
+                    //clearConsole();
                     ticket(cantidadDias, new Furgoneta());
 
                     subMenu = cotizarOtroVehiculo();
                     menu = subMenu;
 
-                    clearConsole();
+                    //clearConsole();
 
                     break;
                 case 2:
                     System.out.printf("\n Indique la cantidad de dias: ");
                     cantidadDias = tecladoNumerico.nextInt();
-                    clearConsole();
+                    //clearConsole();
                     ticket(cantidadDias, new Camion());
 
                     subMenu = cotizarOtroVehiculo();
                     menu = subMenu;
 
-                    clearConsole();
+                    //clearConsole();
 
                     break;
                 case 3:

@@ -14,7 +14,7 @@ abstract class Vehiculo {
     }
 
     public int getPlaza() {
-        return plaza;
+        return this.plaza;
     }
 
     public void setPlaza(int plaza) {

@@ -21,8 +21,8 @@ public class Furgoneta extends VehiculoCarga {
 
     @Override
     public double calcularAlquiler(int cantidadDias) {
-
-        return super.calcularAlquiler(cantidadDias) + 800*this.getPma();
+        setPma(this.pma);
+        return super.calcularAlquiler(cantidadDias);
     }
 
 }
