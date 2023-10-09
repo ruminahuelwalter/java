@@ -1,7 +1,7 @@
 package Logica;
 
 public class Minibus extends VehiculoPersona {
-    private int plaza = 15;
+    private int plaza = 18;
 
     @Override
     public int getPlaza() {

@@ -1,8 +1,7 @@
 package Logica;
 
 public class VehiculoPersona extends Vehiculo {
-   
-    
+
     @Override
     public int getPlaza() {
         return super.getPlaza();
