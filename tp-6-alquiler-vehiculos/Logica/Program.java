@@ -218,33 +218,57 @@ public class Program {
         System.out.format("%5s %42s", "Patente:", generarPatente() + "\n");
         String chasis = vehiculo.toString();
         System.out.format("%5s %37s", "N° de Chasis:", chasis.toLowerCase() + "\n");
-        System.out.format("%5s %43s", "Plazas:", vehiculo.getPlaza() + "\n");
-        System.out.format("%5s %33s", "Cantidad de dias:", cantidadDias + "\n");
 
-        if (vehiculo instanceof VehiculoCarga) {
-            VehiculoCarga vehiculoCarga = (VehiculoCarga) vehiculo;
-            System.out.format("%5s %31s", "Capacidad de carga:", vehiculoCarga.getPma() + " tn" + "\n");
-        }
-        System.out.println("   __________________________________________________________   \n");
-        System.out.format("%5s %30s", "Precio base por dia:",
-                Math.round(vehiculo.getPrecioBase() * cantidadDias) + "\n");
         if (vehiculo instanceof Auto) {
+            Auto auto = (Auto) vehiculo;
+            System.out.format("%5s %43s", "Plazas:", auto.getPlaza() + "\n");
+            System.out.format("%5s %33s", "Cantidad de dias:", cantidadDias + "\n");
+
+            System.out.println("   __________________________________________________________   \n");
+            System.out.format("%5s %30s", "Precio base por dia:",
+                    Math.round(vehiculo.getPrecioBase() * cantidadDias) + "\n");
             System.out.format("%5s %16s", "Adicional de $100 por plaza y dia:",
-                    Math.round(100 * (vehiculo.getPlaza() + cantidadDias)) + "\n");
-        }
-        if (vehiculo instanceof Minibus) {
-            System.out.format("%5s %16s", "Adicional de $100 por plaza y dia:",
-                    100 * (vehiculo.getPlaza() + cantidadDias) + "\n");
-            System.out.format("%5s %22s", "Adicional de $120 por plaza:",
-                    Math.round(120 * vehiculo.getPlaza()) + "\n");
+                    Math.round(100 * (auto.getPlaza() + cantidadDias)) + "\n");
         }
 
-        if (vehiculo instanceof VehiculoCarga) {
-            VehiculoCarga vehiculoCarga = (VehiculoCarga) vehiculo;
-            System.out.format("%5s %24s", "Adicional de $800 por pma:",
-                    Math.round(vehiculoCarga.getPma() * 800) + "\n");
+        if (vehiculo instanceof Minibus) {
+            Minibus minibus = (Minibus) vehiculo;
+            System.out.format("%5s %43s", "Plazas:", minibus.getPlaza() + "\n");
+            System.out.format("%5s %33s", "Cantidad de dias:", cantidadDias + "\n");
+
+            System.out.println("   __________________________________________________________   \n");
+            System.out.format("%5s %30s", "Precio base por dia:",
+                    Math.round(vehiculo.getPrecioBase() * cantidadDias) + "\n");
+            System.out.format("%5s %16s", "Adicional de $100 por plaza y dia:",
+                    100 * (minibus.getPlaza() + cantidadDias) + "\n");
+            System.out.format("%5s %22s", "Adicional de $120 por plaza:",
+                    Math.round(120 * minibus.getPlaza()) + "\n");
         }
+
+        if (vehiculo instanceof Furgoneta) {
+            Furgoneta furgoneta = (Furgoneta) vehiculo;
+            System.out.format("%5s %43s", "Plazas:", furgoneta.getPlaza() + "\n");
+            System.out.format("%5s %33s", "Cantidad de dias:", cantidadDias + "\n");
+
+            System.out.println("   __________________________________________________________   \n");
+            System.out.format("%5s %30s", "Precio base por dia:",
+                    Math.round(vehiculo.getPrecioBase() * cantidadDias) + "\n");
+            System.out.format("%5s %31s", "Capacidad de carga:", furgoneta.getPma() + " tn" + "\n");
+            System.out.format("%5s %24s", "Adicional de $800 por pma:",
+                    Math.round(furgoneta.getPma() * 800) + "\n");
+        }
+
         if (vehiculo instanceof Camion) {
+            Camion camion = (Camion) vehiculo;
+            System.out.format("%5s %43s", "Plazas:", camion.getPlaza() + "\n");
+            System.out.format("%5s %33s", "Cantidad de dias:", cantidadDias + "\n");
+
+            System.out.println("   __________________________________________________________   \n");
+            System.out.format("%5s %30s", "Precio base por dia:",
+                    Math.round(vehiculo.getPrecioBase() * cantidadDias) + "\n");
+            System.out.format("%5s %31s", "Capacidad de carga:", camion.getPma() + " tn" + "\n");
+            System.out.format("%5s %24s", "Adicional de $800 por pma:",
+                    Math.round(camion.getPma() * 800) + "\n");
             System.out.format("%5s %39s", "Cargo fijo:", "1600" + "\n");
         }
         System.out.format("%5s %44s", "\nTotal:", Math.round(vehiculo.calcularAlquiler(cantidadDias)) + "\n");
