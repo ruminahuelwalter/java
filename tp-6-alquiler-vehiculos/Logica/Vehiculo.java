@@ -4,9 +4,8 @@ abstract class Vehiculo {
     private final double precioBase = 2000;
     private String patente;
 
-    public Vehiculo(String patente, int plaza) {
+    public Vehiculo(String patente) {
         this.patente = patente;
-
     }
 
     public Vehiculo() {
@@ -26,8 +25,7 @@ abstract class Vehiculo {
     }
 
     public double calcularAlquiler(int cantidadDias) {
-        double resultado;
-        resultado = this.precioBase * cantidadDias;
+        double resultado = this.precioBase * cantidadDias;
         return resultado;
     }
 }

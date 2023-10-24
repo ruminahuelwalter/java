@@ -63,7 +63,7 @@ public class Program {
                         System.out.printf("\n Indique la cantidad de dias: ");
                         cantidadDias = tecladoNumerico.nextInt();
                         clearConsole();
-                        ticket(cantidadDias, new Auto());
+                        imprimirTicket(cantidadDias, new Auto());
 
                         subMenu = cotizarOtroVehiculo();
                         menu = subMenu;
@@ -73,7 +73,7 @@ public class Program {
                         System.out.printf("\n Indique la cantidad de dias: ");
                         cantidadDias = tecladoNumerico.nextInt();
                         clearConsole();
-                        ticket(cantidadDias, new Minibus());
+                        imprimirTicket(cantidadDias, new Minibus());
 
                         subMenu = cotizarOtroVehiculo();
                         menu = subMenu;
@@ -110,7 +110,7 @@ public class Program {
                         System.out.printf("\n Indique la cantidad de dias: ");
                         cantidadDias = tecladoNumerico.nextInt();
                         clearConsole();
-                        ticket(cantidadDias, new Furgoneta());
+                        imprimirTicket(cantidadDias, new Furgoneta());
 
                         subMenu = cotizarOtroVehiculo();
                         menu = subMenu;
@@ -122,7 +122,7 @@ public class Program {
                         System.out.printf("\n Indique la cantidad de dias: ");
                         cantidadDias = tecladoNumerico.nextInt();
                         clearConsole();
-                        ticket(cantidadDias, new Camion());
+                        imprimirTicket(cantidadDias, new Camion());
 
                         subMenu = cotizarOtroVehiculo();
                         menu = subMenu;
@@ -207,7 +207,7 @@ public class Program {
         return respuesta;
     }
 
-    public static void ticket(int cantidadDias, Vehiculo vehiculo) {
+    public static void imprimirTicket(int cantidadDias, Vehiculo vehiculo) {
 
         barra();
         System.out.printf(" %30s", "TICKET\n");
