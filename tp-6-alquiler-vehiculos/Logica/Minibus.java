@@ -7,7 +7,6 @@ public class Minibus extends VehiculoPersona {
         return plaza;
     }
 
-
     @Override
     public double calcularAlquiler(int cantidadDias) {
 

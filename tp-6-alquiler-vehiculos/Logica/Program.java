@@ -215,7 +215,8 @@ public class Program {
         ImprimirFechaHora();
 
         System.out.format("%5s %41s", "Vehiculo:", vehiculo.getClass().getSimpleName() + "\n");
-        System.out.format("%5s %42s", "Patente:", generarPatente() + "\n");
+        vehiculo.setPatente(generarPatente());
+        System.out.format("%5s %42s", "Patente:", vehiculo.getPatente() + "\n");
         String chasis = vehiculo.toString();
         System.out.format("%5s %37s", "N° de Chasis:", chasis.toLowerCase() + "\n");
 
