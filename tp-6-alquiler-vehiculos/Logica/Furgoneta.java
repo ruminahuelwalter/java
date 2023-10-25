@@ -5,15 +5,11 @@ public class Furgoneta extends VehiculoCarga {
     private double pma = 3.5;
 
     public double getPma() {
-        return this.pma;
+        return pma;
     }
 
     public int getPlaza() {
-        return this.plaza;
-    }
-
-    public void setPlaza(int plaza) {
-        setPlaza(plaza);
+        return plaza;
     }
 
     @Override

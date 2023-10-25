@@ -5,16 +5,11 @@ public class Camion extends VehiculoCarga {
     private final double pma = 11.5;
 
     public double getPma() {
-
-        return this.pma;
+        return pma;
     }
 
     public int getPlaza() {
-        return this.plaza;
-    }
-
-    public void setPlaza(int plaza) {
-        setPlaza(plaza);
+        return plaza;
     }
 
     @Override

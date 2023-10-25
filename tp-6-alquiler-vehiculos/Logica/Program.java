@@ -173,7 +173,7 @@ public class Program {
         System.out.printf(" %40s", "MENÚ VEHICULO DE CARGA\n");
         System.out.println();
         System.out.println(" 1 - Furgoneta");
-        System.out.println(" 2 - Camión");
+        System.out.println(" 2 - Camion");
         System.out.println(" 3 - Volver");
     }
 

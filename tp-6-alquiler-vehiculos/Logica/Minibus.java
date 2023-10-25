@@ -4,12 +4,9 @@ public class Minibus extends VehiculoPersona {
     private final int plaza = 15;
 
     public int getPlaza() {
-        return this.plaza;
+        return plaza;
     }
 
-    public void setPlaza(int plaza) {
-        setPlaza(this.plaza);
-    }
 
     @Override
     public double calcularAlquiler(int cantidadDias) {
