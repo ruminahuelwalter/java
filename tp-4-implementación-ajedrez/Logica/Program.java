@@ -32,10 +32,8 @@ public class Program {
         colocarPiezaTablero(piezasNegras, tablero);
         colocarPiezaTablero(piezasBlancas, tablero);
 
-        List<Pieza> piezasAjedrez = listaPiezas(piezasNegras, piezasBlancas);
+        menu(tablero, piezasNegras, piezasBlancas);
 
-        menu(tablero, piezasAjedrez, piezasNegras, piezasBlancas);
-      
     }
 
     public static void crearPiezasAjedrez(List<Pieza> piezas) {
@@ -198,7 +196,7 @@ public class Program {
         for (String letra : letras) {
             System.out.printf("%11s", letra);
         }
-        
+
         // Se almacena el par pieza - posición para luego obtener
         // la posición con la pieza, en linea 223.
         Map<String, Pieza> posicionPiezas = new HashMap<>();
@@ -222,7 +220,8 @@ public class Program {
                     String posicion = casilleros[fila][columna].getNombrePosicion();
                     Pieza pieza = posicionPiezas.get(posicion);
                     if (pieza != null) {
-                    // Si coincide la posición de la pieza con la posición del casillero, se "imprime" la pieza en la posición del casillero.
+                        // Si coincide la posición de la pieza con la posición del casillero, se
+                        // "imprime" la pieza en la posición del casillero.
                         if (pieza.getNombrePosicion().equals(posicion) && pieza.getColor().equals("negro")) {
                             String piezaNegra = negrita + negro + pieza.getClass().getSimpleName() + finAscii;
                             System.out.printf("%26s", " " + piezaNegra);
@@ -232,13 +231,13 @@ public class Program {
                             System.out.printf("%26s", " " + piezaBlanca);
                         }
                     } else {
-           
+
                         System.out.printf("%11s", " "); // Se agrega espacio donde no hay piezas.
                     }
-                  
+
                 } else {
                     System.out.printf("%11s", " "); // Se agrega espacio donde no hay piezas.
-                 }
+                }
             }
             System.out.println("\n");
             System.out.println(" ");
@@ -273,8 +272,8 @@ public class Program {
         // Cual es la pieza que esta en el casillero de destino.
         Pieza piezaEnDestino = posicionPiezas.get(destino);
 
-        if(piezaEnOrigen != null){
-        
+        if (piezaEnOrigen != null) {
+
             if (piezaEnOrigen.getNombrePosicion() != null) {
                 String nuevaPosicion;
                 if (casilleros[filaDestino][columnaDestino].isOcupado() == true) {
@@ -301,14 +300,15 @@ public class Program {
                     }
 
                 } else {
-                    
+
                     // Casillero de destino sin piezas.
                     // Se deja libre el casillero de origen.
                     casilleros[filaOrigen][columnaOrigen].setOcupado(false);
                     casilleros[filaDestino][columnaDestino].setOcupado(true);
                     nuevaPosicion = casilleros[filaDestino][columnaDestino].getNombrePosicion();
                     piezaEnOrigen.setNombrePosicion(nuevaPosicion);
-                    System.out.println("\n" + negrita + "La pieza " + piezaEnOrigen.getClass().getSimpleName() + " se movió correctamente." + finAscii);
+                    System.out.println("\n" + negrita + "La pieza " + piezaEnOrigen.getClass().getSimpleName()
+                            + " se movió correctamente." + finAscii);
 
                 }
             }
@@ -318,7 +318,7 @@ public class Program {
     public static int obtenerFilaPosicion(String nombrePosicion) {
 
         // 'a8' Obtiene el número 8, para luego retornar su indicecorrespondiente.
-        char numero = nombrePosicion.charAt(1); 
+        char numero = nombrePosicion.charAt(1);
         int fila = Character.getNumericValue(numero);
         fila = 8 - fila; // Restar fila a 8 dado que indice va de 0 a 7. 8-8= 0.
 
@@ -327,7 +327,7 @@ public class Program {
 
     public static int obtenerColumnaPosicion(String nombrePosicion) {
 
-        char letra = nombrePosicion.charAt(0); 
+        char letra = nombrePosicion.charAt(0);
         // 'a8' Obtiene la letra a, para luego retornar su indice correspondiente.
         int columna = letra;
         columna = columna - 97; // Restar 97, que es la posicion de 'a' en ascii. a es indice 0.
@@ -335,8 +335,42 @@ public class Program {
         return columna;
     }
 
-    public static void menu(Tablero tablero, List<Pieza> piezasAjedrez, List<Pieza> piezasNegras,
-            List<Pieza> piezasBlancas) {
+    public static void mostrarMenuPrincipal() {
+
+        System.out.println("\n");
+        System.out.printf(" %30s", "MENÚ PRINCIPAL ");
+        System.out.println("\n");
+        System.out.println(" 1 - Mostrar el tablero");
+        System.out.println(" 2 - Mostrar las piezas");
+        System.out.println(" 3 - Mostrar el tablero con piezas");
+        System.out.println(" 4 - Jugar (beta)");
+        System.out.println(" 5 - Salir");
+        System.out.println();
+
+    }
+
+    public static void mostrarSubMenuTablero() {
+
+        System.out.println("");
+        System.out.printf(" %30s", "SUBMENÚ TABLERO");
+        System.out.println("\n");
+        System.out.println(" 1 - Mostrar el color de los casilleros");
+        System.out.println(" 2 - Mostrar la posición de los casilleros");
+        System.out.println(" 3 - Volver");
+        System.out.println();
+    }
+
+    public static void mostrarSubMenuPieza() {
+
+        System.out.println("");
+        System.out.printf(" %30s", "SUBMENÚ PIEZAS \n\n");
+        System.out.println(" 1 - Mostrar las piezas negras");
+        System.out.println(" 2 - Mostrar las piezas blancas");
+        System.out.println(" 3 - Volver");
+        System.out.println();
+    }
+
+    public static void menu(Tablero tablero, List<Pieza> piezasNegras, List<Pieza> piezasBlancas) {
 
         System.out.println();
         System.out.printf(" %80s", "- BIENVENIDO AL PROGRAMA AJEDREZ -\n");
@@ -346,21 +380,13 @@ public class Program {
         int subOpcion;
         boolean subMenu;
         boolean ejecucion = true;
+        List<Pieza> piezasAjedrez = listaPiezas(piezasNegras, piezasBlancas);
 
         while (ejecucion) {
 
             try {
 
-                System.out.println("\n");
-                System.out.printf(" %30s", "MENÚ PRINCIPAL ");
-                System.out.println("\n");
-                System.out.println(" 1 - Mostrar el tablero");
-                System.out.println(" 2 - Mostrar las piezas");
-                System.out.println(" 3 - Mostrar el tablero con piezas");
-                System.out.println(" 4 - Jugar (beta)");
-                System.out.println(" 5 - Salir");
-                System.out.println();
-
+                mostrarMenuPrincipal();
                 System.out.print(" Elija una opción: ");
                 opcion = tecladoNumerico.nextInt();
 
@@ -370,14 +396,8 @@ public class Program {
                         subMenu = true;
                         while (subMenu) {
                             try {
-                                System.out.println("");
-                                System.out.printf(" %30s", "SUBMENÚ TABLERO");
-                                System.out.println("\n");
-                                System.out.println(" 1 - Mostrar el color de los casilleros");
-                                System.out.println(" 2 - Mostrar la posición de los casilleros");
-                                System.out.println(" 3 - Volver");
-                                System.out.println();
 
+                                mostrarSubMenuTablero();
                                 System.out.print("Elija una opción: ");
                                 subOpcion = tecladoNumerico.nextInt();
 
@@ -420,12 +440,7 @@ public class Program {
                         while (subMenu) {
                             try {
 
-                                System.out.println("");
-                                System.out.printf(" %30s", "SUBMENÚ PIEZAS \n\n");
-                                System.out.println(" 1 - Mostrar las piezas negras");
-                                System.out.println(" 2 - Mostrar las piezas blancas");
-                                System.out.println(" 3 - Volver");
-                                System.out.println();
+                                mostrarSubMenuPieza();
                                 System.out.print("Elija una opción: ");
                                 subOpcion = tecladoNumerico.nextInt();
 
@@ -477,6 +492,7 @@ public class Program {
                         barra();
                         System.out.printf("%25s %s%n", " ", "Tablero de ajedrez con las piezas");
                         barra();
+
                         mostrarPieza(tablero, piezasAjedrez);
                         barra();
                         break;
@@ -499,7 +515,8 @@ public class Program {
                                 subOpcion = tecladoNumerico.nextInt();
 
                                 if (subOpcion == 1) {
-                                    System.out.println("\nIndique el movimiento de la pieza en formato 'a7' (por ejemplo, origen: 'a7' destino: 'c5').");
+                                    System.out.println(
+                                            "\nIndique el movimiento de la pieza en formato 'a7' (por ejemplo, origen: 'a7' destino: 'c5').");
                                     System.out.print("Posicion de origen: ");
                                     posicionOrigen = teclado.nextLine();
                                     posicionOrigen = posicionOrigen.toLowerCase();
