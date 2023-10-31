@@ -8,13 +8,13 @@ public class AccesoDatos {
 
 	private String maquina = "localhost";
 	private String usuario = "root";
-	private String clave = "root";
+	private String clave = "admin";
 	private int puerto = 3306;
 	private String bd = "Ajedrez";
 	private String servidor = "";
 	private Connection conexion = null;
 
-	//
+	
 	public AccesoDatos() {
 
 		this.servidor = "jdbc:mysql://" + this.maquina + ":" + this.puerto + "/" + this.bd;

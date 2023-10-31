@@ -14,13 +14,12 @@ public class Program {
         
         Interfaz interfaz = new Interfaz();
         interfaz.setTitle("Ajedrez");
-        interfaz.setBounds(0,0,540,400);
+        interfaz.setBounds(0,0,900,700);
         // 0,0 sin separacion en izquierda y derecha, pero si ancho y alto
         interfaz.setVisible(true);
-        interfaz.setResizable(false); // el usuario no puede mod la dimension de la interfaz
+        interfaz.setResizable(true); // el usuario no puede mod la dimension de la interfaz
         interfaz.setLocationRelativeTo(null); // al centro de la pantalla
         
-
     }
 
     public static void mostrarPiezasBD() {

@@ -10,5 +10,9 @@ public interface iPieza{
     public abstract List<PiezaBD> listarPiezasBD();
     public abstract void transaccionBD();
 
+    // actualizar
+    // eliminar
+
+    // Por cada query va a haber un metodo
 
 }

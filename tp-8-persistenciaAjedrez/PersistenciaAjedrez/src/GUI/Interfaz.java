@@ -10,7 +10,6 @@ import Logica.iPieza;
 
 public class Interfaz extends JFrame {
     
-   
     private JTable tabla;
     private JScrollPane scrollPane;
     // se especifica el tamaño de la tabla
@@ -20,24 +19,27 @@ public class Interfaz extends JFrame {
 
         setLayout(null);
         tabla = new JTable();
-        tabla.setBounds(20,20,200,100);        
+        tabla.setBounds(30,30,300,200);        
         add(tabla);
 
         scrollPane = new JScrollPane(tabla);
-        scrollPane.setBounds(10,50,400,300);
+        scrollPane.setBounds(30,50,800,600);
         add(scrollPane);
 
         iPieza iPiezaA = new PiezaDAO();
-        List<PiezaBD> lista = iPiezaA.mostrarPiezasBD();
+        // List<PiezaBD> lista = iPiezaA.mostrarPiezasBD();
+        List<PiezaBD> lista = iPiezaA.listarPiezasBD();
         
-        modelo.setColumnIdentifiers(new Object[]{"idTipoPieza", "Pieza"});
+        modelo.setColumnIdentifiers(new Object[]{"idTipoPieza", "Pieza", "Movimiento", "Comportamiento" , "Color", "Tamaño","Material","Fecha de creación"});
         tabla.setModel(modelo);
 
         modelo.setRowCount(0);
         for (PiezaBD pieza : lista) {
             modelo.addRow(new Object[]{
                 pieza.getIdPieza(),
-                pieza.getTipoPieza()
+                pieza.getTipoPieza(),
+                pieza.getMovimiento(),
+                pieza.getComportamiento()
             });
 
         }
