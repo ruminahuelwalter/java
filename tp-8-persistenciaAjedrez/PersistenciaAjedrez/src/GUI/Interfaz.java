@@ -30,7 +30,17 @@ public class Interfaz extends JFrame {
         // List<PiezaBD> lista = iPiezaA.mostrarPiezasBD();
         List<PiezaBD> lista = iPiezaA.listarPiezasBD();
         
-        modelo.setColumnIdentifiers(new Object[]{"idTipoPieza", "Pieza", "Movimiento", "Comportamiento" , "Color", "Tamaño","Material","Fecha de creación"});
+        modelo.setColumnIdentifiers(new Object[]{
+            "idTipoPieza",
+            "Pieza", 
+            "Movimiento", 
+            "Comportamiento" , 
+            "Color", 
+            "Tamaño", 
+            "Material", 
+            "Fecha de creación"
+        });
+        
         tabla.setModel(modelo);
 
         modelo.setRowCount(0);
@@ -39,7 +49,12 @@ public class Interfaz extends JFrame {
                 pieza.getIdPieza(),
                 pieza.getTipoPieza(),
                 pieza.getMovimiento(),
-                pieza.getComportamiento()
+                pieza.getComportamiento(),
+                pieza.getColor(),
+                pieza.getTamanio(),
+                pieza.getMaterial(),
+                pieza.getFechaCreacion(),
+
             });
 
         }

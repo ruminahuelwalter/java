@@ -19,7 +19,6 @@ public class PiezaDAO implements iPieza{
     ResultSet rs = null;
 
     @Override
-   
     public List<PiezaBD> mostrarPiezasBD() {
 
         List<PiezaBD> lista = new ArrayList<>();
@@ -99,7 +98,7 @@ public class PiezaDAO implements iPieza{
             "c.Descripcion as Color, \n" + //
             "tm.Descripcion as Tamanio,\n" + //
             "m.Descripcion as Material,\n" + //
-            "p.Fecha_Creacion\n" + //
+            "p.Fecha_Creacion as Fecha\n" + //
             "from pieza p\n" + //
             "inner join color c on c.idColor = p.idColor\n" + //
             "inner join tipopieza tp on tp.idTipoPieza = p.idTipoPieza\n" + //
@@ -120,6 +119,7 @@ public class PiezaDAO implements iPieza{
         while (rs.next()) {
             PiezaBD pieza = new PiezaBD();
             
+            
             //int idPieza = rs.getInt("idTipoPieza");
             
             //System.out.println("Pieza Nro: " + String.valueOf(idPieza)
@@ -136,6 +136,7 @@ public class PiezaDAO implements iPieza{
             pieza.setColor(rs.getString("Color"));
             pieza.setTamanio(rs.getString("Tamanio"));
             pieza.setMaterial(rs.getString("Material"));
+            pieza.setFechaNac(rs.getDate("Fecha"));
             //pieza.setIdPieza(idPieza);
             lista.add(pieza);
             
