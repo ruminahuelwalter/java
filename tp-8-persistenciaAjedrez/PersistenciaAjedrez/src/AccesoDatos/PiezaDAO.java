@@ -80,7 +80,40 @@ public class PiezaDAO implements iPieza{
 
     @Override
     public void insertarPiezasBD() {
-        
+
+        // En este bloque se ejecutan las sentencias necesarias para acceder a la BD y
+        // obtener la informacion
+        try {
+            // Instancio un objeto de acceso a datos
+            accesoBD = new AccesoDatos();
+
+            // Obtener la conexion para poder generar la sentencia de consulta
+            con = accesoBD.getConexion();
+            sentencia = con.createStatement();
+            String query = "insert into ";
+            // Ejecuta la insercion y almacena el resultado en rs
+            sentencia.executeUpdate(query);
+
+            
+
+        } catch (SQLException e) {
+            System.err.println("Error al CARGAR DATOS");
+        } finally {
+            try {
+                // Cierra el ResultSet
+                if (rs != null)
+                    rs.close();
+                // Cierra la sentencia
+                if (sentencia != null)
+                    sentencia.close();
+                // Cierra la conexion
+                if (con != null)
+                    con.close();
+
+            } catch (SQLException e) {
+                System.err.println("Error al cerrar conexion");
+            }
+        }
     }
 
     @Override
