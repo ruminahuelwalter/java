@@ -1,5 +1,7 @@
 package Logica;
 
+import java.util.Date;
+
 public class PiezaBD extends Pieza{
 
     private int idPieza;
@@ -7,21 +9,21 @@ public class PiezaBD extends Pieza{
     private String descripcion;
     private String material;
     private String tamanio;
-
-
+    private Date fechaCreacion;
 
     public PiezaBD() {
 
     }
     
     public PiezaBD(String movimiento, String color, String comportamiento, String nombrePosicion, int idPieza,
-            String tipoPieza, String descripcion, String material, String tamanio) {
+            String tipoPieza, String descripcion, String material, String tamanio, Date fechaCreacion) {
         super(movimiento, color, comportamiento, nombrePosicion);
         this.idPieza = idPieza;
         this.tipoPieza = tipoPieza;
         this.descripcion = descripcion;
         this.material = material;
         this.tamanio = tamanio;
+        this.fechaCreacion = fechaCreacion;
     }
 
     public String getMaterial() {
@@ -63,7 +65,15 @@ public class PiezaBD extends Pieza{
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
+
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
     @Override
     public void mover() {
         

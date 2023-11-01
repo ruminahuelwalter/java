@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 //import java.util.Map;
 
-
 public class Ajedrez {
-
     
     public static void crearPiezasAjedrez(List<Pieza> piezas) {
         // Piezas creadas y agregadas a la lista en un orden determinado para facilitar
@@ -37,7 +35,7 @@ public class Ajedrez {
     }
 
     public static void cargarComportamientoMovimiento(List<Pieza> piezasAjedrez) {
-
+        
         for (Pieza pieza : piezasAjedrez) {
             if (pieza instanceof Alfil) {
                 pieza.setComportamiento("sesgo");

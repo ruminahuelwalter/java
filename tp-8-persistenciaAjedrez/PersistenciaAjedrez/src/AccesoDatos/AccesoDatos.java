@@ -14,7 +14,6 @@ public class AccesoDatos {
 	private String servidor = "";
 	private Connection conexion = null;
 
-	
 	public AccesoDatos() {
 
 		this.servidor = "jdbc:mysql://" + this.maquina + ":" + this.puerto + "/" + this.bd;

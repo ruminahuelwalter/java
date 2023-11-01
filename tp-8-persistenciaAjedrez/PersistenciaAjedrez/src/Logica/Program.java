@@ -2,32 +2,35 @@ package Logica;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import AccesoDatos.PiezaDAO;
-import GUI.Interfaz;
+import GUI.Ventana;
 
 public class Program {
     
     public static void main(String[] args) {
+
         crearAjedrez();
-        //mostrarPiezasBD();
+        mostrarPiezasBD();
         
-        Interfaz interfaz = new Interfaz();
-        interfaz.setTitle("Ajedrez");
-        interfaz.setBounds(0,0,900,700);
+        Ventana ventana = new Ventana();
+        ventana.ventanaBasica();
+        /* Ventana ventana = new Ventana();
+        ventana.setTitle("Ajedrez");
+
+        ventana.setBounds(0,0,900,700);
         // 0,0 sin separacion en izquierda y derecha, pero si ancho y alto
-        interfaz.setVisible(true);
-        interfaz.setResizable(true); // el usuario no puede mod la dimension de la interfaz
-        interfaz.setLocationRelativeTo(null); // al centro de la pantalla
+        ventana.setVisible(true);
+        ventana.setResizable(true); // el usuario no puede mod la dimension de la interfaz
+        ventana.setLocationRelativeTo(null); // al centro de la pantalla   */
+        crearAjedrez();
         
+    
     }
 
     public static void mostrarPiezasBD() {
-        iPieza iPiezaA = new PiezaDAO();
-        iPiezaA.mostrarPiezasBD();
-
+        iPiezaDAO iPiezaA = new PiezaDAO();
+        iPiezaA.listar();
     }
-
 
     public static void crearAjedrez(){
 
@@ -51,7 +54,8 @@ public class Program {
         Ajedrez.colocarPiezaTablero(piezasNegras, tablero);
         Ajedrez.colocarPiezaTablero(piezasBlancas, tablero);
 
+        for (Pieza pieza : piezasBlancas) {
+            System.out.println(pieza.getMovimiento());
+        }
     }
-
-
 }
