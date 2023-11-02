@@ -1,4 +1,6 @@
 package Logica;
+import java.util.Date;
+
 
 import java.util.Date;
 
@@ -70,7 +72,11 @@ public class PiezaBD extends Pieza{
         return fechaCreacion;
     }
 
+<<<<<<< HEAD
     public void setFechaCreacion(Date fechaCreacion) {
+=======
+    public void setFechaNac(Date fechaCreacion) {
+>>>>>>> 1d27e070e6bef5bacf92bdd98b0a48c9cd964d8d
         this.fechaCreacion = fechaCreacion;
     }
 
