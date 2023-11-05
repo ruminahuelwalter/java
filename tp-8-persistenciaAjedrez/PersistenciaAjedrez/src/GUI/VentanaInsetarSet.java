@@ -33,47 +33,46 @@ public class VentanaInsetarSet extends JFrame implements ActionListener, ItemLis
         this.setTitle("Insertar set de piezas");
         this.setResizable(false);
 
-        labelTitulo = new JLabel("Seleccione e indique las caracteristicas del set de piezas:");
+        labelTitulo = new JLabel("<html>Seleccione e indique las caracteristicas <br> del set de piezas:</hmtl>");
         labelTitulo.setFont(new Font("Cascadia Mono", 1, 15));
         labelTitulo.setBounds(30, 10, 500, 40);
         this.add(labelTitulo);
 
         labelMaterial = new JLabel("Material:");
-        labelMaterial.setBounds(30, 50, 100, 30);
+        labelMaterial.setBounds(30, 60, 100, 30);
         this.add(labelMaterial);
 
         comboBoxMaterial = new JComboBox<>();
-        comboBoxMaterial.setBounds(140, 50, 120, 30);
+        comboBoxMaterial.setBounds(140, 60, 120, 30);
         comboBoxMaterial.addItem("Madera");
         comboBoxMaterial.addItem("Plastico");
         this.add(comboBoxMaterial);
 
         labelTamanio = new JLabel("Tamaño:");
-        labelTamanio.setBounds(30, 100, 100, 30);
+        labelTamanio.setBounds(30, 120, 100, 30);
         this.add(labelTamanio);
 
         comboBoxTamanio = new JComboBox<>();
-        comboBoxTamanio.setBounds(140, 100, 120, 30);
+        comboBoxTamanio.setBounds(140, 120, 120, 30);
         comboBoxTamanio.addItem("Chico");
         comboBoxTamanio.addItem("Grande");
         this.add(comboBoxTamanio);
 
-        labelDescripcion = new JLabel("Descripcion:");
-        labelDescripcion.setBounds(30, 150, 100, 30);
+        labelDescripcion = new JLabel("Descripción:");
+        labelDescripcion.setBounds(30, 180, 100, 30);
         this.add(labelDescripcion);
 
         textFieldDescripcion = new JTextField();
-        textFieldDescripcion.setBounds(140, 150, 120, 30);
+        textFieldDescripcion.setBounds(140, 180, 120, 30);
         this.add(textFieldDescripcion);
 
         checkBoxDescripcion = new JCheckBox();
-        checkBoxDescripcion.setBounds(270, 150, 100, 30);
+        checkBoxDescripcion.setBounds(270, 180, 100, 30);
         checkBoxDescripcion.setBackground(new Color(r, g, b));
         checkBoxDescripcion.addItemListener(this);
         this.add(checkBoxDescripcion);
 
         botonAceptar = new JButton("Aceptar");
-
         botonAceptar.setBounds(30, 450, 100, 30);
         this.add(botonAceptar);
         botonAceptar.setEnabled(false);

@@ -14,38 +14,42 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
     private JButton botonAgregarPieza;
     private JButton botonAgregarSetPiezas;
     private JButton botonActualizarTabla;
-    private JLabel labelAgregarPieza, labelSetPiezas;
+    private JLabel labelAgregarPieza, labelSetPiezas, labelActualizar;
     private Tabla tabla;
 
     public VentanaPrincipal() {
 
         this.getContentPane().setBackground(new Color(174, 182, 191));
         this.setLayout(null);
-        this.setBounds(0, 0, 1220, 700);
+        this.setBounds(0, 0, 1130, 800);
         this.setTitle("Ajedrez");
         this.setResizable(false);
 
-        labelAgregarPieza = new JLabel("Nueva Pieza:");
-        labelAgregarPieza.setBounds(1100, 50, 120, 30);
+        labelAgregarPieza = new JLabel("Agregar Nueva Pieza");
+        labelAgregarPieza.setBounds(50, 660, 130, 30);
         this.add(labelAgregarPieza);
         botonAgregarPieza = new JButton("Agregar");
-        botonAgregarPieza.setBounds(1070, 80, 120, 30);
+        botonAgregarPieza.setBounds(50, 690, 120, 30);
         botonAgregarPieza.setVisible(true);
         this.add(botonAgregarPieza);
         botonAgregarPieza.addActionListener(this);
 
         labelSetPiezas = new JLabel("Agregar Set de piezas");
-        labelSetPiezas.setBounds(1070, 120, 150, 30);
+        labelSetPiezas.setBounds(200, 660, 150, 30);
         this.add(labelSetPiezas);
 
         botonAgregarSetPiezas = new JButton("Agregar");
-        botonAgregarSetPiezas.setBounds(1070, 150, 120, 30);
+        botonAgregarSetPiezas.setBounds(200, 690, 120, 30);
         botonAgregarSetPiezas.setVisible(true);
         this.add(botonAgregarSetPiezas);
         botonAgregarSetPiezas.addActionListener(this);
 
+        labelActualizar = new JLabel("Actualizar tabla");
+        labelActualizar.setBounds(355, 660, 150, 30);
+        this.add(labelActualizar);
+
         botonActualizarTabla = new JButton("Actualizar");
-        botonActualizarTabla.setBounds(1070, 300, 120, 30);
+        botonActualizarTabla.setBounds(350, 690, 120, 30);
         botonActualizarTabla.setVisible(true);
         this.add(botonActualizarTabla);
         botonActualizarTabla.addActionListener(this);
@@ -60,10 +64,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == botonAgregarPieza) {
-            // Cerrar la interfaz gráfica
-            // System.exit(0);
+      
             VentanaNuevaPieza subVentana = new VentanaNuevaPieza();
-
             subVentana.setVisible(true);
             subVentana.setResizable(true);
             subVentana.setLocationRelativeTo(null);
@@ -76,11 +78,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             ventanaInsetarSet.setVisible(true);
             ventanaInsetarSet.setResizable(true);
             ventanaInsetarSet.setLocationRelativeTo(null);
-            //Program metodo = new Program();
-            //Ajedrez ajedrez = new Ajedrez();
-            
-            //List<PiezaBD> lista = ajedrez.piezaAPiezaDB();
-            
+       
         }
         
         if (e.getSource() == botonActualizarTabla) {

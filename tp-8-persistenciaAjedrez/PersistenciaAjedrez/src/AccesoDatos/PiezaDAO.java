@@ -91,8 +91,6 @@ public class PiezaDAO implements iPiezaDAO {
     public void insertar(PiezaBD pieza) { 
         String query = "insert into pieza (Descripcion,idColor,idTipoPieza,idTamanio,idMaterial,Posicion,Comportamiento,Movimiento, Fecha_Creacion) values(?,?,?,?,?,?,?,?,?)";
 
-        // En este bloque se ejecutan las sentencias necesarias para acceder a la BD y
-
         try {
             // Instancio un objeto de acceso a datos
             accesoBD = new AccesoDatos();

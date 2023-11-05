@@ -162,21 +162,21 @@ public class Ajedrez {
         List<Pieza> piezasBlancas = new ArrayList<>();
         List<Pieza> piezasNegras = new ArrayList<>();
 
-        piezasNegras = AjedrezDeprecated.crearPiezasAjedrez("negro");
-        piezasBlancas = AjedrezDeprecated.crearPiezasAjedrez("blanco");
+        piezasNegras = crearPiezasAjedrez("negro");
+        piezasBlancas = crearPiezasAjedrez("blanco");
 
-        AjedrezDeprecated.cargarComportamientoMovimiento(piezasNegras);
-        AjedrezDeprecated.cargarComportamientoMovimiento(piezasBlancas);
+        cargarComportamientoMovimiento(piezasNegras);
+        cargarComportamientoMovimiento(piezasBlancas);
 
         Tablero tablero = new Tablero();
         tablero.generarTablero();
         tablero.asignarNombrePosicion();
 
-        AjedrezDeprecated.colocarPiezaTablero(piezasNegras, tablero);
-        AjedrezDeprecated.colocarPiezaTablero(piezasBlancas, tablero);
+        colocarPiezaTablero(piezasNegras, tablero);
+        colocarPiezaTablero(piezasBlancas, tablero);
         
         
-        List<Pieza> piezas = AjedrezDeprecated.agruparPiezas(piezasNegras, piezasBlancas);
+        List<Pieza> piezas = agruparPiezas(piezasNegras, piezasBlancas);
 
         return piezas;
 
@@ -195,9 +195,9 @@ public class Ajedrez {
             piezaBD.setMovimiento(pieza.getMovimiento());
             piezaBD.setColor(pieza.getColor());
             piezaBD.setComportamiento(pieza.getComportamiento());
-            piezaBD.setNombrePosicion(pieza.getNombrePosicion());
+            piezaBD.setNombrePosicion(pieza.getNombrePosicion().toUpperCase());
 
-            // Descripcion, material asignar en otro lado
+            // Descripcion, material se asignan en ventanaInsertarset
             // Fecha e id al cargar a bbdd
 
             listaPiezasBD.add(piezaBD);

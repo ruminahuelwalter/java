@@ -179,10 +179,8 @@ public class VentanaNuevaPieza extends JFrame implements ActionListener, ItemLis
         } else
             comportamiento = "";
         if (checkBoxDescripcion.isSelected()) {
-            //pieza.setDescripcion(textFieldDescripcion.getText());
             descripcion = textFieldDescripcion.getText();
         } else
-            //pieza.setDescripcion("");
             descripcion = "";
 
         if (e.getSource() == botonAceptar) {
