@@ -4,10 +4,10 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import AccesoDatos.PiezaDAO;
-import Logica.PiezaBD;
-import Logica.iPiezaDAO;
+import AccesoDatos.*;
+import Logica.*;
 
+// BORRAR
 public class Ventana extends JFrame {
     
     private JTable tabla;
@@ -16,38 +16,42 @@ public class Ventana extends JFrame {
     DefaultTableModel tablaModelo = new DefaultTableModel();
 
     public Ventana() {
-        
+
         setLayout(null);
         tabla = new JTable();
-        tabla.setBounds(30,30,300,200);        
+        tabla.setBounds(30,30,300,200);
         add(tabla);
-
+        
         scrollPane = new JScrollPane(tabla);
         scrollPane.setBounds(30,50,800,600);
         add(scrollPane);
         
         iPiezaDAO iPiezaA = new PiezaDAO();
-        // List<PiezaBD> lista = iPiezaA.mostrarPiezasBD();
+        
         List<PiezaBD> lista = iPiezaA.listar();
         
         tablaModelo.setColumnIdentifiers(new Object[]{
-            "idTipoPieza", 
+
+            "idTipoPieza",
             "Pieza",
             "Descripcion",
             "Posicion",
             "Movimiento",
-            "Comportamiento", 
-            "Color", 
+            "Comportamiento",
+            "Color",
             "Tamaño",
             "Material",
             "Fecha de creación"
+
         });
+
         tabla.setModel(tablaModelo);
         // boolean isCellEditable(int row, int column)
         tablaModelo.setRowCount(0);
 
         for (PiezaBD pieza : lista) {
             tablaModelo.addRow(new Object[]{
+
                 pieza.getIdPieza(),
                 pieza.getTipoPieza(),
                 pieza.getDescripcion(),
@@ -74,4 +78,6 @@ public class Ventana extends JFrame {
         ventana.setResizable(true); // el usuario no puede mod la dimension de la interfaz
         ventana.setLocationRelativeTo(null); // al centro de la pantalla  
     }
+
+    
 }

@@ -15,8 +15,18 @@ public class PiezaBD extends Pieza{
 
     }
     
-    public PiezaBD(String movimiento, String color, String comportamiento, String nombrePosicion, int idPieza,
-            String tipoPieza, String descripcion, String material, String tamanio, Date fechaCreacion) {
+    public PiezaBD(
+        String movimiento,
+        String color,
+        String comportamiento,
+        String nombrePosicion,
+        int idPieza,
+        String tipoPieza,
+        String descripcion, 
+        String material, 
+        String tamanio, 
+        Date fechaCreacion){
+
         super(movimiento, color, comportamiento, nombrePosicion);
         this.idPieza = idPieza;
         this.tipoPieza = tipoPieza;

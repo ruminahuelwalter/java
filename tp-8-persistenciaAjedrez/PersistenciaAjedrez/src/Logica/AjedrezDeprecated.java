@@ -1,10 +1,12 @@
 package Logica;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ajedrez {
-    
+
+public class AjedrezDeprecated {
+
     public static List<Pieza> crearPiezasAjedrez(String color) {
         // Piezas creadas y agregadas a la lista en un orden determinado para facilitar
         // la carga en el tablero.
@@ -180,29 +182,6 @@ public class Ajedrez {
 
         return piezas;
 
-    }
-
-    public List<PiezaBD> piezaAPiezaDB() {
-
-        List<Pieza> listaPiezas = crearAjedrez();
-        List<PiezaBD> listaPiezasBD = new ArrayList<>();
-
-        for (Pieza pieza : listaPiezas) {
-
-            PiezaBD piezaBD = new PiezaBD();
-
-            piezaBD.setTipoPieza(pieza.getClass().getSimpleName());
-            piezaBD.setMovimiento(pieza.getMovimiento());
-            piezaBD.setColor(pieza.getColor());
-            piezaBD.setComportamiento(pieza.getComportamiento());
-            piezaBD.setNombrePosicion(pieza.getNombrePosicion());
-
-            // Descripcion, material asignar en otro lado
-            // Fecha e id al cargar a bbdd
-
-            listaPiezasBD.add(piezaBD);
-        }
-        return listaPiezasBD;
     }
 
 }

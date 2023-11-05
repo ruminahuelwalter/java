@@ -6,7 +6,8 @@ public interface iPiezaDAO{
     
     public abstract List<PiezaBD> mostrar();
     public abstract List<PiezaBD> mostrarTipo();
-    public abstract void insertar();
+    public abstract void insertar(PiezaBD pieza);
+    //public abstract void insertarLista(List<Pieza> piezas);
     public abstract List<PiezaBD> listar();
     public abstract void transaccion();
 
