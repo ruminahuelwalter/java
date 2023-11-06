@@ -10,8 +10,8 @@ import Logica.*;
 
 public class VentanaPrincipal extends JFrame implements ActionListener {
     
-    private JButton botonAgregarPieza,botonAgregarSetPiezas, botonActualizarTabla, botonEliminar;
-    private JLabel labelAgregarPieza, labelSetPiezas, labelActualizar, labelEliminar;
+    private JButton botonAgregarPieza,botonAgregarSetPiezas, botonActualizarTabla, botonEliminar, botonModificar;
+    private JLabel labelAgregarPieza, labelSetPiezas, labelActualizar, labelEliminar, labelModificar;
     private Tabla tabla;
 
     public VentanaPrincipal() {
@@ -63,6 +63,16 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         this.add(botonActualizarTabla);
         botonActualizarTabla.addActionListener(this);
 
+        labelModificar = new JLabel("Modificar elemento");
+        labelModificar.setBounds(655, 560, 150, 30);
+        this.add(labelModificar);
+
+        botonModificar = new JButton("Modificar");
+        botonModificar.setBounds(650, 590, 120, 30);
+        botonModificar.setVisible(true);
+        this.add(botonModificar);
+        botonModificar.addActionListener(this);
+
 
         tabla = new Tabla();
         tabla.setLayout(null);
@@ -93,15 +103,35 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
         if (e.getSource() == botonEliminar) {
             
-            int n = JOptionPane.showOptionDialog(null, "          ¿Esta seguro?", "Confirmar", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,new Object[]{"SI","NO"},null);
-            if (n==0){
-                PiezaDAO iPiezaA = new PiezaDAO();
-                iPiezaA.eliminarElemento(tabla.elementoSeleccionado());
+            try {
+                int n = JOptionPane.showOptionDialog(null, "          ¿Esta seguro?", "Confirmar", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,new Object[]{"SI","NO"},null);
+                if (n==0){
+                    PiezaDAO iPiezaA = new PiezaDAO();
+                    iPiezaA.eliminarElemento(tabla.elementoSeleccionado());
+                    
+                    List<PiezaBD> lista = iPiezaA.listar();
+                    tabla.actualizarTabla(lista);
+                }
                 
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Seleccione un elemento");
+            }
+           
+        }
+        if (e.getSource() == botonModificar) {
+            try {
+                String idPieza = tabla.elementoSeleccionado();
+                VentanaModificar ventanaModificar = new VentanaModificar(idPieza,tabla);
+                configVentana(ventanaModificar);
+    
+                PiezaDAO iPiezaA = new PiezaDAO();
                 List<PiezaBD> lista = iPiezaA.listar();
                 tabla.actualizarTabla(lista);
+                
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Seleccione un elemento", "Atención!", JOptionPane.WARNING_MESSAGE);
+                //JOptionPane.showMessageDialog(null, "Seleccione un elemento");
             }
-            
         }
     }
     
@@ -109,7 +139,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         ventana.setVisible(true);
         ventana.setResizable(false);
         ventana.setLocationRelativeTo(null);
-
         
     }
 

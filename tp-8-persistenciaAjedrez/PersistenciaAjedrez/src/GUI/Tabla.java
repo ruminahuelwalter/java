@@ -9,6 +9,7 @@ import AccesoDatos.*;
 import Logica.*;
 
 public class Tabla extends JPanel {
+    
     private JTable tabla;
     private JScrollPane scrollPane;
     private DefaultTableModel tablaModelo;

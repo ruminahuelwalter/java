@@ -21,6 +21,7 @@ public class PiezaDAO implements iPiezaDAO {
     ResultSet rs = null;
     PreparedStatement sentenciaInsercion = null;
     PreparedStatement sentenciaEliminar = null;
+    PreparedStatement sentenciaModificar = null;
 
     LocalDateTime fechaHoraActual = LocalDateTime.now();
     Map<String, Integer> piezaId = new HashMap<>();
@@ -147,7 +148,7 @@ public class PiezaDAO implements iPiezaDAO {
                 lista.add(pieza);
             }
         } catch (SQLException e) {
-            System.err.println("Error al CARGAR DATOS");
+            System.err.println("Error al CARGAR DATO(S)");
         } finally {
             try {
                 // Cierra el ResultSet
@@ -181,6 +182,76 @@ public class PiezaDAO implements iPiezaDAO {
      
         } catch (SQLException e) {
             System.err.println("Error al ELIMINAR DATOS");
+        } finally {
+            try {
+
+                // Cierra la sentencia
+                if (sentenciaInsercion != null)
+                    sentenciaInsercion.close();
+                // Cierra la conexion
+                if (con != null)
+                    con.close();
+            } catch (SQLException e) {
+                System.err.println("Error al cerrar conexion");
+            }
+        }
+    }
+
+    @Override
+    public void modificarElemento(PiezaBD pieza, String elemento) {
+       
+        String query = "update pieza set Descripcion = ?,idColor= ?, idTipoPieza = ?,idTamanio= ?,idMaterial= ?, Posicion = ?, Comportamiento= ?,Movimiento= ?, Fecha_Creacion= ? where idPieza = " + elemento;
+        try {
+            // Instancio un objeto de acceso a datos
+            accesoBD = new AccesoDatos();
+            // Obtener la conexion para poder generar la sentencia de insercion
+            con = accesoBD.getConexion();
+            sentenciaModificar = con.prepareStatement(query);
+
+            int idColor = 0, idMaterial = 0, idTamanio = 0;
+
+            piezaId.put("Reina", 1);
+            piezaId.put("Rey", 2);
+            piezaId.put("Torre", 3);
+            piezaId.put("Alfil", 4);
+            piezaId.put("Caballo", 5);
+            piezaId.put("Peon", 6);
+
+            if (pieza.getColor().equals("blanco")) {
+                idColor = 1;
+            } else {
+                idColor = 2;
+            }
+
+            if (pieza.getTamanio().equals("Chico")) {
+                idTamanio = 1;
+            } else {
+                idTamanio = 2;
+            }
+
+            if (pieza.getMaterial().equals("Plastico")) {
+                idMaterial = 1;
+            } else {
+                idMaterial = 2;
+            }
+
+            int idTipoPieza = piezaId.get(pieza.getTipoPieza());
+
+            sentenciaModificar.setString(1, pieza.getDescripcion());
+            sentenciaModificar.setInt(2, idColor);
+            sentenciaModificar.setInt(3, idTipoPieza);
+            sentenciaModificar.setInt(4, idTamanio);
+            sentenciaModificar.setInt(5, idMaterial);
+            sentenciaModificar.setString(6, pieza.getNombrePosicion());
+            sentenciaModificar.setString(7, pieza.getComportamiento());
+            sentenciaModificar.setString(8, pieza.getMovimiento());
+            sentenciaModificar.setTimestamp(9, java.sql.Timestamp.valueOf(fechaHoraActual));
+
+
+            sentenciaModificar.executeUpdate();
+     
+        } catch (SQLException e) {
+            System.err.println("Error al MODIFICAR DATO");
         } finally {
             try {
 
