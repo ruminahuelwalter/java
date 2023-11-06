@@ -7,7 +7,12 @@ public abstract class Pieza {
     private String comportamiento;
     private String nombrePosicion;
 
-    public Pieza(String movimiento, String color, String comportamiento, String nombrePosicion) {
+    public Pieza(
+        String movimiento,
+        String color,
+        String comportamiento,
+        String nombrePosicion) {
+            
         this.movimiento = movimiento;
         this.color = color;
         this.comportamiento = comportamiento;

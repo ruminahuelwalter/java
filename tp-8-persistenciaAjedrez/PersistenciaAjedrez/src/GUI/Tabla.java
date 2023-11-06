@@ -12,11 +12,12 @@ public class Tabla extends JPanel {
     private JTable tabla;
     private JScrollPane scrollPane;
     private DefaultTableModel tablaModelo;
-    
+    private JPanel panel;
+
     public Tabla() {
         
-
-        this.setBounds(0,0,1000,600);
+        
+        this.setBounds(0,0,1000,500);
         this.setVisible(true);
         this.setLayout(null);
 
@@ -74,7 +75,7 @@ public class Tabla extends JPanel {
         }
         
         scrollPane = new JScrollPane(tabla);
-        scrollPane.setBounds(0,0,1000,600);
+        scrollPane.setBounds(0,0,1000,500);
         this.add(scrollPane);
     }
 
