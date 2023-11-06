@@ -108,7 +108,7 @@ public class VentanaInsertarSet extends JFrame implements ActionListener, ItemLi
 
             List<PiezaBD> listaActualizada = iPiezaA.listar();
             tabla.actualizarTabla(listaActualizada);
-
+        
             this.dispose();
         }
 

@@ -16,12 +16,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
     public VentanaPrincipal() {
 
-        this.getContentPane().setBackground(new Color(174, 182, 191));
+        this.getContentPane().setBackground(new Color(  174, 182, 191));
         this.setLayout(null);
         this.setBounds(0, 0, 1130, 700);
         this.setTitle("Ajedrez");
         this.setResizable(true);
-        this.setExtendedState(JFrame.NORMAL);
         this.setLocationRelativeTo(null);
 
 
@@ -96,9 +95,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             
             int n = JOptionPane.showOptionDialog(null, "          ¿Esta seguro?", "Confirmar", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,new Object[]{"SI","NO"},null);
             if (n==0){
-                String id = tabla.eliminarElemento();
-                iPiezaDAO iPiezaA = new PiezaDAO();
-                iPiezaA.eliminarElemento(id);
+                PiezaDAO iPiezaA = new PiezaDAO();
+                iPiezaA.eliminarElemento(tabla.elementoSeleccionado());
                 
                 List<PiezaBD> lista = iPiezaA.listar();
                 tabla.actualizarTabla(lista);

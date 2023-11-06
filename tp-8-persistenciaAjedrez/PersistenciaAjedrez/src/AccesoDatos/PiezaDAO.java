@@ -180,7 +180,7 @@ public class PiezaDAO implements iPiezaDAO {
             sentenciaEliminar.executeUpdate();
      
         } catch (SQLException e) {
-            System.err.println("Error al INSERTAR DATOS");
+            System.err.println("Error al ELIMINAR DATOS");
         } finally {
             try {
 

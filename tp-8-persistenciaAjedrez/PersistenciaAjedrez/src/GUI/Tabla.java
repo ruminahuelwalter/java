@@ -12,21 +12,15 @@ public class Tabla extends JPanel {
     private JTable tabla;
     private JScrollPane scrollPane;
     private DefaultTableModel tablaModelo;
-    private JPanel panel;
 
     public Tabla() {
-        
-        
-        this.setBounds(0,0,1000,500);
-        this.setVisible(true);
-        this.setLayout(null);
 
         tabla = new JTable();
         
         iPiezaDAO iPiezaA = new PiezaDAO();
         List<PiezaBD> lista = iPiezaA.listar();
-        tablaModelo = new DefaultTableModel();
 
+        tablaModelo = new DefaultTableModel();
         tablaModelo.setColumnIdentifiers(new Object[]{
 
             "idPieza",
@@ -43,19 +37,17 @@ public class Tabla extends JPanel {
         });
         
         tabla.setModel(tablaModelo);
-        // boolean isCellEditable(int row, int column)
+        tabla.setDefaultEditor(Object.class, null);
+
         tablaModelo.setRowCount(0);
         TableColumnModel anchoColumna = tabla.getColumnModel();
+
         anchoColumna.getColumn(0).setPreferredWidth(100);
-        //anchoColumna.getColumn(1).setPreferredWidth(100);
         anchoColumna.getColumn(2).setPreferredWidth(250);
-        //anchoColumna.getColumn(3).setPreferredWidth(100);
         anchoColumna.getColumn(4).setPreferredWidth(150);
         anchoColumna.getColumn(5).setPreferredWidth(150);
-        //anchoColumna.getColumn(6).setPreferredWidth(100);
-        //anchoColumna.getColumn(7).setPreferredWidth(100);
-        //anchoColumna.getColumn(8).setPreferredWidth(100);
         anchoColumna.getColumn(9).setPreferredWidth(200);
+
         for (PiezaBD pieza : lista) {
             tablaModelo.addRow(new Object[]{
 
@@ -99,10 +91,11 @@ public class Tabla extends JPanel {
         }
     }
 
-    public String eliminarElemento() {
+    public String elementoSeleccionado() {
         int fila = this.tabla.getSelectedRow();
         String id = tabla.getValueAt(fila, 0).toString();
         return id;
     }
+
 
 }
