@@ -1,18 +1,14 @@
 package GUI;
 
 import javax.swing.*;
-
 import AccesoDatos.PiezaDAO;
-import Logica.Ajedrez;
-import Logica.PiezaBD;
-import Logica.iPiezaDAO;
-
+import Logica.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
 import java.util.List;
 
-public class VentanaInsetarSet extends JFrame implements ActionListener, ItemListener {
+public class VentanaInsertarSet extends JFrame implements ActionListener, ItemListener {
     
     private JLabel labelTitulo, labelMaterial, labelTamanio, labelDescripcion;
     private JButton botonAceptar, botonCancelar;
@@ -21,7 +17,7 @@ public class VentanaInsetarSet extends JFrame implements ActionListener, ItemLis
     private JCheckBox checkBoxDescripcion;
     private int r,g,b;
 
-    public VentanaInsetarSet() {
+    public VentanaInsertarSet() {
         
         r = 174;
         g = 182;
@@ -29,11 +25,11 @@ public class VentanaInsetarSet extends JFrame implements ActionListener, ItemLis
 
         this.getContentPane().setBackground(new Color(174, 182, 191));
         this.setLayout(null);
-        this.setBounds(0, 0, 550, 550);
-        this.setTitle("Insertar set de piezas");
+        this.setBounds(0, 0, 500, 550);
+        this.setTitle("Nuevo set de piezas");
         this.setResizable(false);
 
-        labelTitulo = new JLabel("<html>Seleccione e indique las caracteristicas <br> del set de piezas:</hmtl>");
+        labelTitulo = new JLabel("<html>Seleccione e indique las caracteristicas del<br> set de piezas:</hmtl>");
         labelTitulo.setFont(new Font("Cascadia Mono", 1, 15));
         labelTitulo.setBounds(30, 10, 500, 40);
         this.add(labelTitulo);
@@ -82,7 +78,6 @@ public class VentanaInsetarSet extends JFrame implements ActionListener, ItemLis
         botonCancelar.setBounds(160, 450, 100, 30);
         this.add(botonCancelar);
         botonCancelar.addActionListener(this);
-
 
     }
     

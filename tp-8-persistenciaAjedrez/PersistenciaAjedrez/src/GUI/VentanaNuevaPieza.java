@@ -1,17 +1,12 @@
 package GUI;
 
 import javax.swing.*;
-
 import AccesoDatos.PiezaDAO;
 import Logica.PiezaBD;
 import Logica.iPiezaDAO;
-
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
 
 public class VentanaNuevaPieza extends JFrame implements ActionListener, ItemListener {
 
@@ -22,9 +17,8 @@ public class VentanaNuevaPieza extends JFrame implements ActionListener, ItemLis
             comboBoxColumna;
     private JTextField textfieldComportamiento, textfieldMovimiento, textFieldDescripcion;
     private JCheckBox checkBoxComportamiento, checkBoxMovimiento, checkBoxDescripcion;
+    private PiezaBD pieza;
     private int r,g,b;
-
-    PiezaBD pieza = new PiezaBD();
 
     public VentanaNuevaPieza() {
 
@@ -87,14 +81,13 @@ public class VentanaNuevaPieza extends JFrame implements ActionListener, ItemLis
         comboBoxTamanio.addItem("Grande");
         this.add(comboBoxTamanio);
 
-        //
         labelPosicion = new JLabel("Posición:");
         labelPosicion.setBounds(30, 250, 100, 30);
         this.add(labelPosicion);
 
         comboBoxColumna = new JComboBox<>();
         comboBoxColumna.setBounds(140, 250, 50, 30);
-        //
+ 
         int ascii = 65; // A = 65 H =72
         String letra;
         for (int i = 0; i < 8; i++) {
@@ -168,6 +161,7 @@ public class VentanaNuevaPieza extends JFrame implements ActionListener, ItemLis
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        pieza = new PiezaBD();
         String movimiento, comportamiento, descripcion;
 
         if (checkBoxMovimiento.isSelected()) {
@@ -205,7 +199,6 @@ public class VentanaNuevaPieza extends JFrame implements ActionListener, ItemLis
         if (e.getSource() == botonCancelar) {
             this.dispose();
         }
-
     }
 
     @Override
@@ -220,7 +213,5 @@ public class VentanaNuevaPieza extends JFrame implements ActionListener, ItemLis
             // si checkbox no esta habilitado el boton no va a estar habilitado
             botonAceptar.setEnabled(false);
         }
-
     }
-
 }

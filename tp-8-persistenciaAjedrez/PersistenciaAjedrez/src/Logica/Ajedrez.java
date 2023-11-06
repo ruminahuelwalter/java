@@ -22,7 +22,6 @@ public class Ajedrez {
         for (int i = 0; i < 8; i++) {
             piezas.add(new Peon());
         }
-
         for (Pieza piezaAjedrez : piezas) {
             piezaAjedrez.setColor(color);
         }

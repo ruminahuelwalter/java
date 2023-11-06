@@ -5,16 +5,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.*;
-
 import AccesoDatos.PiezaDAO;
 import Logica.*;
 
 public class VentanaPrincipal extends JFrame implements ActionListener {
-
-    private JButton botonAgregarPieza;
-    private JButton botonAgregarSetPiezas;
-    private JButton botonActualizarTabla;
-    private JLabel labelAgregarPieza, labelSetPiezas, labelActualizar;
+    
+    private JButton botonAgregarPieza,botonAgregarSetPiezas, botonActualizarTabla, botonEliminar;
+    private JLabel labelAgregarPieza, labelSetPiezas, labelActualizar, labelEliminar;
     private Tabla tabla;
 
     public VentanaPrincipal() {
@@ -24,6 +21,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         this.setBounds(0, 0, 1130, 800);
         this.setTitle("Ajedrez");
         this.setResizable(false);
+        this.setLocationRelativeTo(null);
+
 
         labelAgregarPieza = new JLabel("Agregar Nueva Pieza");
         labelAgregarPieza.setBounds(50, 660, 130, 30);
@@ -44,15 +43,26 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         this.add(botonAgregarSetPiezas);
         botonAgregarSetPiezas.addActionListener(this);
 
+        labelEliminar = new JLabel("Borrado Fisico");
+        labelEliminar.setBounds(370, 660, 150, 30);
+        this.add(labelEliminar);
+        
+        botonEliminar = new JButton("Eliminar");
+        botonEliminar.setBounds(350, 690, 120, 30);
+        botonEliminar.setVisible(true);
+        this.add(botonEliminar);
+        botonEliminar.addActionListener(this);
+
         labelActualizar = new JLabel("Actualizar tabla");
-        labelActualizar.setBounds(355, 660, 150, 30);
+        labelActualizar.setBounds(520, 660, 150, 30);
         this.add(labelActualizar);
 
         botonActualizarTabla = new JButton("Actualizar");
-        botonActualizarTabla.setBounds(350, 690, 120, 30);
+        botonActualizarTabla.setBounds(500, 690, 120, 30);
         botonActualizarTabla.setVisible(true);
         this.add(botonActualizarTabla);
         botonActualizarTabla.addActionListener(this);
+
 
         tabla = new Tabla();
         tabla.setLayout(null);
@@ -66,19 +76,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         if (e.getSource() == botonAgregarPieza) {
       
             VentanaNuevaPieza subVentana = new VentanaNuevaPieza();
-            subVentana.setVisible(true);
-            subVentana.setResizable(true);
-            subVentana.setLocationRelativeTo(null);
-
+            configVentana(subVentana);
         }
         
         if (e.getSource() == botonAgregarSetPiezas) {
             
-            VentanaInsetarSet ventanaInsetarSet = new VentanaInsetarSet();
-            ventanaInsetarSet.setVisible(true);
-            ventanaInsetarSet.setResizable(true);
-            ventanaInsetarSet.setLocationRelativeTo(null);
-       
+            VentanaInsertarSet ventanaInsetarSet = new VentanaInsertarSet();
+            configVentana(ventanaInsetarSet);
         }
         
         if (e.getSource() == botonActualizarTabla) {
@@ -86,8 +90,22 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
             List<PiezaBD> lista = iPiezaA.listar();
             tabla.actualizarTabla(lista);
         }
+
+        if (e.getSource() == botonEliminar) {
+            String id = tabla.eliminarElemento();
+            iPiezaDAO iPiezaA = new PiezaDAO();
+            iPiezaA.eliminarElemento(id);
+            
+        }
     }
     
+    public void configVentana(JFrame ventana) {
+        ventana.setVisible(true);
+        ventana.setResizable(false);
+        ventana.setLocationRelativeTo(null);
+
+        
+    }
     
 
 }

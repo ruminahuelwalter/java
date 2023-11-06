@@ -1,5 +1,7 @@
 package Logica;
 
+import javax.swing.JFrame;
+
 import GUI.VentanaPrincipal;
 
 public class Program {
@@ -14,9 +16,9 @@ public class Program {
 
         VentanaPrincipal principal = new VentanaPrincipal();
         // principal.setBounds(0,0,1200,700);
-        principal.setResizable(true);
+        
         principal.setVisible(true);
-        principal.setLocationRelativeTo(null);
-
+        principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+     
     }
 }

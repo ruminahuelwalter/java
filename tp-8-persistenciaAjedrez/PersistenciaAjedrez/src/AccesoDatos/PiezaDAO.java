@@ -10,85 +10,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-
 import Logica.*;
 
 public class PiezaDAO implements iPiezaDAO {
 
+    
     // Objeto para ejecutar la consulta en la base de datos
     AccesoDatos accesoBD = null;
     Connection con = null;
     Statement sentencia = null;
     ResultSet rs = null;
     PreparedStatement sentenciaInsercion = null;
+    PreparedStatement sentenciaEliminar = null;
 
     LocalDateTime fechaHoraActual = LocalDateTime.now();
     Map<String, Integer> piezaId = new HashMap<>();
-    
 
     @Override
-    public List<PiezaBD> mostrar() {
-
-        List<PiezaBD> lista = new ArrayList<>();
-
-        // Se crea la consulta usando lenguaje SQL Estandar y almacenando en la variable
-        // query
-        String query = "select * from tipopieza";
-
-        // En este bloque se ejecutan las sentencias necesarias para acceder a la BD y
-        // obtener la informacion
-        try {
-            // Instancio un objeto de acceso a datos
-            accesoBD = new AccesoDatos();
-
-            // Obtener la conexion para poder generar la sentencia de consulta
-            con = accesoBD.getConexion();
-            sentencia = con.createStatement();
-
-            // Ejecuta la consulta y almacena el resultado en rs
-            rs = sentencia.executeQuery(query);
-
-            // Procesa el resultSet y muestra la informacion obtenida desde la BD
-            while (rs.next()) {
-                PiezaBD pieza = new PiezaBD();
-
-                int idPieza = rs.getInt("idTipoPieza");
-
-                // System.out.println("Pieza Nro: " + String.valueOf(idPieza)
-                // + " tipo " + rs.getString("Descripciondepieza"));
-
-                String tipoPieza = rs.getString("Descripciondepieza");
-                pieza.setIdPieza(idPieza);
-                pieza.setTipoPieza(tipoPieza);
-
-                lista.add(pieza);
-
-            }
-
-        } catch (SQLException e) {
-            System.err.println("Error al CARGAR DATOS");
-        } finally {
-            try {
-                // Cierra el ResultSet
-                if (rs != null)
-                    rs.close();
-                // Cierra la sentencia
-                if (sentencia != null)
-                    sentencia.close();
-                // Cierra la conexion
-                if (con != null)
-                    con.close();
-
-            } catch (SQLException e) {
-                System.err.println("Error al cerrar conexion");
-            }
-        }
-        return lista;
-    }
-
-    @Override
-    public void insertar(PiezaBD pieza) { 
+    public void insertar(PiezaBD pieza) {
         String query = "insert into pieza (Descripcion,idColor,idTipoPieza,idTamanio,idMaterial,Posicion,Comportamiento,Movimiento, Fecha_Creacion) values(?,?,?,?,?,?,?,?,?)";
 
         try {
@@ -96,41 +35,38 @@ public class PiezaDAO implements iPiezaDAO {
             accesoBD = new AccesoDatos();
             // Obtener la conexion para poder generar la sentencia de insercion
             con = accesoBD.getConexion();
-            var va = sentenciaInsercion = con.prepareStatement(query);
-            
-            int idColor = 0, idMaterial= 0, idTamanio = 0; 
-            piezaId.put("Reina",1);
-            piezaId.put("Rey",2);
-            piezaId.put("Torre",3);
-            piezaId.put("Alfil",4);
-            piezaId.put("Caballo",5);
-            piezaId.put("Peon",6);
-            
-            if (pieza.getColor().equals("blanco")){
+            sentenciaInsercion = con.prepareStatement(query);
+
+            int idColor = 0, idMaterial = 0, idTamanio = 0;
+            piezaId.put("Reina", 1);
+            piezaId.put("Rey", 2);
+            piezaId.put("Torre", 3);
+            piezaId.put("Alfil", 4);
+            piezaId.put("Caballo", 5);
+            piezaId.put("Peon", 6);
+
+            if (pieza.getColor().equals("blanco")) {
                 idColor = 1;
-            }
-            else {
+            } else {
                 idColor = 2;
             }
-            
-            if (pieza.getTamanio().equals("Chico")){
+
+            if (pieza.getTamanio().equals("Chico")) {
                 idTamanio = 1;
-            }
-            else {
+            } else {
                 idTamanio = 2;
             }
-            
-            if (pieza.getMaterial().equals("Plastico")){
+
+            if (pieza.getMaterial().equals("Plastico")) {
                 idMaterial = 1;
-            }
-            else {
+            } else {
                 idMaterial = 2;
             }
-            System.out.println("va: " +va);
+    
             System.out.println(pieza.getDescripcion());
-            
+
             int idTipoPieza = piezaId.get(pieza.getTipoPieza());
-            
+
             sentenciaInsercion.setString(1, pieza.getDescripcion());
             sentenciaInsercion.setInt(2, idColor);
             sentenciaInsercion.setInt(3, idTipoPieza);
@@ -140,17 +76,14 @@ public class PiezaDAO implements iPiezaDAO {
             sentenciaInsercion.setString(7, pieza.getComportamiento());
             sentenciaInsercion.setString(8, pieza.getMovimiento());
             sentenciaInsercion.setTimestamp(9, java.sql.Timestamp.valueOf(fechaHoraActual));
-            
-            
 
-            var x =sentenciaInsercion.executeUpdate();
-            System.out.println("x: " + x);
-            
+            sentenciaInsercion.executeUpdate();
+
         } catch (SQLException e) {
             System.err.println("Error al INSERTAR DATOS");
         } finally {
             try {
-           
+
                 // Cierra la sentencia
                 if (sentenciaInsercion != null)
                     sentenciaInsercion.close();
@@ -185,7 +118,8 @@ public class PiezaDAO implements iPiezaDAO {
                 "inner join color c on c.idColor = p.idColor\n" + //
                 "inner join tipopieza tp on tp.idTipoPieza = p.idTipoPieza\n" + //
                 "inner join tamanio tm on tm.idTamanio = p.idTamanio\n" + //
-                "inner join material m on m.idMaterial = p.idMaterial";
+                "inner join material m on m.idMaterial = p.idMaterial\n" + //
+                "order by fecha_creacion desc";
 
         // En este bloque se ejecutan las sentencias necesarias para acceder a la BD y
         // obtener la informacion
@@ -236,67 +170,32 @@ public class PiezaDAO implements iPiezaDAO {
     }
 
     @Override
-    public void transaccion() {
-    }
+    public void eliminarElemento(String elemento) {
 
-    @Override
-    public List<PiezaBD> mostrarTipo() {
-
-        List<PiezaBD> lista = new ArrayList<>();
-
-        // Se crea la consulta usando lenguaje SQL Estandar y almacenando en la variable
-        // query
-        String query = "select * from tipopieza";
-
-        // En este bloque se ejecutan las sentencias necesarias para acceder a la BD y
-        // obtener la informacion
+     String query = "delete from pieza where idPieza = " + elemento;
         try {
             // Instancio un objeto de acceso a datos
             accesoBD = new AccesoDatos();
-
-            // Obtener la conexion para poder generar la sentencia de consulta
+            // Obtener la conexion para poder generar la sentencia de insercion
             con = accesoBD.getConexion();
-            sentencia = con.createStatement();
+            sentenciaEliminar = con.prepareStatement(query);
 
-            // Ejecuta la consulta y almacena el resultado en rs
-            rs = sentencia.executeQuery(query);
-
-            // Procesa el resultSet y muestra la informacion obtenida desde la BD
-            while (rs.next()) {
-                PiezaBD pieza = new PiezaBD();
-
-                int idPieza = rs.getInt("idTipoPieza");
-
-                // System.out.println("Pieza Nro: " + String.valueOf(idPieza)
-                // + " tipo " + rs.getString("Descripciondepieza"));
-
-                String tipoPieza = rs.getString("Descripciondepieza");
-                pieza.setIdPieza(idPieza);
-                pieza.setTipoPieza(tipoPieza);
-
-                lista.add(pieza);
-
-            }
-
+            sentenciaEliminar.executeUpdate();
+     
         } catch (SQLException e) {
-            System.err.println("Error al CARGAR DATOS");
+            System.err.println("Error al INSERTAR DATOS");
         } finally {
             try {
-                // Cierra el ResultSet
-                if (rs != null)
-                    rs.close();
+
                 // Cierra la sentencia
-                if (sentencia != null)
-                    sentencia.close();
+                if (sentenciaInsercion != null)
+                    sentenciaInsercion.close();
                 // Cierra la conexion
                 if (con != null)
                     con.close();
-
             } catch (SQLException e) {
                 System.err.println("Error al cerrar conexion");
             }
         }
-        return lista;
     }
-
 }

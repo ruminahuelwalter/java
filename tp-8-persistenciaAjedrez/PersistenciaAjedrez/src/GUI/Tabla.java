@@ -9,13 +9,13 @@ import AccesoDatos.*;
 import Logica.*;
 
 public class Tabla extends JPanel {
-    
     private JTable tabla;
     private JScrollPane scrollPane;
     private DefaultTableModel tablaModelo;
-
+    
     public Tabla() {
         
+
         this.setBounds(0,0,1000,600);
         this.setVisible(true);
         this.setLayout(null);
@@ -28,9 +28,9 @@ public class Tabla extends JPanel {
 
         tablaModelo.setColumnIdentifiers(new Object[]{
 
-            "idTipoPieza",
+            "idPieza",
             "Pieza",
-            "Descripcion",
+            "Descripción",
             "Posicion",
             "Movimiento",
             "Comportamiento",
@@ -50,7 +50,7 @@ public class Tabla extends JPanel {
         anchoColumna.getColumn(2).setPreferredWidth(250);
         //anchoColumna.getColumn(3).setPreferredWidth(100);
         anchoColumna.getColumn(4).setPreferredWidth(150);
-        anchoColumna.getColumn(5).setPreferredWidth(180);
+        anchoColumna.getColumn(5).setPreferredWidth(150);
         //anchoColumna.getColumn(6).setPreferredWidth(100);
         //anchoColumna.getColumn(7).setPreferredWidth(100);
         //anchoColumna.getColumn(8).setPreferredWidth(100);
@@ -97,4 +97,11 @@ public class Tabla extends JPanel {
             });
         }
     }
+
+    public String eliminarElemento() {
+        int fila = this.tabla.getSelectedRow();
+        String id = tabla.getValueAt(fila, 0).toString();
+        return id;
+    }
+
 }
