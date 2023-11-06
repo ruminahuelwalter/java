@@ -92,9 +92,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == botonEliminar) {
-            String id = tabla.eliminarElemento();
-            iPiezaDAO iPiezaA = new PiezaDAO();
-            iPiezaA.eliminarElemento(id);
+            
+            int n = JOptionPane.showOptionDialog(null, "          ¿Esta seguro?", "Confirmar", JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,new Object[]{"SI","NO"},null);
+            if (n==0){
+                String id = tabla.eliminarElemento();
+                iPiezaDAO iPiezaA = new PiezaDAO();
+                iPiezaA.eliminarElemento(id);
+            }
             
         }
     }
@@ -106,6 +110,5 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
 
         
     }
-    
 
 }
