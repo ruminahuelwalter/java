@@ -75,13 +75,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == botonAgregarPieza) {
       
-            VentanaNuevaPieza subVentana = new VentanaNuevaPieza();
+            VentanaNuevaPieza subVentana = new VentanaNuevaPieza(tabla);
             configVentana(subVentana);
         }
         
         if (e.getSource() == botonAgregarSetPiezas) {
             
-            VentanaInsertarSet ventanaInsetarSet = new VentanaInsertarSet();
+            VentanaInsertarSet ventanaInsetarSet = new VentanaInsertarSet(tabla);
             configVentana(ventanaInsetarSet);
         }
         
@@ -98,6 +98,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
                 String id = tabla.eliminarElemento();
                 iPiezaDAO iPiezaA = new PiezaDAO();
                 iPiezaA.eliminarElemento(id);
+                
+                List<PiezaBD> lista = iPiezaA.listar();
+                tabla.actualizarTabla(lista);
             }
             
         }

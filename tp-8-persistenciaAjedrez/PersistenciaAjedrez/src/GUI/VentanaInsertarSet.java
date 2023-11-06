@@ -15,10 +15,11 @@ public class VentanaInsertarSet extends JFrame implements ActionListener, ItemLi
     private JComboBox<String> comboBoxMaterial, comboBoxTamanio;
     private JTextField textFieldDescripcion;
     private JCheckBox checkBoxDescripcion;
+    private Tabla tabla;
     private int r,g,b;
 
-    public VentanaInsertarSet() {
-        
+    public VentanaInsertarSet(Tabla tabla) {
+        this.tabla = tabla;
         r = 174;
         g = 182;
         b = 191;
@@ -85,10 +86,8 @@ public class VentanaInsertarSet extends JFrame implements ActionListener, ItemLi
     public void actionPerformed(ActionEvent e) {
         String descripcion;
         if (checkBoxDescripcion.isSelected()) {
-            //pieza.setDescripcion(textFieldDescripcion.getText());
             descripcion = textFieldDescripcion.getText();
         } else
-            //pieza.setDescripcion("");
             descripcion = "";
 
         if (e.getSource() == botonAceptar) {
@@ -106,6 +105,9 @@ public class VentanaInsertarSet extends JFrame implements ActionListener, ItemLi
             for (PiezaBD piezaBD : lista) {
                 iPiezaA.insertar(piezaBD);
             }
+
+            List<PiezaBD> listaActualizada = iPiezaA.listar();
+            tabla.actualizarTabla(listaActualizada);
 
             this.dispose();
         }

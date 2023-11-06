@@ -14,7 +14,6 @@ import Logica.*;
 
 public class PiezaDAO implements iPiezaDAO {
 
-    
     // Objeto para ejecutar la consulta en la base de datos
     AccesoDatos accesoBD = null;
     Connection con = null;
@@ -62,8 +61,6 @@ public class PiezaDAO implements iPiezaDAO {
             } else {
                 idMaterial = 2;
             }
-    
-            System.out.println(pieza.getDescripcion());
 
             int idTipoPieza = piezaId.get(pieza.getTipoPieza());
 

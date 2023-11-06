@@ -7,6 +7,7 @@ import Logica.iPiezaDAO;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
+import java.util.List;
 
 public class VentanaNuevaPieza extends JFrame implements ActionListener, ItemListener {
 
@@ -19,8 +20,11 @@ public class VentanaNuevaPieza extends JFrame implements ActionListener, ItemLis
     private JCheckBox checkBoxComportamiento, checkBoxMovimiento, checkBoxDescripcion;
     private PiezaBD pieza;
     private int r,g,b;
+    private Tabla tabla;
 
-    public VentanaNuevaPieza() {
+    public VentanaNuevaPieza(Tabla tabla) {
+
+        this.tabla = tabla;
 
         r = 174;
         g = 182;
@@ -192,6 +196,8 @@ public class VentanaNuevaPieza extends JFrame implements ActionListener, ItemLis
 
             iPiezaDAO iPiezaA = new PiezaDAO();
             iPiezaA.insertar(pieza);
+            List<PiezaBD> lista = iPiezaA.listar();
+            tabla.actualizarTabla(lista);
 
             this.dispose();
         }
@@ -205,12 +211,10 @@ public class VentanaNuevaPieza extends JFrame implements ActionListener, ItemLis
     public void itemStateChanged(ItemEvent e) {
 
         if (checkBoxComportamiento.isSelected() == true && checkBoxMovimiento.isSelected() == true
-                && checkBoxDescripcion.isSelected() == true) { // si es verdad que el checkbox este seleccionado hace
-                    // tal cosa
-            botonAceptar.setEnabled(true); // para hab/deshabilitar el boton
+                && checkBoxDescripcion.isSelected() == true) { 
+            botonAceptar.setEnabled(true); 
 
         } else {
-            // si checkbox no esta habilitado el boton no va a estar habilitado
             botonAceptar.setEnabled(false);
         }
     }
