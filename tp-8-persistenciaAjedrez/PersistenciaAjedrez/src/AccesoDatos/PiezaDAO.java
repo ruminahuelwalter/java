@@ -17,11 +17,9 @@ public class PiezaDAO implements iPiezaDAO {
     // Objeto para ejecutar la consulta en la base de datos
     AccesoDatos accesoBD = null;
     Connection con = null;
-    Statement sentencia = null;
+    Statement sentenciaStatement = null;
     ResultSet rs = null;
-    PreparedStatement sentenciaInsercion = null;
-    PreparedStatement sentenciaEliminar = null;
-    PreparedStatement sentenciaModificar = null;
+    PreparedStatement sentenciaPrepared = null;
 
     LocalDateTime fechaHoraActual = LocalDateTime.now();
     Map<String, Integer> piezaId = new HashMap<>();
@@ -35,7 +33,7 @@ public class PiezaDAO implements iPiezaDAO {
             accesoBD = new AccesoDatos();
             // Obtener la conexion para poder generar la sentencia de insercion
             con = accesoBD.getConexion();
-            sentenciaInsercion = con.prepareStatement(query);
+            sentenciaPrepared = con.prepareStatement(query);
 
             int idColor = 0, idMaterial = 0, idTamanio = 0;
             piezaId.put("Reina", 1);
@@ -65,17 +63,17 @@ public class PiezaDAO implements iPiezaDAO {
 
             int idTipoPieza = piezaId.get(pieza.getTipoPieza());
 
-            sentenciaInsercion.setString(1, pieza.getDescripcion());
-            sentenciaInsercion.setInt(2, idColor);
-            sentenciaInsercion.setInt(3, idTipoPieza);
-            sentenciaInsercion.setInt(4, idTamanio);
-            sentenciaInsercion.setInt(5, idMaterial);
-            sentenciaInsercion.setString(6, pieza.getNombrePosicion());
-            sentenciaInsercion.setString(7, pieza.getComportamiento());
-            sentenciaInsercion.setString(8, pieza.getMovimiento());
-            sentenciaInsercion.setTimestamp(9, java.sql.Timestamp.valueOf(fechaHoraActual));
+            sentenciaPrepared.setString(1, pieza.getDescripcion());
+            sentenciaPrepared.setInt(2, idColor);
+            sentenciaPrepared.setInt(3, idTipoPieza);
+            sentenciaPrepared.setInt(4, idTamanio);
+            sentenciaPrepared.setInt(5, idMaterial);
+            sentenciaPrepared.setString(6, pieza.getNombrePosicion());
+            sentenciaPrepared.setString(7, pieza.getComportamiento());
+            sentenciaPrepared.setString(8, pieza.getMovimiento());
+            sentenciaPrepared.setTimestamp(9, java.sql.Timestamp.valueOf(fechaHoraActual));
 
-            sentenciaInsercion.executeUpdate();
+            sentenciaPrepared.executeUpdate();
 
         } catch (SQLException e) {
             System.err.println("Error al INSERTAR DATOS");
@@ -83,8 +81,8 @@ public class PiezaDAO implements iPiezaDAO {
             try {
 
                 // Cierra la sentencia
-                if (sentenciaInsercion != null)
-                    sentenciaInsercion.close();
+                if (sentenciaPrepared != null)
+                    sentenciaPrepared.close();
                 // Cierra la conexion
                 if (con != null)
                     con.close();
@@ -126,9 +124,9 @@ public class PiezaDAO implements iPiezaDAO {
             accesoBD = new AccesoDatos();
             // Obtener la conexion para poder generar la sentencia de consulta
             con = accesoBD.getConexion();
-            sentencia = con.createStatement();
+            sentenciaStatement = con.createStatement();
             // Ejecuta la consulta y almacena el resultado en rs
-            rs = sentencia.executeQuery(query);
+            rs = sentenciaStatement.executeQuery(query);
             // Procesa el resultSet y muestra la informacion obtenida desde la BD
             while (rs.next()) {
 
@@ -155,8 +153,8 @@ public class PiezaDAO implements iPiezaDAO {
                 if (rs != null)
                     rs.close();
                 // Cierra la sentencia
-                if (sentencia != null)
-                    sentencia.close();
+                if (sentenciaStatement != null)
+                    sentenciaStatement.close();
                 // Cierra la conexion
                 if (con != null)
                     con.close();
@@ -170,15 +168,16 @@ public class PiezaDAO implements iPiezaDAO {
     @Override
     public void eliminarElemento(String elemento) {
 
-     String query = "delete from pieza where idPieza = " + elemento;
+     String query = "delete from pieza where idPieza = ?";
         try {
             // Instancio un objeto de acceso a datos
             accesoBD = new AccesoDatos();
             // Obtener la conexion para poder generar la sentencia de insercion
             con = accesoBD.getConexion();
-            sentenciaEliminar = con.prepareStatement(query);
+            sentenciaPrepared = con.prepareStatement(query);
+            sentenciaPrepared.setString(1, elemento);
 
-            sentenciaEliminar.executeUpdate();
+            sentenciaPrepared.executeUpdate();
      
         } catch (SQLException e) {
             System.err.println("Error al ELIMINAR DATOS");
@@ -186,8 +185,8 @@ public class PiezaDAO implements iPiezaDAO {
             try {
 
                 // Cierra la sentencia
-                if (sentenciaInsercion != null)
-                    sentenciaInsercion.close();
+                if (sentenciaPrepared != null)
+                    sentenciaPrepared.close();
                 // Cierra la conexion
                 if (con != null)
                     con.close();
@@ -206,7 +205,7 @@ public class PiezaDAO implements iPiezaDAO {
             accesoBD = new AccesoDatos();
             // Obtener la conexion para poder generar la sentencia de insercion
             con = accesoBD.getConexion();
-            sentenciaModificar = con.prepareStatement(query);
+            sentenciaPrepared = con.prepareStatement(query);
 
             int idColor = 0, idMaterial = 0, idTamanio = 0;
 
@@ -237,18 +236,17 @@ public class PiezaDAO implements iPiezaDAO {
 
             int idTipoPieza = piezaId.get(pieza.getTipoPieza());
 
-            sentenciaModificar.setString(1, pieza.getDescripcion());
-            sentenciaModificar.setInt(2, idColor);
-            sentenciaModificar.setInt(3, idTipoPieza);
-            sentenciaModificar.setInt(4, idTamanio);
-            sentenciaModificar.setInt(5, idMaterial);
-            sentenciaModificar.setString(6, pieza.getNombrePosicion());
-            sentenciaModificar.setString(7, pieza.getComportamiento());
-            sentenciaModificar.setString(8, pieza.getMovimiento());
-            sentenciaModificar.setTimestamp(9, java.sql.Timestamp.valueOf(fechaHoraActual));
-
-
-            sentenciaModificar.executeUpdate();
+            sentenciaPrepared.setString(1, pieza.getDescripcion());
+            sentenciaPrepared.setInt(2, idColor);
+            sentenciaPrepared.setInt(3, idTipoPieza);
+            sentenciaPrepared.setInt(4, idTamanio);
+            sentenciaPrepared.setInt(5, idMaterial);
+            sentenciaPrepared.setString(6, pieza.getNombrePosicion());
+            sentenciaPrepared.setString(7, pieza.getComportamiento());
+            sentenciaPrepared.setString(8, pieza.getMovimiento());
+            sentenciaPrepared.setTimestamp(9, java.sql.Timestamp.valueOf(fechaHoraActual));
+            
+            sentenciaPrepared.executeUpdate();
      
         } catch (SQLException e) {
             System.err.println("Error al MODIFICAR DATO");
@@ -256,8 +254,8 @@ public class PiezaDAO implements iPiezaDAO {
             try {
 
                 // Cierra la sentencia
-                if (sentenciaInsercion != null)
-                    sentenciaInsercion.close();
+                if (sentenciaPrepared != null)
+                    sentenciaPrepared.close();
                 // Cierra la conexion
                 if (con != null)
                     con.close();

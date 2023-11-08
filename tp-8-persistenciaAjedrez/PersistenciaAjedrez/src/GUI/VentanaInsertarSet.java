@@ -84,12 +84,11 @@ public class VentanaInsertarSet extends JFrame implements ActionListener, ItemLi
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        String descripcion;
+        String descripcion = "";
         if (checkBoxDescripcion.isSelected()) {
             descripcion = textFieldDescripcion.getText();
-        } else
-            descripcion = "";
-
+        }
+        
         if (e.getSource() == botonAceptar) {
 
             Ajedrez ajedrez = new Ajedrez();

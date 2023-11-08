@@ -165,21 +165,18 @@ public class VentanaNuevaPieza extends JFrame implements ActionListener, ItemLis
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        pieza = new PiezaBD();
-        String movimiento, comportamiento, descripcion;
 
+        pieza = new PiezaBD();
+        String movimiento = "", comportamiento = "", descripcion= "";
         if (checkBoxMovimiento.isSelected()) {
             movimiento = textfieldMovimiento.getText();
-        } else
-            movimiento = "";
+        }
         if (checkBoxComportamiento.isSelected()) {
             comportamiento = textfieldComportamiento.getText();
-        } else
-            comportamiento = "";
+        }
         if (checkBoxDescripcion.isSelected()) {
             descripcion = textFieldDescripcion.getText();
-        } else
-            descripcion = "";
+        }
 
         if (e.getSource() == botonAceptar) {
 

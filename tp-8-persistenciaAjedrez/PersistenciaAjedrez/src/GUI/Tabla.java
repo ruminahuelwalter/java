@@ -39,8 +39,7 @@ public class Tabla extends JPanel {
         
         tabla.setModel(tablaModelo);
         tabla.setDefaultEditor(Object.class, null);
-
-        tablaModelo.setRowCount(0);
+        //tablaModelo.setRowCount(0);
         TableColumnModel anchoColumna = tabla.getColumnModel();
 
         anchoColumna.getColumn(0).setPreferredWidth(100);
