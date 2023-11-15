@@ -336,16 +336,13 @@ public class VentanaDetalleCotizacion extends JFrame implements ActionListener, 
     public Double asiganarPMA(VehiculoBD vehiculoBD){
         String tipo = vehiculoBD.getTipoVehiculo().toLowerCase();
    
-        Vehiculo vehiculo;
         Double pma;
 
         switch (tipo) {
             case "auto":
-                vehiculo = new Auto();
                 pma = (double) 0;
                 break;
             case "minibus":
-                vehiculo = new Minibus();
                 pma = (double) 0;
                 break;
             case "furgoneta":
@@ -357,7 +354,6 @@ public class VentanaDetalleCotizacion extends JFrame implements ActionListener, 
                 pma = camion.getPma();
                 break;
             default:
-                vehiculo = null;
                 pma =(double) 0;
                 break;
         }

@@ -88,7 +88,7 @@ public class TablaCotizaciones extends JPanel {
         //tabla.setAutoResizeMode(2);
 
         //tabla.setAutoResizeMode(1);
-        tabla.setRowHeight(28);
+        tabla.setRowHeight(25);
         tabla.setShowHorizontalLines(false);
         tabla.setShowVerticalLines(false);
 
@@ -96,7 +96,7 @@ public class TablaCotizaciones extends JPanel {
 
         scrollPane = new JScrollPane(tabla);
 
-        scrollPane.setPreferredSize((new Dimension(1200, 400)));
+        scrollPane.setPreferredSize((new Dimension(1000, 370)));
         //scrollPane.setMinimumSize(new Dimension(1000,300));
         //scrollPane.setMaximumSize(new Dimension(3000,600));
         

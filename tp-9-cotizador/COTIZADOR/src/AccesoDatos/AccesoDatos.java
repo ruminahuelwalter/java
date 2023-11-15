@@ -8,7 +8,7 @@ public class AccesoDatos {
 
 	private String maquina = "localhost";
 	private String usuario = "root";
-	private String clave = "admin";
+	private String clave = "root";
 	private int puerto = 3306;
 	private String bd = "cotizador";
 	private String servidor = "";

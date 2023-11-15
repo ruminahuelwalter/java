@@ -62,14 +62,14 @@ public class Tabla extends JPanel {
 
         } 
     
-        tabla.setRowHeight(28);
+        tabla.setRowHeight(25);
         tabla.setShowHorizontalLines(false);
         tabla.setShowVerticalLines(false);
         tabla.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
         scrollPane = new JScrollPane(tabla);
 
-        scrollPane.setPreferredSize((new Dimension(1000, 350)));
+        scrollPane.setPreferredSize((new Dimension(1000, 370)));
         //scrollPane.setMinimumSize(new Dimension(1000,300));
         //scrollPane.setMaximumSize(new Dimension(3000,600));
         

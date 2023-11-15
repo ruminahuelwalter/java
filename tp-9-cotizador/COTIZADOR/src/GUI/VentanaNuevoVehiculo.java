@@ -12,17 +12,17 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import AccesoDatos.VehiculoDAO;
-import Logica.VehiculoBD;
-import Logica.iVehiculoDAO;
+import Logica.*;
 
 public class VentanaNuevoVehiculo extends JFrame implements ActionListener, ItemListener{
     
     private JPanel panelTitulo, panelPrincipal, panelSur, panelDerecho;
-    private JLabel labelTitulo, labelTipo, labelMarca, labelModelo, labelAnio, labelPatente, labelColor, labelTipoTransmision, labelCantPlazas, labelCapacidadBaul, labelPMA;
-    private JTextField textFieldMarca, textFieldModelo, textFieldAnio, textFieldPatente, textFieldColor,  textFieldCantPlazas, textFieldCapacidadBaul, textFieldPMA;
+    private JLabel labelTitulo, labelTipo, labelMarca, labelModelo, labelAnio, labelPatente, labelColor, labelTipoTransmision, labelCantPlazas, labelCapacidadBaul;// labelPMA;
+    private JTextField textFieldMarca, textFieldModelo, textFieldAnio, textFieldPatente, textFieldColor,  textFieldCantPlazas, textFieldCapacidadBaul;
+    //textFieldPMA;
     private JComboBox<String> comboBoxTipo, comboBoxTransmision;
     private JButton botonAgregar, botonCancelar;
-    private JCheckBox checkBoxMarca, checkBoxModelo, checkBoxAnio, checkBoxPatente, checkBoxColor, checkBoxCantPlazas, checkBoxCapacidadBaul, checkBoxPMA;
+    private JCheckBox checkBoxMarca, checkBoxModelo, checkBoxAnio, checkBoxPatente, checkBoxColor, checkBoxCantPlazas, checkBoxCapacidadBaul;// checkBoxPMA;
     private GridBagConstraints gridBag;
     private Tabla tabla;
 
@@ -113,11 +113,11 @@ public class VentanaNuevoVehiculo extends JFrame implements ActionListener, Item
         checkBoxCapacidadBaul = new JCheckBox();
         checkBoxCapacidadBaul.addItemListener(this);
 
-        labelPMA = new JLabel("Peso maximo autorizado:");
-        labelPMA.setFont(new Font("Hack nerd font", 1, 20));
-        textFieldPMA = new JTextField(20);
-        checkBoxPMA = new JCheckBox();
-        checkBoxPMA.addItemListener(this);
+        //labelPMA = new JLabel("Peso maximo autorizado:");
+        //labelPMA.setFont(new Font("Hack nerd font", 1, 20));
+        //textFieldPMA = new JTextField(20);
+        //checkBoxPMA = new JCheckBox();
+        //checkBoxPMA.addItemListener(this);
         
         gridBag = new GridBagConstraints();
         gridBag.anchor = GridBagConstraints.EAST;
@@ -302,9 +302,9 @@ public class VentanaNuevoVehiculo extends JFrame implements ActionListener, Item
         if (checkBoxCapacidadBaul.isSelected()) {
             capacidadBaul = Integer.parseInt(textFieldCapacidadBaul.getText());
         }
-        if (checkBoxPMA.isSelected()) {
-            pma = Float.parseFloat(textFieldPMA.getText());
-        }
+        //if (checkBoxPMA.isSelected()) {
+        //    pma = Float.parseFloat(textFieldPMA.getText());
+        //}
 
         if (e.getSource() == botonAgregar) {
 
@@ -318,8 +318,11 @@ public class VentanaNuevoVehiculo extends JFrame implements ActionListener, Item
             vehiculo.setTipoTransmision(comboBoxTransmision.getSelectedItem().toString());
             vehiculo.setCantPlazas(cantPlazas);
             vehiculo.setCapacidadBaul(capacidadBaul);
+
+            Double pmaAux = asiganarPMA(vehiculo);
+            pma = pmaAux.floatValue();
             vehiculo.setPma(pma);
-            
+        
             iVehiculoDAO iVehiculo = new VehiculoDAO();
             iVehiculo.insertar(vehiculo);
             //Actualizar tabla
@@ -331,6 +334,33 @@ public class VentanaNuevoVehiculo extends JFrame implements ActionListener, Item
         if (e.getSource() == botonCancelar) {
             this.dispose();
         }
+    }
+
+    public Double asiganarPMA(VehiculoBD vehiculoBD){
+        String tipo = vehiculoBD.getTipoVehiculo().toLowerCase();
+        Double pma;
+
+        switch (tipo) {
+            case "auto":
+                pma = (double) 0;
+                break;
+            case "minibus":
+                pma = (double) 0;
+                break;
+            case "furgoneta":
+                Furgoneta furgoneta = new Furgoneta();
+                pma = furgoneta.getPma();
+                break;
+            case "camion":
+                Camion camion = new Camion();
+                pma = camion.getPma();
+                break;
+            default:
+                pma =(double) 0;
+                break;
+        }
+        return pma;
+
     }
 
     

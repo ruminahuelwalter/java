@@ -29,6 +29,7 @@ import AccesoDatos.VehiculoDAO;
 import Logica.VehiculoBD;
 
 public class VentanaNuevaCotizacion extends JFrame implements ActionListener, ItemListener, KeyListener{
+
     private JLabel labelCotizar, labelCerrar;
     private JButton botonCotizar, botonCerrar;
     private JCheckBox checkBoxCantidadDias;
@@ -57,7 +58,7 @@ public class VentanaNuevaCotizacion extends JFrame implements ActionListener, It
         this.add(panelTitulo, BorderLayout.NORTH);
 
 
-        JPanel panelTabla = new JPanel();
+        panelTabla = new JPanel();
         //panelTabla.setBackground(new Color(144,202,249));
         panelTabla.setBackground(new Color(30,136,229));
         //panelTabla.setBorder(new EmptyBorder(20, 0, 10, 0));
@@ -79,17 +80,17 @@ public class VentanaNuevaCotizacion extends JFrame implements ActionListener, It
         JPanel panelCantidadDias = new JPanel();
         panelCantidadDias.setLayout(new GridBagLayout());
         panelCantidadDias.setBackground(new Color(144,202,249));
-        panelCantidadDias.setBorder(new EmptyBorder(10, 10, 10, 10));
+        panelCantidadDias.setBorder(new EmptyBorder(5, 10, 0, 10));
    
         panelSur.add(panelCantidadDias, BorderLayout.NORTH);  
 
         JLabel labelCantidadDias = new JLabel("<html><center>Ingrese la cantidad de dias: </center></html>");
-        labelCantidadDias.setFont(new Font("Hack nerd font", 1, 20));
+        labelCantidadDias.setFont(new Font("Hack nerd font", 1, 17));
         labelCantidadDias.setVisible(true);
 
         textFieldCantidadDias = new JTextField(5);
         textFieldCantidadDias.addKeyListener(this);
-        textFieldCantidadDias.setBorder(new EmptyBorder(10, 10, 10, 10));
+        textFieldCantidadDias.setBorder(new EmptyBorder(5, 5, 5, 5));
         
         checkBoxCantidadDias = new JCheckBox();
         checkBoxCantidadDias.addItemListener(this);
@@ -97,7 +98,7 @@ public class VentanaNuevaCotizacion extends JFrame implements ActionListener, It
         GridBagConstraints gridBag0 = new GridBagConstraints();
         gridBag0.insets.right = 0;
         gridBag0.insets.left = 20;
-        gridBag0.insets.bottom = 10;
+        gridBag0.insets.bottom = 5;
         gridBag0.anchor = GridBagConstraints.EAST;
 
         gridBag0.gridx = 0;
@@ -122,29 +123,29 @@ public class VentanaNuevaCotizacion extends JFrame implements ActionListener, It
         panelBotones.setLayout(new GridBagLayout());
         
         panelBotones.setBackground(new Color(144,202,249));
-        panelBotones.setBorder(new EmptyBorder(10, 10, 20, 10));
+        panelBotones.setBorder(new EmptyBorder(10, 10, 10, 10));
         panelSur.add(panelBotones, BorderLayout.SOUTH);  
     
         labelCotizar = new JLabel("<html><center>Cotizar<br> vehiculo</center></html>");
-        labelCotizar.setFont(new Font("Hack nerd font", 1, 20));
+        labelCotizar.setFont(new Font("Hack nerd font", 1, 15));
         labelCotizar.setVisible(true);
        
         botonCotizar = new JButton("Cotizar");
         botonCotizar.setVisible(true);
-        botonCotizar.setFont(new Font("Hack nerd font", 1, 20));
-        botonCotizar.setPreferredSize(new Dimension(140, 40));
+        botonCotizar.setFont(new Font("Hack nerd font", 1, 15));
+        botonCotizar.setPreferredSize(new Dimension(120, 30));
         botonCotizar.addActionListener(this);
         botonCotizar.setEnabled(false);
 
         
         labelCerrar = new JLabel("<html><center>Cerrar</center></html>");
-        labelCerrar.setFont(new Font("Hack nerd font", 1, 20));
+        labelCerrar.setFont(new Font("Hack nerd font", 1, 15));
         labelCerrar.setVisible(true);
             
         botonCerrar = new JButton("Cerrar");
         botonCerrar.setVisible(true);
-        botonCerrar.setFont(new Font("Hack nerd font", 1, 20));
-        botonCerrar.setPreferredSize(new Dimension(140, 40));
+        botonCerrar.setFont(new Font("Hack nerd font", 1, 15));
+        botonCerrar.setPreferredSize(new Dimension(120, 30));
         botonCerrar.addActionListener(this);
 
 
@@ -154,19 +155,19 @@ public class VentanaNuevaCotizacion extends JFrame implements ActionListener, It
         gridBag.insets.left = 40;
         gridBag.insets.bottom = 10;
         
-        gridBag.gridx = 0;
-        gridBag.gridy = 0;
-        panelBotones.add(labelCotizar, gridBag);
+        //gridBag.gridx = 0;
+        //gridBag.gridy = 0;
+        //panelBotones.add(labelCotizar, gridBag);
         
         gridBag.gridx = 0;
         gridBag.gridy = 1;
         gridBag.fill = GridBagConstraints.NONE;
         panelBotones.add(botonCotizar, gridBag);
 
-        gridBag.gridx = 1;
-        gridBag.gridy = 0;
-        gridBag.fill = GridBagConstraints.NONE;
-        panelBotones.add(labelCerrar, gridBag);
+        //gridBag.gridx = 1;
+        //gridBag.gridy = 0;
+        //gridBag.fill = GridBagConstraints.NONE;
+        //panelBotones.add(labelCerrar, gridBag);
 
         gridBag.gridx = 1;
         gridBag.gridy = 1;
@@ -206,13 +207,6 @@ public class VentanaNuevaCotizacion extends JFrame implements ActionListener, It
 
     }
 
-    public void nuevoPanel (JPanel panelActual) {
-        
-        panelTabla.removeAll();
-        panelTabla.add(panelActual);
-        panelTabla.repaint();
-        panelTabla.revalidate();
-    }
 
     @Override
     public void itemStateChanged(ItemEvent e) {
@@ -240,7 +234,7 @@ public class VentanaNuevaCotizacion extends JFrame implements ActionListener, It
 
     @Override
     public void keyPressed(KeyEvent e) {
-        textFieldCantidadDiasTecla(e);
+        //textFieldCantidadDiasTecla(e);
     }
 
     @Override
