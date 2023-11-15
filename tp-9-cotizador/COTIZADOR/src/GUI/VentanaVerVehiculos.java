@@ -17,7 +17,7 @@ public class VentanaVerVehiculos extends JFrame implements ActionListener{
 
     public VentanaVerVehiculos() {
 
-        this.setBounds(0, 0, 1130, 700);
+        this.setBounds(0, 0, 1130, 660);
         this.setLayout(new BorderLayout());
         this.setTitle("Lista de Vehiculos");
         this.setResizable(true);
@@ -28,8 +28,8 @@ public class VentanaVerVehiculos extends JFrame implements ActionListener{
         panelTitulo.setBackground(new Color(144,202,249));
         JLabel labelTitulo = new JLabel("<html><center> Vehiculos disponibles para alquilar </center><br></html>",
                 JLabel.CENTER);
-        labelTitulo.setFont(new Font("Hack nerd font", 1, 40));
-        labelTitulo.setBorder(new EmptyBorder(30, 30, 0, 30));
+        labelTitulo.setFont(new Font("Hack nerd font", 1, 35));
+        labelTitulo.setBorder(new EmptyBorder(10, 10, 10, 10));
         labelTitulo.setVisible(true);
         panelTitulo.add(labelTitulo);
         this.add(panelTitulo, BorderLayout.NORTH);
@@ -45,7 +45,7 @@ public class VentanaVerVehiculos extends JFrame implements ActionListener{
         JPanel panelSur = new JPanel();
         panelSur.setLayout(new BorderLayout());
         panelSur.setBackground(new Color(30,136,229));
-        panelSur.setBorder(new EmptyBorder(0, 0, 10, 0));
+        panelSur.setBorder(new EmptyBorder(10, 0, 10, 0));
         this.add(panelSur, BorderLayout.SOUTH);
         
 
@@ -53,7 +53,7 @@ public class VentanaVerVehiculos extends JFrame implements ActionListener{
         panelBotones.setLayout(new GridBagLayout());
         
         panelBotones.setBackground(new Color(144,202,249));
-        panelBotones.setBorder(new EmptyBorder(10, 10, 60, 10));
+        //panelBotones.setBorder(new EmptyBorder(10, 10, 10, 10));
         panelSur.add(panelBotones);
         
 
@@ -93,7 +93,7 @@ public class VentanaVerVehiculos extends JFrame implements ActionListener{
         gridBag = new GridBagConstraints();
         gridBag.insets.right = 40;
         gridBag.insets.left = 40;
-        gridBag.insets.bottom = 10;
+        gridBag.insets.bottom = 0;
 
         gridBag.gridx = 0;
         gridBag.gridy = 0;

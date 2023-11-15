@@ -2,22 +2,13 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-
 import java.awt.Dimension;
-
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.*;
 import java.util.List;
-
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import AccesoDatos.VehiculoDAO;
@@ -241,15 +232,15 @@ public class VentanaNuevoVehiculo extends JFrame implements ActionListener, Item
         
         gridBag.gridx = 0;
         gridBag.gridy = 9;
-        panelPrincipal.add(labelPMA, gridBag);
+        //panelPrincipal.add(labelPMA, gridBag);
 
         gridBag.gridx = 1;
         gridBag.gridy = 9;
-        panelPrincipal.add(textFieldPMA, gridBag);
+        //panelPrincipal.add(textFieldPMA, gridBag);
 
         gridBag.gridx = 2;
         gridBag.gridy = 9; 
-        panelPrincipal.add(checkBoxPMA, gridBag);
+        //panelPrincipal.add(checkBoxPMA, gridBag);
         
 
         panelSur = new JPanel();
@@ -276,7 +267,7 @@ public class VentanaNuevoVehiculo extends JFrame implements ActionListener, Item
     @Override
     public void itemStateChanged(ItemEvent e) {
 
-        if (checkBoxMarca.isSelected() && checkBoxModelo.isSelected() && checkBoxAnio.isSelected() && checkBoxPatente.isSelected() && checkBoxColor.isSelected() && checkBoxCantPlazas.isSelected() && checkBoxCapacidadBaul.isSelected() && checkBoxPMA.isSelected() ) { 
+        if (checkBoxMarca.isSelected() && checkBoxModelo.isSelected() && checkBoxAnio.isSelected() && checkBoxPatente.isSelected() && checkBoxColor.isSelected() && checkBoxCantPlazas.isSelected() && checkBoxCapacidadBaul.isSelected()) { 
             botonAgregar.setEnabled(true); 
 
         } else {

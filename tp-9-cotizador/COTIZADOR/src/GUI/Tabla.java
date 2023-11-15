@@ -69,7 +69,7 @@ public class Tabla extends JPanel {
 
         scrollPane = new JScrollPane(tabla);
 
-        scrollPane.setPreferredSize((new Dimension(1000, 400)));
+        scrollPane.setPreferredSize((new Dimension(1000, 350)));
         //scrollPane.setMinimumSize(new Dimension(1000,300));
         //scrollPane.setMaximumSize(new Dimension(3000,600));
         

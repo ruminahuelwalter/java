@@ -24,7 +24,7 @@ public class VentanaBienvenida extends JFrame implements ActionListener {
 
         panelNorte = new JPanel();
         panelNorte.setBackground(new Color(30,136,229));
-        panelNorte.setBorder(new EmptyBorder(20, 10, 10, 10));
+        panelNorte.setBorder(new EmptyBorder(20, 10, 0, 10));
         panelNorte.setVisible(true);
         this.add(panelNorte, BorderLayout.NORTH);
 
@@ -131,18 +131,18 @@ public class VentanaBienvenida extends JFrame implements ActionListener {
         if (e.getSource() == botonVerVehiculos) {
             VentanaVerVehiculos ventana = new VentanaVerVehiculos();
             ventana.setVisible(true);
-            ventana.pack();
+            //ventana.pack();
             //ventana.repaint(); 
         }
         if (e.getSource() == botonNuevaCotizacion){
             VentanaNuevaCotizacion ventanaC = new VentanaNuevaCotizacion();
             ventanaC.setVisible(true);
-            ventanaC.pack();
+            //ventanaC.pack();
         }
         if (e.getSource() == botonVerCotizaciones){
             VentanaHistorial ventanaVer = new VentanaHistorial();
             ventanaVer.setVisible(true);
-            ventanaVer.pack();
+            //ventanaVer.pack();
         }
     }
 

@@ -9,7 +9,7 @@ import AccesoDatos.CotizacionDAO;
 import Logica.*;
 
 
-public class VentanaCotizar extends JFrame implements ActionListener, ItemListener{
+public class VentanaDetalleCotizacion extends JFrame implements ActionListener, ItemListener{
     
     private JPanel panelTitulo, panelPrincipal, panelSur;
     private JLabel labelTitulo, labelTipo, labelMarca, labelModelo, labelAnio, labelPatente, labelColor, labelTipoTransmision, labelCantPlazas, labelCapacidadBaul, labelPMA;
@@ -19,7 +19,7 @@ public class VentanaCotizar extends JFrame implements ActionListener, ItemListen
     private VehiculoBD vehiculoBD;
     private int cantidadDias;
 
-    public VentanaCotizar(VehiculoBD vehiculo,int cantDias, Tabla tabla) {
+    public VentanaDetalleCotizacion(VehiculoBD vehiculo,int cantDias, Tabla tabla) {
 
         this.setBounds(0, 0, 800, 600);
         this.setLayout(new BorderLayout());
@@ -104,10 +104,13 @@ public class VentanaCotizar extends JFrame implements ActionListener, ItemListen
         labelPMA = new JLabel("Peso maximo autorizado:");
         labelPMA.setFont(new Font("Hack nerd font", 1, 20));
         
-        String pma = Float.toString(vehiculo.getPma());
+        Double pmaAux = asiganarPMA(vehiculo);
+        float pma = pmaAux.floatValue();
+        vehiculo.setPma(pma);
+        String pmaString = Float.toString(vehiculo.getPma());
         labelVehiculoPMA = new JLabel();
         labelVehiculoPMA.setFont(new Font("Hack nerd font", 1, 20));
-        labelVehiculoPMA.setText(pma);  
+        labelVehiculoPMA.setText(pmaString);  
 
         gridBag = new GridBagConstraints();
         gridBag.anchor = GridBagConstraints.EAST;
@@ -328,6 +331,38 @@ public class VentanaCotizar extends JFrame implements ActionListener, ItemListen
     @Override
     public void itemStateChanged(ItemEvent e) {
    
+    }
+
+    public Double asiganarPMA(VehiculoBD vehiculoBD){
+        String tipo = vehiculoBD.getTipoVehiculo().toLowerCase();
+   
+        Vehiculo vehiculo;
+        Double pma;
+
+        switch (tipo) {
+            case "auto":
+                vehiculo = new Auto();
+                pma = (double) 0;
+                break;
+            case "minibus":
+                vehiculo = new Minibus();
+                pma = (double) 0;
+                break;
+            case "furgoneta":
+                Furgoneta furgoneta = new Furgoneta();
+                pma = furgoneta.getPma();
+                break;
+            case "camion":
+                Camion camion = new Camion();
+                pma = camion.getPma();
+                break;
+            default:
+                vehiculo = null;
+                pma =(double) 0;
+                break;
+        }
+        return pma;
+
     }
 
     public Double calculoCotizacion(VehiculoBD vehiculoBD, int cantDias) {

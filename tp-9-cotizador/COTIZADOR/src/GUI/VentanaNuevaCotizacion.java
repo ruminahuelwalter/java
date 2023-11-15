@@ -38,8 +38,8 @@ public class VentanaNuevaCotizacion extends JFrame implements ActionListener, It
     private JPanel panelTabla;
 
     public VentanaNuevaCotizacion() {
-
-        this.setBounds(0, 0, 1130, 600);
+      
+        this.setBounds(0, 0, 1130, 700);
         this.setLayout(new BorderLayout());
         this.setTitle("Cotizar Vehiculo");
         this.setResizable(true);
@@ -79,7 +79,7 @@ public class VentanaNuevaCotizacion extends JFrame implements ActionListener, It
         JPanel panelCantidadDias = new JPanel();
         panelCantidadDias.setLayout(new GridBagLayout());
         panelCantidadDias.setBackground(new Color(144,202,249));
-        panelCantidadDias.setBorder(new EmptyBorder(10, 10, 60, 10));
+        panelCantidadDias.setBorder(new EmptyBorder(10, 10, 10, 10));
    
         panelSur.add(panelCantidadDias, BorderLayout.NORTH);  
 
@@ -188,7 +188,7 @@ public class VentanaNuevaCotizacion extends JFrame implements ActionListener, It
                 VehiculoBD vehiculo = new VehiculoBD();
                 vehiculo = tabla.vehiculoSeleccionado();
                 
-                VentanaCotizar ventanaCotizar = new VentanaCotizar(vehiculo,cantDias,tabla);
+                VentanaDetalleCotizacion ventanaCotizar = new VentanaDetalleCotizacion(vehiculo,cantDias,tabla);
                 ventanaCotizar.setVisible(true);
 
                 VehiculoDAO iVehiculo = new VehiculoDAO();
