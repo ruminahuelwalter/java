@@ -23,7 +23,7 @@ public class VentanaDetalleCotizacion extends JFrame implements ActionListener, 
 
         this.setBounds(0, 0, 800, 600);
         this.setLayout(new BorderLayout());
-        this.setTitle("Detalle Vehiculo");
+        this.setTitle("Detalle Cotizacion");
         this.setResizable(true);
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(new Color(30,136,229));
@@ -290,7 +290,7 @@ public class VentanaDetalleCotizacion extends JFrame implements ActionListener, 
         panelSur.setBorder(new EmptyBorder(20, 0, 20, 0));
         this.add(panelSur, BorderLayout.SOUTH);
 
-        botonAceptar = new JButton("Aceptar");
+        botonAceptar = new JButton("Confirmar");
         botonAceptar.setVisible(true);
         botonAceptar.setFont(new Font("Hack nerd font", 1, 20));
         botonAceptar.setPreferredSize(new Dimension(200, 40));

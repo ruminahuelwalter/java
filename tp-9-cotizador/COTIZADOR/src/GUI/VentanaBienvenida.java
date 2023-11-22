@@ -131,18 +131,17 @@ public class VentanaBienvenida extends JFrame implements ActionListener {
         if (e.getSource() == botonVerVehiculos) {
             VentanaVerVehiculos ventana = new VentanaVerVehiculos();
             ventana.setVisible(true);
-            //ventana.pack();
-            //ventana.repaint(); 
+         
         }
         if (e.getSource() == botonNuevaCotizacion){
             VentanaNuevaCotizacion ventanaC = new VentanaNuevaCotizacion();
             ventanaC.setVisible(true);
-            //ventanaC.pack();
+          
         }
         if (e.getSource() == botonVerCotizaciones){
             VentanaHistorial ventanaVer = new VentanaHistorial();
             ventanaVer.setVisible(true);
-            //ventanaVer.pack();
+          
         }
     }
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface iCotizacionDAO {
     
-    //public abstract void insertar(Cotizacion cotizacion, int idVehiculo);
+ 
     public abstract void insertar(Cotizacion cotizacion);
     public abstract void eliminarElemento(String elemento);
     public abstract void modificarElemento(Cotizacion cotizacion,String elemento);

@@ -55,12 +55,6 @@ public class TablaCotizaciones extends JPanel {
         anchoColumna.getColumn(0).setPreferredWidth(50);
         anchoColumna.getColumn(1).setPreferredWidth(50);
         anchoColumna.getColumn(10).setPreferredWidth(50);
-        //anchoColumna.getColumn(2).setPreferredWidth(250);
-        //anchoColumna.getColumn(4).setPreferredWidth(150);
-        //anchoColumna.getColumn(5).setPreferredWidth(150);
-        //anchoColumna.getColumn(9).setPreferredWidth(200);
-
-        
 
         for (Cotizacion cotizacion : lista) {
             tablaModelo.addRow(new Object[]{
@@ -85,20 +79,13 @@ public class TablaCotizaciones extends JPanel {
 
         } 
     
-        //tabla.setAutoResizeMode(2);
-
-        //tabla.setAutoResizeMode(1);
         tabla.setRowHeight(25);
         tabla.setShowHorizontalLines(false);
         tabla.setShowVerticalLines(false);
 
-        //tabla.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-
         scrollPane = new JScrollPane(tabla);
 
         scrollPane.setPreferredSize((new Dimension(1000, 370)));
-        //scrollPane.setMinimumSize(new Dimension(1000,300));
-        //scrollPane.setMaximumSize(new Dimension(3000,600));
         
         this.add(scrollPane, BorderLayout.CENTER);
     }

@@ -24,7 +24,7 @@ public class Tabla extends JPanel {
         tablaModelo = new DefaultTableModel();
 
         Object encabezado[] = new Object[]{
-            "idVehiculo",
+            //"idVehiculo",
             "Tipo",
             "Marca",
             "Modelo",
@@ -46,7 +46,7 @@ public class Tabla extends JPanel {
         for (VehiculoBD vehiculo : lista) {
             tablaModelo.addRow(new Object[]{
             
-            vehiculo.getIdVehiculo(),
+            //vehiculo.getIdVehiculo(),
             vehiculo.getTipoVehiculo(),
             vehiculo.getMarca(),
             vehiculo.getModelo(),
@@ -70,9 +70,7 @@ public class Tabla extends JPanel {
         scrollPane = new JScrollPane(tabla);
 
         scrollPane.setPreferredSize((new Dimension(1000, 370)));
-        //scrollPane.setMinimumSize(new Dimension(1000,300));
-        //scrollPane.setMaximumSize(new Dimension(3000,600));
-        
+   
         this.add(scrollPane, BorderLayout.CENTER);
     }
 

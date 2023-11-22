@@ -43,7 +43,7 @@ public class VentanaNuevoVehiculo extends JFrame implements ActionListener, Item
 
         panelDerecho = new JPanel();
         panelDerecho.setLayout(new GridBagLayout());
-        panelDerecho.setBackground(Color.GRAY);
+        //panelDerecho.setBackground(Color.GRAY);
         panelDerecho.setBorder(new EmptyBorder(0, 60, 60, 20));
         this.add(panelDerecho, BorderLayout.EAST);
 
@@ -113,17 +113,11 @@ public class VentanaNuevoVehiculo extends JFrame implements ActionListener, Item
         checkBoxCapacidadBaul = new JCheckBox();
         checkBoxCapacidadBaul.addItemListener(this);
 
-        //labelPMA = new JLabel("Peso maximo autorizado:");
-        //labelPMA.setFont(new Font("Hack nerd font", 1, 20));
-        //textFieldPMA = new JTextField(20);
-        //checkBoxPMA = new JCheckBox();
-        //checkBoxPMA.addItemListener(this);
-        
+
         gridBag = new GridBagConstraints();
         gridBag.anchor = GridBagConstraints.EAST;
         gridBag.insets.right = 0;
         gridBag.insets.left = 0;
-        //gridBag.insets.bottom = 10;
         gridBag.gridwidth = 1;
         gridBag.weightx = 1;
         gridBag.weighty = 1;
@@ -232,16 +226,13 @@ public class VentanaNuevoVehiculo extends JFrame implements ActionListener, Item
         
         gridBag.gridx = 0;
         gridBag.gridy = 9;
-        //panelPrincipal.add(labelPMA, gridBag);
-
+   
         gridBag.gridx = 1;
         gridBag.gridy = 9;
-        //panelPrincipal.add(textFieldPMA, gridBag);
-
+    
         gridBag.gridx = 2;
         gridBag.gridy = 9; 
-        //panelPrincipal.add(checkBoxPMA, gridBag);
-        
+       
 
         panelSur = new JPanel();
         panelSur.setBorder(new EmptyBorder(20, 0, 20, 0));
@@ -302,9 +293,6 @@ public class VentanaNuevoVehiculo extends JFrame implements ActionListener, Item
         if (checkBoxCapacidadBaul.isSelected()) {
             capacidadBaul = Integer.parseInt(textFieldCapacidadBaul.getText());
         }
-        //if (checkBoxPMA.isSelected()) {
-        //    pma = Float.parseFloat(textFieldPMA.getText());
-        //}
 
         if (e.getSource() == botonAgregar) {
 
@@ -325,7 +313,7 @@ public class VentanaNuevoVehiculo extends JFrame implements ActionListener, Item
         
             iVehiculoDAO iVehiculo = new VehiculoDAO();
             iVehiculo.insertar(vehiculo);
-            //Actualizar tabla
+   
             List<VehiculoBD> lista = iVehiculo.listar();
             tabla.actualizarTabla(lista);
             this.dispose();

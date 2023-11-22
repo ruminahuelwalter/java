@@ -62,8 +62,7 @@ public class VentanaHistorial extends JFrame implements ActionListener{
         botonCerrar.setFont(new Font("Hack nerd font", 1, 20));
         botonCerrar.setPreferredSize(new Dimension(140, 40));
         botonCerrar.addActionListener(this);
-        //botonCerrar.setForeground(new Color(40,53,147));
-
+ 
         gridBag = new GridBagConstraints();
         gridBag.insets.right = 40;
         gridBag.insets.left = 40;

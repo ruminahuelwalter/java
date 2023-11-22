@@ -8,21 +8,10 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.util.List;
 
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import AccesoDatos.VehiculoDAO;
@@ -59,10 +48,8 @@ public class VentanaNuevaCotizacion extends JFrame implements ActionListener, It
 
 
         panelTabla = new JPanel();
-        //panelTabla.setBackground(new Color(144,202,249));
         panelTabla.setBackground(new Color(30,136,229));
-        //panelTabla.setBorder(new EmptyBorder(20, 0, 10, 0));
-        //panelTabla.setVisible(true);
+ 
 
         tabla = new Tabla();
         
@@ -136,7 +123,6 @@ public class VentanaNuevaCotizacion extends JFrame implements ActionListener, It
         botonCotizar.setPreferredSize(new Dimension(120, 30));
         botonCotizar.addActionListener(this);
         botonCotizar.setEnabled(false);
-
         
         labelCerrar = new JLabel("<html><center>Cerrar</center></html>");
         labelCerrar.setFont(new Font("Hack nerd font", 1, 15));
@@ -147,27 +133,16 @@ public class VentanaNuevaCotizacion extends JFrame implements ActionListener, It
         botonCerrar.setFont(new Font("Hack nerd font", 1, 15));
         botonCerrar.setPreferredSize(new Dimension(120, 30));
         botonCerrar.addActionListener(this);
-
-
         
         gridBag = new GridBagConstraints();
         gridBag.insets.right = 40;
         gridBag.insets.left = 40;
         gridBag.insets.bottom = 10;
-        
-        //gridBag.gridx = 0;
-        //gridBag.gridy = 0;
-        //panelBotones.add(labelCotizar, gridBag);
-        
+         
         gridBag.gridx = 0;
         gridBag.gridy = 1;
         gridBag.fill = GridBagConstraints.NONE;
         panelBotones.add(botonCotizar, gridBag);
-
-        //gridBag.gridx = 1;
-        //gridBag.gridy = 0;
-        //gridBag.fill = GridBagConstraints.NONE;
-        //panelBotones.add(labelCerrar, gridBag);
 
         gridBag.gridx = 1;
         gridBag.gridy = 1;
@@ -234,7 +209,7 @@ public class VentanaNuevaCotizacion extends JFrame implements ActionListener, It
 
     @Override
     public void keyPressed(KeyEvent e) {
-        //textFieldCantidadDiasTecla(e);
+       
     }
 
     @Override
